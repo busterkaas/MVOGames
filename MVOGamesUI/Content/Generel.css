@@ -1,0 +1,19 @@
+﻿
+#topLogo{
+    height:25px;
+}
+
+body {
+    margin-top: 50px;
+    background-color: darkgray;
+}
+
+h2{
+    color:#525252;
+}
+
+
+.navbar{
+    background-color:#D7D6D6;
+}
+

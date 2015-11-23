@@ -1,0 +1,15 @@
+﻿@model List<MVOGamesDAL.Models.Game>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@foreach(var item in Model)
+{
+    <p>@item.Title</p>
+    foreach(var g in item.Genres)
+    {
+        <p>@g.Name</p>
+    }
+}

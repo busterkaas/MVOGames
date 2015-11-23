@@ -1,0 +1,26 @@
+﻿@model MVOGamesUI.ViewModels.AuthLogin
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+<br/>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    <div>
+        @Html.LabelFor(x => x.Username)
+        @Html.EditorFor(x => x.Username)
+    </div>
+    <br/>
+    <div>
+        @Html.LabelFor(x => x.Password)
+        @Html.EditorFor(x => x.Password)
+    </div>
+    <br/>
+    <div>
+        <input type="submit" value="Login"/>
+    </div>
+
+}

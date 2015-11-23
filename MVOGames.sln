@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVOGamesUI", "MVOGamesUI\MVOGamesUI.csproj", "{F814ECE5-54A1-4620-B990-423C1523296B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVOGamesDAL", "MVOGamesDAL\MVOGamesDAL.csproj", "{0D37EDB5-8633-42E7-9041-83D7C38EB7BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVOGamesTestDAL", "MVOGamesTestDAL\MVOGamesTestDAL.csproj", "{9467CBB3-3B02-443E-81CE-EDF08CA4B8D3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F814ECE5-54A1-4620-B990-423C1523296B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F814ECE5-54A1-4620-B990-423C1523296B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F814ECE5-54A1-4620-B990-423C1523296B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F814ECE5-54A1-4620-B990-423C1523296B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D37EDB5-8633-42E7-9041-83D7C38EB7BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D37EDB5-8633-42E7-9041-83D7C38EB7BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D37EDB5-8633-42E7-9041-83D7C38EB7BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D37EDB5-8633-42E7-9041-83D7C38EB7BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9467CBB3-3B02-443E-81CE-EDF08CA4B8D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9467CBB3-3B02-443E-81CE-EDF08CA4B8D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9467CBB3-3B02-443E-81CE-EDF08CA4B8D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9467CBB3-3B02-443E-81CE-EDF08CA4B8D3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

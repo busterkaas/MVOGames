@@ -1,0 +1,47 @@
+﻿/*.navbar{
+    background-color:#001F20;
+}*/
+/*body {
+    background-color:#003031;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    color:black;
+}*/
+
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+/*.dl-horizontal dt {
+    white-space: normal;
+}*/
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}*/
+#btnJoinUs {
+    float: right;
+    margin-top: 600px;
+}
+.jumbotron {
+    position: relative;
+    background: url('images/gamessplit.jpg') no-repeat center center !important;
+   
+    background-attachment: fixed;
+    min-height: 800px;
+      background-repeat:no-repeat;
+     background-position:200% 100%;
+     padding:200px 0 140px 0;
+   
+    overflow: hidden;
+    color: white;
+}
