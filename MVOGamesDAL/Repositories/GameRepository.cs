@@ -70,7 +70,6 @@ namespace MVOGamesDAL.Repositories
                     {
                         gameDB.Title = t.Title;
                         gameDB.ReleaseDate = t.ReleaseDate;
-                        gameDB.Price = t.Price;
                         gameDB.TrailerUrl = t.TrailerUrl;
                         gameDB.CoverUrl = t.CoverUrl;
                         gameDB.Description = t.Description;

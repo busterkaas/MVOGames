@@ -11,6 +11,7 @@ namespace MVOGamesDAL.Models
     {
         public Game()
         {
+            GPlatforms = new List<PlatformGame>();
             Genres = new List<Genre>();
         }
         public int Id { get; set; }
@@ -19,13 +20,14 @@ namespace MVOGamesDAL.Models
         [DataType(DataType.Date)]
         [Required]
         public DateTime ReleaseDate { get; set; }
-        [Required(ErrorMessage = "Price is required")]
-        [Range(1.00, 999.00,
-            ErrorMessage = "Price must be between 1.00 and 3999.00")]
-        public decimal Price { get; set; }
+        //[Required(ErrorMessage = "Price is required")]
+        //[Range(1.00, 999.00,
+        //    ErrorMessage = "Price must be between 1.00 and 3999.00")]
+        //public decimal Price { get; set; }
         public string CoverUrl { get; set; }
         public string TrailerUrl { get; set; }
         public string Description { get; set; }
+        public virtual List<PlatformGame> GPlatforms { get; set; } 
         public virtual List<Genre> Genres { get; set; }
         
     }

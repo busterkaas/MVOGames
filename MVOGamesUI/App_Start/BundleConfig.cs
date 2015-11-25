@@ -8,6 +8,7 @@ namespace MVOGamesUI
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            //Better loading for CSS
             BundleTable.EnableOptimizations = true;
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(

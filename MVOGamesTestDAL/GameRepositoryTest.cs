@@ -37,7 +37,6 @@ namespace MVOGamesTestDAL
                 TrailerUrl = "trailerurl",
                 Description = "desc",
                 Genres = new List<Genre>() {genre},
-                Price = 10,
                 ReleaseDate = DateTime.Now
             };
 

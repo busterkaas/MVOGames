@@ -84,6 +84,7 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Orderline.cs" />
     <Compile Include="Models\Platform.cs" />
+    <Compile Include="Models\PlatformGame.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -31,8 +31,11 @@ namespace MVOGamesDAL.Models
         public string City { get; set; }
         [Required(ErrorMessage = "An Email is required!")]
         public string Email { get; set; }
+        [Required]
+        public int RoleId { get; set; }
         [Required, DataType(DataType.Password)]
         public string PasswordHash { get; set; }
+        
 
         public void SetPassword(string password)
         {

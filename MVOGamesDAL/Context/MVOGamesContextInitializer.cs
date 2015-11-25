@@ -26,9 +26,9 @@ namespace MVOGamesDAL.Context
 
 
 
-            User user = new User { Username = "buster", City = "Esbjerg", Email = "bulle@gmail.com", FirstName = "Buster", LastName = "Jensen", HouseNr = "175 C, 2th", StreetName = "Ingemanns Allé", ZipCode = 6700, Crews = new List<Crew> { }, Role=role1 };
+            User user = new User { Username = "buster", City = "Esbjerg", Email = "bulle@gmail.com", FirstName = "Buster", LastName = "Jensen", HouseNr = "175 C, 2th", StreetName = "Ingemanns Allé", ZipCode = 6700, Crews = new List<Crew> { }, RoleId = 1};
             user.SetPassword("buster");
-            User user2 = new User { Username = "shane", City = "Oslo", Email = "shalle@gmail.com", FirstName = "Shane", LastName = "Jensen", HouseNr = "1", StreetName = "Olso Allé", ZipCode = 7070, Crews = new List<Crew> { }, Role=role2 };
+            User user2 = new User { Username = "shane", City = "Oslo", Email = "shalle@gmail.com", FirstName = "Shane", LastName = "Jensen", HouseNr = "1", StreetName = "Olso Allé", ZipCode = 7070, Crews = new List<Crew> { }, RoleId=2 };
             user2.SetPassword("shane");
             context.Users.Add(user);
             context.Users.Add(user2);
@@ -41,7 +41,6 @@ namespace MVOGamesDAL.Context
                  {
                 Title = "GTA V",
                 ReleaseDate = new DateTime(2014, 09, 28),
-                Price = 150,
                 CoverUrl = "http://blog.moviepostershop.com/wp-content/uploads/2011/03/Thor-movie-poster.jpg",
                 TrailerUrl = "https://www.youtube.com/embed/JOddp-nlNvQ",
                 
@@ -52,7 +51,6 @@ namespace MVOGamesDAL.Context
             {
                 Title = "Rainbow Six - Siege",
                 ReleaseDate = new DateTime(2015, 01, 28),
-                Price = 150,
                 CoverUrl = "http://blog.moviepostershop.com/wp-content/uploads/2011/03/Thor-movie-poster.jpg",
                 TrailerUrl = "https://www.youtube.com/embed/JOddp-nlNvQ",
 
@@ -62,7 +60,11 @@ namespace MVOGamesDAL.Context
             foreach (Game g in games)
             {
                 context.Games.Add(g);
+                
             }
+           
+            PlatformGame pg = context.PlatformGames.Add(new PlatformGame() {GameId = 1, PlatformId = 1, Price = 400, Stock = 20 });
+            PlatformGame pg1 = context.PlatformGames.Add(new PlatformGame() { GameId = 2, PlatformId = 2, Price = 300, Stock = 15 });
 
             base.Seed(context);
            

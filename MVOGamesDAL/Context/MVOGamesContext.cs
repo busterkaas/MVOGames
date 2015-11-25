@@ -30,6 +30,7 @@ namespace MVOGamesDAL.Context
         public System.Data.Entity.DbSet<Platform> Platforms { get; set; }
         public System.Data.Entity.DbSet<Order> Orders { get; set; }
         public System.Data.Entity.DbSet<Orderline> Orderlines { get; set; }
+        public System.Data.Entity.DbSet<PlatformGame> PlatformGames { get; set; }
 
 
     }
