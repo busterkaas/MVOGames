@@ -240,6 +240,10 @@
       <Project>{0d37edb5-8633-42e7-9041-83d7c38eb7ba}</Project>
       <Name>MVOGamesDAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ServiceGateway\ServiceGateway.csproj">
+      <Project>{5d8d1638-b37b-4583-a756-71782afe1ed8}</Project>
+      <Name>ServiceGateway</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

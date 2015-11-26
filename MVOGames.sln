@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVOGamesDAL", "MVOGamesDAL\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVOGamesTestDAL", "MVOGamesTestDAL\MVOGamesTestDAL.csproj", "{9467CBB3-3B02-443E-81CE-EDF08CA4B8D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceGateway", "ServiceGateway\ServiceGateway.csproj", "{5D8D1638-B37B-4583-A756-71782AFE1ED8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{9467CBB3-3B02-443E-81CE-EDF08CA4B8D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9467CBB3-3B02-443E-81CE-EDF08CA4B8D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9467CBB3-3B02-443E-81CE-EDF08CA4B8D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D8D1638-B37B-4583-A756-71782AFE1ED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D8D1638-B37B-4583-A756-71782AFE1ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D8D1638-B37B-4583-A756-71782AFE1ED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D8D1638-B37B-4583-A756-71782AFE1ED8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

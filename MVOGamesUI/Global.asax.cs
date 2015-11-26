@@ -13,7 +13,7 @@ namespace MVOGamesUI
     {
         protected void Application_Start()
         {
-            MVOGamesDAL.Context.DBInitializer.Initialize();
+            //MVOGamesDAL.Context.DBInitializer.Initialize();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

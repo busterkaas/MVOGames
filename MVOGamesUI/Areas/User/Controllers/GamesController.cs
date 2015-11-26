@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using MVOGamesDAL;
 using MVOGamesDAL.Models;
 using MVOGamesUI.Infrastructure;
+using ServiceGateway;
 
 namespace MVOGamesUI.Areas.User.Controllers
 {
@@ -14,10 +15,10 @@ namespace MVOGamesUI.Areas.User.Controllers
     public class GamesController : Controller
     {
         // GET: User/Games
-        DALFacade facade = new DALFacade();
+        Facade facade = new Facade();
         public ActionResult Index()
         {
-            List <Game> games = facade.GetGameRepository().ReadAll().ToList();
+            var games = facade.GetGameGateway().GetAll().ToList();
             return View(games);
         }
     }
