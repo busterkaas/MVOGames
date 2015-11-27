@@ -8,10 +8,10 @@ using ServiceGateway.Models;
 
 namespace ServiceGateway.Gateways
 {
-    public class GameGateway : IServiceGateway<GameDTO>
+    public class GameGateway : IServiceGateway<Game>
     {
         ServiceGateway sg = new ServiceGateway();
-        public HttpResponseMessage Create(GameDTO t)
+        public HttpResponseMessage Create(Game t)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.PostAsJsonAsync("api/games", t).Result;
@@ -25,26 +25,26 @@ namespace ServiceGateway.Gateways
             return response;
         }
 
-        public GameDTO Get(int id)
+        public Game Get(int id)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.GetAsync("api/games/" + id).Result;
-            var gameDTO = response.Content.ReadAsAsync<GameDTO>().Result;
-            return gameDTO;
+            var game = response.Content.ReadAsAsync<Game>().Result;
+            return game;
         }
 
-        public IEnumerable<GameDTO> GetAll()
+        public IEnumerable<Game> GetAll()
         {
             HttpClient client = sg.GetHttpClient();
-            HttpResponseMessage response = client.GetAsync("api/gameDTO/").Result;
-            var gameDTO = response.Content.ReadAsAsync<IEnumerable<GameDTO>>().Result;
-            return gameDTO;
+            HttpResponseMessage response = client.GetAsync("api/games/").Result;
+            var games = response.Content.ReadAsAsync<IEnumerable<Game>>().Result;
+            return games;
         }
 
-        public HttpResponseMessage Update(GameDTO t)
+        public HttpResponseMessage Update(Game t)
         {
             HttpClient client = sg.GetHttpClient();
-            HttpResponseMessage response = client.PutAsJsonAsync("api/gameDTO/" + t.Id, t).Result;
+            HttpResponseMessage response = client.PutAsJsonAsync("api/games/" + t.Id, t).Result;
             return response;
         }
     }

@@ -61,12 +61,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MVOGamesDAL\MVOGamesDAL.csproj">
-      <Project>{0d37edb5-8633-42e7-9041-83d7c38eb7ba}</Project>
-      <Name>MVOGamesDAL</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

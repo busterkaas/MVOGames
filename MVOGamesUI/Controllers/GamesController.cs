@@ -6,29 +6,30 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MVOGamesDAL.Context;
-using MVOGamesDAL.Models;
+using ServiceGateway;
+using ServiceGateway.Models;
 
 namespace MVOGamesUI.Controllers
 {
     public class GamesController : Controller
     {
-        private MVOGamesContext db = new MVOGamesContext();
+        private Facade facade = new Facade();
 
         // GET: Games
         public ActionResult Index()
         {
-            return View(db.Games.ToList());
+            var games = facade.GetGameGateway().GetAll().ToList();
+            return View(games);
         }
 
         // GET: Games/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Game game = db.Games.Find(id);
+            Game game = facade.GetGameGateway().Get(id);
             if (game == null)
             {
                 return HttpNotFound();
@@ -36,13 +37,13 @@ namespace MVOGamesUI.Controllers
             return View(game);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }

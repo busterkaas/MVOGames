@@ -6,10 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MVOGamesDAL;
-using MVOGamesDAL.Context;
-using MVOGamesDAL.Models;
 using MVOGamesUI.Infrastructure;
+using ServiceGateway;
+using ServiceGateway.Models;
 
 namespace MVOGamesUI.Areas.Admin.Controllers
 {
@@ -17,22 +16,23 @@ namespace MVOGamesUI.Areas.Admin.Controllers
     [SelectedTab("games")]
     public class GamesController : Controller
     {
-        private DALFacade facade = new DALFacade();
+        private Facade facade = new Facade();
 
         // GET: Admin/Games
         public ActionResult Index()
         {
-            return View(facade.GetGameRepository().ReadAll().ToList());
+            var games = facade.GetGameGateway().GetAll().ToList();
+            return View(games);
         }
 
         // GET: Admin/Games/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Game game = facade.GetGameRepository().Find(id);
+            Game game = facade.GetGameGateway().Get(id);
             if (game == null)
             {
                 return HttpNotFound();
@@ -55,7 +55,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                facade.GetGameRepository().Add(game);
+                facade.GetGameGateway().Create(game);
                
                 return RedirectToAction("Index");
             }
@@ -64,13 +64,13 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         }
 
         // GET: Admin/Games/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Game game = facade.GetGameRepository().Find(id);
+            Game game = facade.GetGameGateway().Get(id);
             if (game == null)
             {
                 return HttpNotFound();
@@ -87,7 +87,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                facade.GetGameRepository().Update(game);
+                facade.GetGameGateway().Update(game);
                 
                 return RedirectToAction("Index");
             }
@@ -95,13 +95,13 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         }
 
         // GET: Admin/Games/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Game game = facade.GetGameRepository().Find(id);
+            Game game = facade.GetGameGateway().Get(id);
             if (game == null)
             {
                 return HttpNotFound();
@@ -115,7 +115,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
            
-            facade.GetGameRepository().Delete(id);
+            facade.GetGameGateway().Delete(id);
       
             return RedirectToAction("Index");
         }

@@ -4,14 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using MVOGamesDAL;
 using MVOGamesUI.ViewModels;
+using ServiceGateway;
+using ServiceGateway.Models;
 
 namespace MVOGamesUI.Controllers
 {
     public class AuthController : Controller
     {
-        DALFacade facade = new DALFacade();
+        Facade facade = new Facade();
         // GET: Auth
         public ActionResult Login()
         {
@@ -20,8 +21,10 @@ namespace MVOGamesUI.Controllers
         [HttpPost]
         public ActionResult Login(AuthLogin form, string returnUrl)
         {
-            var user = facade.GetUserRepository().FindByUsername(form.Username);
-            
+            User user;
+            List<User> users = facade.GetUserGateway().GetAll().ToList();
+            user = users.First(u => u.Username == form.Username);
+
             //Den udmarkerede metode under, er en ekstra måde at sikre sig på. 
             //den gør bare at der er ikke er tidsforskel på, hvis en bruger er 
             //eller ikke er rigistreret i databasen :
@@ -48,7 +51,7 @@ namespace MVOGamesUI.Controllers
                 return Redirect(returnUrl);
             }
 
-            if (user.Role.RoleName == "admin")
+            if (user.RoleId == 2)
             {
                 return RedirectToAction("Index", "Games", new {area = "Admin"});
             }

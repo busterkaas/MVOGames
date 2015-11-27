@@ -6,11 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MVOGamesDAL;
-using MVOGamesDAL.Context;
-using MVOGamesDAL.Models;
 using MVOGamesUI.Areas.Admin.ViewModels;
 using MVOGamesUI.Infrastructure;
+using ServiceGateway;
+using ServiceGateway.Models;
 
 namespace MVOGamesUI.Areas.Admin.Controllers
 {
@@ -18,24 +17,24 @@ namespace MVOGamesUI.Areas.Admin.Controllers
     [SelectedTab("users")]
     public class UsersController : Controller
     {
-        private DALFacade facade = new DALFacade();
+        private Facade facade = new Facade();
 
         // GET: Admin/Users
         public ActionResult Index()
         {
-            List<MVOGamesDAL.Models.User> users= facade.GetUserRepository().ReadAll().ToList();
+            List<ServiceGateway.Models.User> users = facade.GetUserGateway().GetAll().ToList();
             return View(users);
             //return View(facade.GetUserRepository().ReadAll().ToList());
         }
 
         // GET: Admin/Users/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MVOGamesDAL.Models.User user = facade.GetUserRepository().Find(id);
+            ServiceGateway.Models.User user = facade.GetUserGateway().Get(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -46,8 +45,8 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // GET: Admin/Users/Create
         public ActionResult Create()
         {
-            MVOGamesDAL.Models.User u = new MVOGamesDAL.Models.User();
-            List<Role> roles = facade.GetRoleRepository().ReadAll().ToList();
+            ServiceGateway.Models.User u = new ServiceGateway.Models.User();
+            List<Role> roles = facade.GetRoleGateway().GetAll().ToList();
             RolesUser ru = new RolesUser(u, roles);
             return View(ru);
         }
@@ -57,11 +56,11 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Username,Password,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email")] MVOGamesDAL.Models.User user)
+        public ActionResult Create([Bind(Include = "Id,Username,Password,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email")] ServiceGateway.Models.User user)
         {
             if (ModelState.IsValid)
             {
-                facade.GetUserRepository().Add(user);
+                facade.GetUserGateway().Create(user);
                 return RedirectToAction("Index");
             }
 
@@ -69,13 +68,13 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         }
 
         // GET: Admin/Users/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MVOGamesDAL.Models.User user = facade.GetUserRepository().Find(id);
+            ServiceGateway.Models.User user = facade.GetUserGateway().Get(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -88,24 +87,24 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Username,Password,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email")] MVOGamesDAL.Models.User user)
+        public ActionResult Edit([Bind(Include = "Id,Username,Password,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email")] ServiceGateway.Models.User user)
         {
             if (ModelState.IsValid)
             {
-                facade.GetUserRepository().Update(user);
+                facade.GetUserGateway().Update(user);
                 return RedirectToAction("Index");
             }
             return View(user);
         }
 
         // GET: Admin/Users/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MVOGamesDAL.Models.User user = facade.GetUserRepository().Find(id);
+            ServiceGateway.Models.User user = facade.GetUserGateway().Get(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -118,8 +117,8 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            MVOGamesDAL.Models.User user = facade.GetUserRepository().Find(id);
-            facade.GetUserRepository().Delete(id);
+            ServiceGateway.Models.User user = facade.GetUserGateway().Get(id);
+            facade.GetUserGateway().Delete(id);
             return RedirectToAction("Index");
         }
 
