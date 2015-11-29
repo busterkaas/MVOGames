@@ -1,0 +1,16 @@
+﻿@model ServiceGateway.Models.User
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="itemContainer container">
+    <h3>@Model.Username's Profile</h3>
+
+    <br/>
+    <p>@Model.FirstName&nbsp;@Model.LastName</p>
+    <p>@Model.Email</p>
+    <p>@Model.ZipCode</p>
+    <p>@Model.City</p>
+    <p>@Model.StreetName&nbsp;@Model.HouseNr</p>
+    
+</div>

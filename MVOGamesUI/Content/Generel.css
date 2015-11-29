@@ -1,6 +1,8 @@
 ﻿
 #topLogo{
     height:30px;
+    padding: 0;
+    margin: 0;
 }
 
 body {
@@ -17,10 +19,35 @@ h2{
 
 
 .navbar{
+    height: 60px;
     /*background-color:#D7D6D6;*/
     background-color: #303030;
     border-bottom: #ff471a 1px solid;
 }
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active >   
+ a:hover, .navbar-default .navbar-nav > .active > a:focus {
+color: white; /*BACKGROUND color for active*/
+background-color: #282828  ;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: White;  /*Sets the text hover color on navbar*/
+}
+
+.dropdown-menu > li > a:hover,
+   .dropdown-menu > li > a:focus {
+    background-color: #282828;
+    color: white;
+  background-color: #ff471a;  /*change color of links in drop down here*/
+   }
+
+
+
+/*.myTopNav ul li {
+    padding: 10px 0 0 0;
+    margin: 0;
+    
+}*/
 
 
 @media (min-width: 1200px) {
@@ -39,3 +66,5 @@ h2{
     color: white;
 }
 p{ color: white;}
+
+

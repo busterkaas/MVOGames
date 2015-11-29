@@ -23,7 +23,12 @@ namespace MVOGamesUI.Controllers
         {
             User user;
             List<User> users = facade.GetUserGateway().GetAll().ToList();
-            user = users.First(u => u.Username == form.Username);
+            try
+            {
+                user = users.First(u => u.Username == form.Username);
+            }
+            catch
+            {user = null;}
 
             //Den udmarkerede metode under, er en ekstra måde at sikre sig på. 
             //den gør bare at der er ikke er tidsforskel på, hvis en bruger er 

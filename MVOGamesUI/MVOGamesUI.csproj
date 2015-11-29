@@ -138,6 +138,7 @@
     <Compile Include="Areas\Admin\ViewModels\RolesUser.cs" />
     <Compile Include="Areas\User\Controllers\CrewsController.cs" />
     <Compile Include="Areas\User\Controllers\GamesController.cs" />
+    <Compile Include="Areas\User\Controllers\ProfileController.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Auth.cs" />
     <Compile Include="Controllers\AuthController.cs" />
@@ -197,6 +198,7 @@
     <Content Include="Areas\User\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\User\Views\Games\Index.cshtml" />
     <Content Include="Areas\User\Views\Crews\Index.cshtml" />
+    <Content Include="Areas\User\Views\Profile\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

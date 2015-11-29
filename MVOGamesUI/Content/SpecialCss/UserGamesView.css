@@ -81,3 +81,12 @@ color: lightgray;
 .headerSidebar h3 {
     padding: 8px;
 }
+
+#sidebar li a:hover{
+    background-color: #ff471a;
+    color: white; 
+}
+#sidebar li a:focus {
+    background-color: #ff471a;
+    color: white; 
+}

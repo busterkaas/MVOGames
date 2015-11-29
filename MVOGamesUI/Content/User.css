@@ -1,4 +1,4 @@
-﻿body {
+﻿ body {
     background: no-repeat center center fixed;
      background-image: url(/Content/Images/GamingWallpaper.jpg);
     background-repeat: no-repeat;
@@ -10,4 +10,6 @@
 h2 {
     color: white;
 }
-
+#logoutTab {
+    padding-left: 35px;
+}
