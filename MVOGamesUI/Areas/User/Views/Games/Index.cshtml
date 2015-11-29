@@ -3,6 +3,101 @@
 @{
     ViewBag.Title = "Index";
 }
+<head>
+    <link rel="stylesheet" href="~/Content/SpecialCSS/UserGamesView.css" />
 
-<h2>USER GAME Index</h2>
+</head>
 
+<div class="container itemContainer">
+    <div class="col col-lg-2 col-md-2 col-sm-2 divSidebar">
+
+        <ul id="sidebar" class="nav nav-stacked affix">
+            <li>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for game" name="srch-term" id="srch-term">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+            </li>
+            <li class="liSidebar headerSidebar">
+                <h3>Platform</h3>
+            </li>
+            <li class="liSidebar"><a href="#">PS4</a></li>
+            <li class="liSidebar"><a href="#">XBOX</a></li>
+            <li class="liSidebar"><a href="#">PC</a></li>
+
+            <li class="liSidebar headerSidebar">
+                <h3>Genres</h3>
+            </li>
+            <li class="liSidebar"><a href="#">FPS</a></li>
+            <li class="liSidebar"><a href="#">Action</a></li>
+            <li class="liSidebar"><a href="#">Shit</a></li>
+            <li class="liSidebar"><a href="#">Crap</a></li>
+            <li class="liSidebar"><a href="#">Assholwmotherfuck</a></li>
+        </ul>
+
+
+    </div>
+    <div class="col-sm-9 col-md-10 col-lg-10">
+        <div class="panel-body">
+            <div class="items">
+                @foreach (var game in Model)
+                {
+                    <div class="item">
+                        <img id="imgCover" src="@game.CoverUrl" alt="item"/>
+                        <h2>@game.Title</h2>
+                        <button id="btnBuy" type="button" class="btn btn-info">Add!</button>
+                    </div>
+                    <div class="item">
+                        <img id="imgCover" src="@game.CoverUrl" alt="item"/>
+                        <h2>@game.Title</h2>
+                        <button id="btnBuy" type="button" class="btn btn-info">Add!</button>
+                    </div>
+                    <div class="item">
+                        <img id="imgCover" src="@game.CoverUrl" alt="item"/>
+                        <h2>@game.Title</h2>
+                        <button id="btnBuy" type="button" class="btn btn-info">Add!</button>
+                    </div>
+                    <div class="item">
+                        <img id="imgCover" src="@game.CoverUrl" alt="item"/>
+                        <h2>@game.Title</h2>
+                        <button id="btnBuy" type="button" class="btn btn-info">Add!</button>
+                    </div>
+                    <div class="item">
+                        <img id="imgCover" src="@game.CoverUrl" alt="item"/>
+                        <h2>@game.Title</h2>
+                        <button id="btnBuy" type="button" class="btn btn-info">Add!</button>
+                    </div>
+                    <div class="item">
+                        <img id="imgCover" src="@game.CoverUrl" alt="item"/>
+                        <h2>@game.Title</h2>
+                        <button id="btnBuy" type="button" class="btn btn-info">Add!</button>
+                    </div>
+                    <div class="item">
+                        <img id="imgCover" src="@game.CoverUrl" alt="item"/>
+                        <h2>@game.Title</h2>
+                        <button id="btnBuy" type="button" class="btn btn-info">Add!</button>
+                    </div>
+                    <div class="item">
+                        <img id="imgCover" src="@game.CoverUrl" alt="item"/>
+                        <h2>@game.Title</h2>
+                        <button id="btnBuy" type="button" class="btn btn-info">Add!</button>
+                    </div>
+                    <div class="item">
+                        <img id="imgCover" src="@game.CoverUrl" alt="item"/>
+                        <h2>@game.Title</h2>
+                        <button id="btnBuy" type="button" class="btn btn-info">Add!</button>
+                    </div>
+                    <div class="item">
+                        <img id="imgCover" src="@game.CoverUrl" alt="item"/>
+                        <h2>@game.Title</h2>
+                        <button id="btnBuy" type="button" class="btn btn-info">Add!</button>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+
+</div>

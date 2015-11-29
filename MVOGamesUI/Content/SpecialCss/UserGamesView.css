@@ -1,0 +1,83 @@
+﻿h3 {
+    color: white;
+}
+
+
+/*The next section is styling of the game-previews.
+    ---------------------------------------------
+*/
+#imgCover {
+    /*border-radius: 2px;*/
+    width: 199px;
+    height: 250px;
+   padding:1px;
+   /*border-bottom: 1px solid #021a40;*/
+   /*background-color:lightgray;*/
+}
+
+/*a:hover {
+color: lightgray;
+}*/
+
+
+.items .item img:hover {
+-webkit-filter: brightness(60%);
+}
+
+.items {
+    display: block;
+    margin: 20px 0;
+    margin-left: 50px;
+}
+.item {
+    border-radius: 2px;
+    border: 1px solid #ff471a;
+   background: rgb(60, 60, 60);
+    background: rgba(90, 90, 90, 0.7);
+    float: left;
+    margin:20px;
+    width: 201px;
+    height: 350px;
+}
+.item img {
+    display: block;
+    margin: auto;
+    margin-bottom: 15px;
+}
+.items .item h2 {
+    font-size: 16px;
+    display: block;
+    border-bottom: 1px solid #ff471a;
+    margin: 0 0 10px 5px;
+    padding: 0 0 5px 0;
+}
+
+#btnBuy  {
+    background-color: #ff471a;
+    border: 1px #303030  solid;
+    color: white;
+        float: right;
+    margin-right: 10px;
+}
+
+
+
+/*The next section is styling of the side menu.
+    ---------------------------------------------
+*/
+
+.divSidebar {
+    padding-top: 35px;
+}
+.input-group {
+    width: 170px;
+}
+.liSidebar {
+    background: rgba(255, 71, 26, 0.7);
+}
+.headerSidebar {
+    height: 40px;
+}
+.headerSidebar h3 {
+    padding: 8px;
+}

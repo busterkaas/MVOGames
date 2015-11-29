@@ -1,0 +1,14 @@
+﻿@model List<ServiceGateway.Models.Crew>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="itemContainer container">
+    <h2>Index</h2>
+        @foreach (var crew in Model)
+        {
+            <p>@crew.Name</p>
+        }
+</div>

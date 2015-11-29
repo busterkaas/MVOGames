@@ -39,7 +39,9 @@ namespace MVOGamesUI
             bundles.Add(new StyleBundle("~/User/Styles/css").Include(
                     "~/Content/bootstrap.css",
                     "~/Content/Generel.css",
-                    "~/Content/User.css"));
+                    "~/Content/User.css",
+                    "~/Content/SpecialCSS/UserGamesView.css")
+                    );
         }
     }
 }

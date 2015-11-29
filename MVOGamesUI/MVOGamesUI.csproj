@@ -136,6 +136,7 @@
     <Compile Include="Areas\Admin\Controllers\GamesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\ViewModels\RolesUser.cs" />
+    <Compile Include="Areas\User\Controllers\CrewsController.cs" />
     <Compile Include="Areas\User\Controllers\GamesController.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Auth.cs" />
@@ -156,6 +157,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Generel.css" />
     <Content Include="Content\Images\gamessplit.jpg" />
+    <Content Include="Content\Images\GamingWallpaper.jpg" />
     <Content Include="Content\Images\mvoGames.png" />
     <Content Include="Content\Images\MVOGamesLogos\logo1.png" />
     <Content Include="Content\Images\MVOGamesLogos\logo10.png" />
@@ -167,6 +169,8 @@
     <Content Include="Content\Images\MVOGamesLogos\logo7.png" />
     <Content Include="Content\Images\MVOGamesLogos\logo8.png" />
     <Content Include="Content\Images\MVOGamesLogos\logo9.png" />
+    <Content Include="Content\Images\MVOGamesLogos\logoOrange.png" />
+    <Content Include="Content\SpecialCss\UserGamesView.css" />
     <Content Include="Content\User.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -192,6 +196,7 @@
     <Content Include="Areas\User\Views\_ViewStart.cshtml" />
     <Content Include="Areas\User\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\User\Views\Games\Index.cshtml" />
+    <Content Include="Areas\User\Views\Crews\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

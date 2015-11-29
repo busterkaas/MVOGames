@@ -51,11 +51,12 @@ namespace MVOGamesUI.Controllers
                 return Redirect(returnUrl);
             }
 
-            if (user.RoleId == 2)
+            //if(user.Role.RoleName=="admin")
+            if (user.RoleId == 1)
             {
                 return RedirectToAction("Index", "Games", new {area = "Admin"});
             }
-            else
+            else 
             {
                 return RedirectToAction("Index", "Games", new { area = "User" });
             }

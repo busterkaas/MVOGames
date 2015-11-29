@@ -1,19 +1,41 @@
 ﻿
 #topLogo{
-    height:25px;
+    height:30px;
 }
 
 body {
     margin-top: 50px;
-    background-color: darkgray;
+    /*background-color: darkgray;*/
+    /*background-color: #989898 ;*/
+    background-color: #404040;
 }
 
 h2{
-    color:#525252;
+    /*color:#525252;*/
+    color: #ff471a;
 }
 
 
 .navbar{
-    background-color:#D7D6D6;
+    /*background-color:#D7D6D6;*/
+    background-color: #303030;
+    border-bottom: #ff471a 1px solid;
 }
 
+
+@media (min-width: 1200px) {
+    .container{
+        max-width: 1350px;
+    }
+}
+
+
+.itemContainer {
+    background: rgb(60, 60, 60);
+    background: rgba(90, 90, 90, 0.4);
+}
+
+.itemContainer a {
+    color: white;
+}
+p{ color: white;}
