@@ -68,6 +68,47 @@ namespace BusinessLogicTest.OrderLogicTest
             Assert.AreEqual(expectedDiscount, 35);
         }
 
+        [Test]
+        public void Game_Price_After_Discount_One_Member_Test()
+        {
+            int crewMembers = 1;
+            decimal gamePrice = 499;
+            decimal expectedPrice = cd.CalculatePrice(crewMembers, gamePrice);
+
+            Assert.AreEqual(expectedPrice, 499);
+        }
+        [Test]
+        public void Game_Price_After_Discount_Two_Members_Test()
+        {
+            int crewMembers = 2;
+            decimal gamePrice = 499;
+            decimal expectedPrice = cd.CalculatePrice(crewMembers, gamePrice);
+
+            Assert.AreEqual(expectedPrice, 449.1);
+        }
+
+        [Test]
+        public void Game_Price_After_Discount_Four_Members_Test()
+        {
+            int crewMembers = 4;
+            decimal gamePrice = 499;
+            decimal expectedPrice = cd.CalculatePrice(crewMembers, gamePrice);
+
+            Assert.AreEqual(expectedPrice, 424.15);
+        }
+
+        [Test]
+        public void Game_Price_After_Discount_Ten_Members_Test()
+        {
+            int crewMembers = 10;
+            decimal gamePrice = 499;
+            decimal expectedPrice = cd.CalculatePrice(crewMembers, gamePrice);
+
+            Assert.AreEqual(expectedPrice, 324.35);
+        }
+
+
+
     }
 
 }

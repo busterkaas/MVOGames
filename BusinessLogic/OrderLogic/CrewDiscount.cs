@@ -1,4 +1,6 @@
-﻿namespace BusinessLogic.OrderLogic
+﻿using System;
+
+namespace BusinessLogic.OrderLogic
 {
     public class CrewDiscount
     {
@@ -16,6 +18,16 @@
             }
             
             return crewMembers*discountInPct+startupPct;
+
+        }
+
+        public decimal CalculatePrice(int crewMembers, decimal gamePrice)
+        {
+            decimal discountPct = (decimal) CalculateDiscount(crewMembers);
+
+            decimal discountDecimal = gamePrice/100*discountPct;
+
+            return gamePrice - discountDecimal;
 
         }
     }
