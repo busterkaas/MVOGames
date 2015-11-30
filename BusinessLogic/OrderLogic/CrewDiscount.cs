@@ -2,9 +2,20 @@
 {
     public class CrewDiscount
     {
-        public decimal CalculateDiscount(int crewMembers)
+        public double CalculateDiscount(int crewMembers)
         {
-            return 0;
+            double discountInPct = 2.5;
+            double startupPct = 5;
+            if (crewMembers <2)
+            {
+                return 0;
+            }
+            if (crewMembers > 9)
+            {
+                return 35;
+            }
+            
+            return crewMembers*discountInPct+startupPct;
 
         }
     }
