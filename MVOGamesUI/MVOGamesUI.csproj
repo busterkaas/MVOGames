@@ -157,6 +157,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Generel.css" />
+    <Content Include="Content\Images\CommingSoon.png" />
+    <Content Include="Content\Images\CommingSoon1.jpg" />
+    <Content Include="Content\Images\CommingSoon2.gif" />
     <Content Include="Content\Images\gamessplit.jpg" />
     <Content Include="Content\Images\GamingWallpaper.jpg" />
     <Content Include="Content\Images\mvoGames.png" />
