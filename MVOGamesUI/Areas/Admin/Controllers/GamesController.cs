@@ -26,7 +26,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         }
 
         // GET: Admin/Games/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -64,7 +64,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         }
 
         // GET: Admin/Games/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -95,7 +95,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         }
 
         // GET: Admin/Games/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {

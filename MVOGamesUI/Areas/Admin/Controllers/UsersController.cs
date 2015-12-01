@@ -28,7 +28,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         }
 
         // GET: Admin/Users/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -68,7 +68,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         }
 
         // GET: Admin/Users/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -98,7 +98,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         }
 
         // GET: Admin/Users/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -115,7 +115,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // POST: Admin/Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int? id)
         {
             ServiceGateway.Models.User user = facade.GetUserGateway().Get(id);
             facade.GetUserGateway().Delete(id);

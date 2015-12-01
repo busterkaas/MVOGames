@@ -18,14 +18,14 @@ namespace ServiceGateway.Gateways
             return response;
         }
 
-        public HttpResponseMessage Delete(int id)
+        public HttpResponseMessage Delete(int? id)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.DeleteAsync("api/order/" + id).Result;
             return response;
         }
 
-        public Order Get(int id)
+        public Order Get(int? id)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.GetAsync("api/orders/" + id).Result;

@@ -28,7 +28,7 @@ namespace MVOGamesUI.Infrastructure
             //{
             //    return new[] { "user" };
             //}
-            return new string[] { };
+            //return new string[] { };
 
         }
 

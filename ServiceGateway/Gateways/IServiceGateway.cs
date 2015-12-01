@@ -10,9 +10,9 @@ namespace ServiceGateway.Gateways
     public interface IServiceGateway<T>
     {
         IEnumerable<T> GetAll();
-        T Get(int id);
+        T Get(int? id);
         HttpResponseMessage Create(T t);
         HttpResponseMessage Update(T t);
-        HttpResponseMessage Delete(int id);
+        HttpResponseMessage Delete(int? id);
     }
 }

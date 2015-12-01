@@ -76,6 +76,7 @@
     <Compile Include="Gateways\ServiceGateway.cs" />
     <Compile Include="Gateways\UserGateway.cs" />
     <Compile Include="Models\Crew.cs" />
+    <Compile Include="Models\CrewApplication.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Order.cs" />

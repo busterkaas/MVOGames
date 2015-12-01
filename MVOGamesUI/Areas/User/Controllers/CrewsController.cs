@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ServiceGateway;
+using ServiceGateway.Models;
 
 namespace MVOGamesUI.Areas.User.Controllers
 {
@@ -13,7 +14,7 @@ namespace MVOGamesUI.Areas.User.Controllers
         // GET: User/Crews
         public ActionResult Index()
         {
-            var crews = facade.GetCrewGateway().GetAll();
+            var crews = facade.GetCrewGateway().GetAll().ToList();
             return View(crews);
         }
     }

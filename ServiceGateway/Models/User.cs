@@ -49,5 +49,7 @@ namespace ServiceGateway.Models
         public virtual List<Crew> Crews { get; set; }
         [Required]
         public virtual Role Role { get; set; }
+
+        public virtual List<CrewApplication> Applications { get; set; } 
     }
 }
