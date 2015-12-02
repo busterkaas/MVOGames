@@ -72,5 +72,27 @@ namespace MVOGamesUI.Controllers
             FormsAuthentication.SignOut();
             return RedirectToRoute("home");
         }
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register([Bind(Include = "Username,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email,PasswordHash")] User user)
+        {
+            if (ModelState.IsValid)
+            {
+                user.SetPassword(user.PasswordHash);
+                //get user role and set it for the new user
+                Role role = facade.GetRoleGateway().Get(2);
+                user.Role = role;
+                facade.GetUserGateway().Create(user);
+                FormsAuthentication.SetAuthCookie(user.Username, true);
+                return RedirectToAction("Index", "Profile", new { area = "User" });
+            }
+            return View();
+        }
+
     }
 }

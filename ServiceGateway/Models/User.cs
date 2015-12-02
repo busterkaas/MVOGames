@@ -27,7 +27,7 @@ namespace ServiceGateway.Models
         public string City { get; set; }
         [Required(ErrorMessage = "An Email is required!")]
         public string Email { get; set; }
-        [Required]
+       
         public int RoleId { get; set; }
         [Required, DataType(DataType.Password)]
         public string PasswordHash { get; set; }
@@ -47,7 +47,7 @@ namespace ServiceGateway.Models
             BCrypt.Net.BCrypt.HashPassword("", WorkFactor);
         }
         public virtual List<Crew> Crews { get; set; }
-        [Required]
+        
         public virtual Role Role { get; set; }
 
         public virtual List<CrewApplication> Applications { get; set; } 

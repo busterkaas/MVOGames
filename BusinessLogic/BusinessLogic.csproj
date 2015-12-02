@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CrewLogic\CrewPermission.cs" />
+    <Compile Include="OrderLogic\CartLogic.cs" />
     <Compile Include="OrderLogic\CrewDiscount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

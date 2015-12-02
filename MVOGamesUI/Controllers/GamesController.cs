@@ -35,7 +35,8 @@ namespace MVOGamesUI.Controllers
                 return HttpNotFound();
             }
             return View(game);
-        }
+        } 
+
 
         //protected override void Dispose(bool disposing)
         //{

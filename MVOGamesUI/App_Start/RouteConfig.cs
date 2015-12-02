@@ -22,7 +22,7 @@ namespace MVOGamesUI
             //routes for Auth controller
             routes.MapRoute("Login", "login", new {Controller = "Auth", action = "Login"}, namespaces);
             routes.MapRoute("Logout", "logout", new { Controller = "Auth", action = "Logout" }, namespaces);
-
+            routes.MapRoute("Register", "register", new {Controller = "Auth", Action = "Register"}, namespaces);
             //routes for game controller without area
             routes.MapRoute("Games", "games", new { Controller = "Games", action = "Index" }, namespaces);
 
@@ -30,6 +30,8 @@ namespace MVOGamesUI
             routes.MapRoute("Contact", "contact", new {Controller = "Home", action = "Contact"}, namespaces);
             routes.MapRoute("About", "about", new { Controller = "Home", action = "About" }, namespaces);
             routes.MapRoute("Home", "", new { Controller = "Home", action = "Index" }, namespaces);
+
+           
 
             //routes.MapRoute(
             //    name: "Default",
