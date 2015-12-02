@@ -144,6 +144,7 @@
     <Compile Include="Areas\User\Models\ShoppingCartModels\ShoppingCartItem.cs" />
     <Compile Include="Areas\User\Models\ShoppingCartModels\ShoppingCartModel.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
+    <Compile Include="Areas\User\ViewModels\GamePlatformGame.cs" />
     <Compile Include="Areas\User\ViewModels\GamePlatformGenre.cs" />
     <Compile Include="Auth.cs" />
     <Compile Include="Controllers\AuthController.cs" />
@@ -181,6 +182,7 @@
     <Content Include="Content\Images\MVOGamesLogos\logo9.png" />
     <Content Include="Content\Images\MVOGamesLogos\logoOrange.png" />
     <Content Include="Content\SpecialCss\AdminButtons.css" />
+    <Content Include="Content\SpecialCss\GameDetails.css" />
     <Content Include="Content\SpecialCss\UserGamesView.css" />
     <Content Include="Content\User.css" />
     <Content Include="favicon.ico" />

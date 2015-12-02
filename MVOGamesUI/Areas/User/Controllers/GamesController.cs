@@ -36,11 +36,18 @@ namespace MVOGamesUI.Areas.User.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Game game = facade.GetGameGateway().Get(id);
+            
             if (game == null)
             {
                 return HttpNotFound();
             }
-            return View(game);
+
+            var platformgames = facade.GetPlatformGameGateway().GetAll().ToList();
+            List<PlatformGame> selectedPfGames = platformgames.Where(p => p.GameId == id).ToList();
+            
+            GamePlatformGame gamePlatformgame = new GamePlatformGame(game, selectedPfGames);
+
+            return View(gamePlatformgame);
         }
     }
 }

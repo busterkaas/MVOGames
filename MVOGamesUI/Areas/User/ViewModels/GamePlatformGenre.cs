@@ -15,19 +15,7 @@ namespace MVOGamesUI.Areas.User.ViewModels
             Platforms = platforms;
         }
         public List<Game> Games { get; set; }
-        //public void setGameList(List<Game> games)
-        //{
-        //    Games = games;
-        //}
         public List<Genre> Genres { get; set; }
-        //public void setGenreList(List<Genre> genres)
-        //{
-        //    Genres = genres;
-        //}
         public List<Platform> Platforms { get; set; }
-        //public void setPlatformList(List<Platform> platforms)
-        //{
-        //    Platforms = platforms;
-        //}
     }
 }
