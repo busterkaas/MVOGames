@@ -23,19 +23,19 @@ namespace MVOGamesUI.Controllers
         }
 
         // GET: Games/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Game game = facade.GetGameGateway().Get(id);
-            if (game == null)
-            {
-                return HttpNotFound();
-            }
-            return View(game);
-        } 
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Game game = facade.GetGameGateway().Get(id);
+        //    if (game == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(game);
+        //} 
 
 
         //protected override void Dispose(bool disposing)

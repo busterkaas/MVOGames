@@ -144,6 +144,7 @@
     <Compile Include="Areas\User\Models\ShoppingCartModels\ShoppingCartItem.cs" />
     <Compile Include="Areas\User\Models\ShoppingCartModels\ShoppingCartModel.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
+    <Compile Include="Areas\User\ViewModels\GamePlatformGenre.cs" />
     <Compile Include="Auth.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
@@ -209,6 +210,7 @@
     <Content Include="Areas\User\Views\Crews\Index.cshtml" />
     <Content Include="Areas\User\Views\Profile\Index.cshtml" />
     <Content Include="Areas\User\Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Areas\User\Views\Games\Details.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
