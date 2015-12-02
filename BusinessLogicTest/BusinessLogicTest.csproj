@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CrewLogicTest\CrewPermissionTest.cs" />
+    <Compile Include="OrderLogicTest\CartLogicTest.cs" />
     <Compile Include="OrderLogicTest\CrewDiscountTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

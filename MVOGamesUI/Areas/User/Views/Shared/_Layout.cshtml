@@ -48,9 +48,13 @@ if (tabName == ViewBag.SelectedTab)
                     </li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                    <li  class="@SelectedTabClass("profile")">
-                        @Html.ActionLink(User.Identity.Name, "Index","Profile")
-                    </li>
+                        <li class="@SelectedTabClass("profile")">
+                            @Html.ActionLink(User.Identity.Name, "Index", "Profile")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Shopping Cart" + Html.Action("NoOfItems", "ShoppingCart"),
+                       "Index", "ShoppingCart")
+                        </li>
                     <li id="logoutTab">
                         <a href="@Url.RouteUrl("logout")">Logout</a>
                     </li>

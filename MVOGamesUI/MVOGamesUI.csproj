@@ -139,6 +139,10 @@
     <Compile Include="Areas\User\Controllers\CrewsController.cs" />
     <Compile Include="Areas\User\Controllers\GamesController.cs" />
     <Compile Include="Areas\User\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\User\Controllers\ShoppingCartController.cs" />
+    <Compile Include="Areas\User\Models\ShoppingCartModels\IShoppingCartModel.cs" />
+    <Compile Include="Areas\User\Models\ShoppingCartModels\ShoppingCartItem.cs" />
+    <Compile Include="Areas\User\Models\ShoppingCartModels\ShoppingCartModel.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Auth.cs" />
     <Compile Include="Controllers\AuthController.cs" />
@@ -202,6 +206,7 @@
     <Content Include="Areas\User\Views\Games\Index.cshtml" />
     <Content Include="Areas\User\Views\Crews\Index.cshtml" />
     <Content Include="Areas\User\Views\Profile\Index.cshtml" />
+    <Content Include="Areas\User\Views\ShoppingCart\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -230,11 +235,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Games\Index.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
+    <Content Include="Views\Auth\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\User\Models\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -246,6 +251,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{0DB419C7-5DE4-4585-97CC-D397E48F511D}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ServiceGateway\ServiceGateway.csproj">
       <Project>{5d8d1638-b37b-4583-a756-71782afe1ed8}</Project>
       <Name>ServiceGateway</Name>
