@@ -4,72 +4,97 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2><strong> Users</strong></h2>
+<div class="container itemContainer">
+    <div>
+        <div class="col-lg-6 col-md-3 col-xs-3" align="left">
+            <button class="buttonCreateU btn btn-success" onclick="window.location.href = '@Url.Action("Create", "Users")'">Create User</button>
+        </div>
+        <div class="gamePanel col-lg-6 col-md-3 col-xs-3" align="right">
+            <div align="left" class="panel panel-body panel-danger" style="background-color:orangered; height:55px; width:60%">
+                <div>
+                    <div>
+                        @using (Html.BeginForm())
+                        {
+                            <p style="color:black">
+                                Search:
+                                <input type="text" placeholder="Search" />
+                            </p>
+                        }
+                    </div>
+                </div>
+            </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StreetName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HouseNr)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ZipCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StreetName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HouseNr)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ZipCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+        </div>
+    </div>
 
-</table>
+    <table class="table table table-condensed table-hover">
+        <thead class="table">
+            <tr style="background-color:#303030;">
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StreetName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HouseNr)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ZipCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.City)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+            {
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StreetName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HouseNr)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ZipCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        <button class="btn btn-warning" style="width:65px" onclick="window.location.href = '/Admin/Users/Edit/@item.Id'">Edit</button> |
+                        <button class="btn btn-info" onclick="window.location.href = '/Admin/Users/Details/@item.Id'">Details</button> |
+                        <button class="btn btn-danger" onclick="window.location.href = '/Admin/Users/Delete/@item.Id'">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        }
+
+    </table>
+</div>

@@ -19,10 +19,22 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         private Facade facade = new Facade();
 
         // GET: Admin/Games
-        public ActionResult Index()
+        public ActionResult Index(string GenreList)
         {
-            var games = facade.GetGameGateway().GetAll().ToList();
-            return View(games);
+            var games = facade.GetGameGateway().GetAll();
+            ViewBag.GenreList = new SelectList(facade.GetGenreGateway().GetAll().OrderBy(g => g.Name).Select(g => g.Name));
+
+            //var games = facade.GetGameGateway().GetAll().ToList();
+            //List<Genre> genres = facade.GetGenreGateway().GetAll().ToList();
+
+            //ViewBag.GenreList = new SelectList(genres.OrderBy(g => g.Name).Select(g => g.Name));
+
+            if (string.IsNullOrEmpty(GenreList))
+                return View(games);
+            else
+            {
+                return View(games.Where(a => a.Genres.ToString() == GenreList));
+            }
         }
 
         // GET: Admin/Games/Details/5
@@ -51,7 +63,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,ReleaseDate,Price,CoverUrl,TrailerUrl,Description")] Game game)
+        public ActionResult Create([Bind(Include = "Id,Title,ReleaseDate,Price,CoverUrl,TrailerUrl,Description, Genres")] Game game)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +71,6 @@ namespace MVOGamesUI.Areas.Admin.Controllers
                
                 return RedirectToAction("Index");
             }
-
             return View(game);
         }
 

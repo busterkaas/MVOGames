@@ -5,88 +5,107 @@
 }
 
 <h2><strong>Games</strong></h2>
-<p>
-    <button class="btn btn-success" onclick="window.location.href = '@Url.Action("Create", "Games")'">Create Game</button>
-</p>
-<table class="table table table-condensed table-hover">
-    <thead class="table">
-        <tr style="background-color:#303030;">
-            <th class="col-md-1">
-                Cover
-            </th>
-            <th class="col-md-2">
-                Title
-            </th>
-            <th class="col-md-2">
-                Release Date
-            </th>
-            <th class="col-md-1">
-                Trailer
-            </th>
-            <th class="col-md-3">
-                Description
-            </th>
-            <th class="col-md-1">
-                Genre
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    @foreach (var item in Model)
-    {
-        <tbody>
-            <tr>
-                <td>
-                    @if (item.CoverUrl.IsEmpty() == true)
-                {
-                        <img src="/content/images/CommingSoon2.gif" class="smallPic" />
-                    }
-                    else
-                    {
-                        <img src="@item.CoverUrl" class="smallPic" />
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ReleaseDate)
-                </td>
-                <td>
-                    @if (item.TrailerUrl.IsEmpty() == true)
-                {
-                        <img src="/Content/images/CommingSoon.png" class="trailer" />
-                    }
-                    else
-                    {
-                        <iframe src="@item.TrailerUrl"
-                                class="trailer"
-                                frameborder="0"
-                                allowfullscreen="true"
-                                autostart="false"
-                                allowscriptaccess="always"></iframe>
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @foreach (var genre in item.Genres)
-                {
-                        <div>@Html.DisplayFor(modelItem => genre.Name)</div>
-                    }
-                </td>
-                <td class="col-md-12" align="right">
-                    <button class="btn btn-warning" style="margin-right:5px; width:60%" onclick="window.location.href = '/Games/Edit/@item.Id'">Edit</button><br />
-                    <button class="btn btn-info" style="margin-right:5px; width:60%" onclick="window.location.href = '/Games/Details/@item.Id'">Details</button><br />
-                    <button class="btn btn-danger" style="margin-right:5px; width:60%" onclick="window.location.href = '/Games/Delete/@item.Id'">Delete</button>
+<div class="container itemContainer">
+    <div>
+        <div class="col-lg-6 col-md-3 col-xs-3" align="left">
+            <button class="buttonCreateG btn btn-success" onclick="window.location.href = '@Url.Action("Create", "Games")'">Create Game</button>
+        </div>
+        <div class="gamePanel col-lg-6 col-md-3 col-xs-3" align="right">
+            <div align="left" class="panel panel-body panel-danger" style="background-color:orangered; height:75px; width:60%">
+                <div>
+                    <strong>Order By</strong>
+                    <div>
+                        @using (Html.BeginForm())
+                        {
+                            <p style="color:black">
+                                Genre:
+                                @Html.DropDownList("GenreList", (SelectList)ViewBag.GenreList, "All", new { onchange = "javascript:this.form.submit()" })
+                            </p>
+                        }
+                    </div>
+                </div>
+            </div>
 
-                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
-                </td>
+
+        </div>
+    </div>
+    <table class="table table table-condensed table-hover">
+        <thead class="table">
+            <tr style="background-color:#303030;">
+                <th class="col-md-1">
+                    Cover
+                </th>
+                <th class="col-md-2">
+                    Title
+                </th>
+                <th class="col-md-2">
+                    Release Date
+                </th>
+                <th class="col-md-1">
+                    Trailer
+                </th>
+                <th class="col-md-3">
+                    Description
+                </th>
+                <th class="col-md-1">
+                    Genre
+                </th>
+                <th></th>
             </tr>
-        </tbody>
-    }
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>
+                        @if (item.CoverUrl.IsEmpty() == true)
+                {
+                            <img src="/content/images/CommingSoon2.gif" class="smallPic" />
+                        }
+                        else
+                        {
+                            <img src="@item.CoverUrl" class="smallPic" />
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReleaseDate)
+                    </td>
+                    <td>
+                        @if (item.TrailerUrl.IsEmpty() == true)
+                {
+                            <img src="/Content/images/CommingSoon.png" class="trailer" />
+                        }
+                        else
+                        {
+                            <iframe src="@item.TrailerUrl"
+                                    class="trailer"
+                                    frameborder="0"
+                                    allowfullscreen="true"
+                                    autostart="false"
+                                    allowscriptaccess="always"></iframe>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @foreach (var genre in item.Genres)
+                {
+                            <div>@Html.DisplayFor(modelItem => genre.Name)</div>
+                        }
+                    </td>
+                    <td class="col-md-12" align="right">
+                        <button class="ButtonEdit btn btn-warning" style="margin-right:5px; width:60%" onclick="window.location.href = '/Admin/Games/Edit/@item.Id'">Edit</button><br />
+                        <button class="ButtonDetail btn btn-info" style="margin-right:5px; width:60%" onclick="window.location.href = '/Admin/Games/Details/@item.Id'">Details</button><br />
+                        <button class="ButtonDelete btn btn-danger" style="margin-right:5px; width:60%" onclick="window.location.href = '/Admin/Games/Delete/@item.Id'">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        }
 
-</table>
+    </table>
+</div>
+

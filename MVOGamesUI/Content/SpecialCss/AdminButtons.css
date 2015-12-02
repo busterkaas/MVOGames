@@ -1,0 +1,28 @@
+﻿body {
+}
+
+
+button{
+}
+
+.buttonCreateG{
+    position:absolute;
+    bottom:-83px;
+}
+
+.buttonCreateU{
+    position:absolute;
+    bottom:-66px;
+}
+
+.ButtonEdit{
+    margin-top:19px;
+}
+
+.ButtonDelete{
+    margin-top:6px;
+}
+
+.ButtonDetail{
+    margin-top:6px;
+}
