@@ -4,7 +4,6 @@
 }
 <head>
     <link rel="stylesheet" href="~/Content/SpecialCSS/GameDetails.css" />
-
 </head>
 
 
@@ -30,9 +29,9 @@
            
             <br />
             <h4>Available on: </h4>
-            @foreach (var platform in Model.PlatformGames)
+            @foreach (var platformgame in Model.PlatformGames)
             {
-                <a href="#">@platform.Platform.Name</a><span>&nbsp;|&nbsp;</span>
+                <a href='@Url.Action("Details", "Games", new { id = @Model.Game.Id, platformId = platformgame.PlatformId })'>@platformgame.Platform.Name</a><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
             }
             <br/>
             <br/>
@@ -41,7 +40,20 @@
                 <h4>Description of: @Model.Game.Title</h4>
                 <p>@Model.Game.Description</p>
             </div>
-           
+
+            <div style="float: right">
+                @if (Model.PlatformGame != null)
+                {
+                    <h3>@Model.PlatformGame.Platform.Name</h3>
+                    <h4>Price: @Model.PlatformGame.Price</h4>
+                    <p>@Model.PlatformGame.Id</p>
+                    <a class="btn btn-default" href='@Url.Action("Add", "ShoppingCart", new { id = Model.PlatformGame.Id })'>BUY</a>
+                }
+                else
+                {
+                    <h4>No platform selected</h4>
+                }
+            </div>
         </div>
        
     </div>

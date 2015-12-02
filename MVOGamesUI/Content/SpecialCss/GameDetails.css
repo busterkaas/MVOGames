@@ -13,7 +13,7 @@
     border-radius: 40px;
     border: darkgray;
     border:10px solid rgba(255, 71, 26, 0.3);
-    height: 400px;
+    height: 350px;
     max-height: 400px;
 }
 .detailsHeader {
@@ -43,6 +43,7 @@ h4 {
     margin: 0;
 }
 .genreDiv {
+    padding-right: 60px; 
     display: table;
     margin: auto;
     /*padding-left: 20px;*/

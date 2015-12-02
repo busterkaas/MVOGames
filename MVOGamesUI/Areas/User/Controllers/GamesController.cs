@@ -29,7 +29,7 @@ namespace MVOGamesUI.Areas.User.Controllers
             return View(gpg);
         }
 
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, int? platformId)
         {
             if (id == null)
             {
@@ -45,7 +45,7 @@ namespace MVOGamesUI.Areas.User.Controllers
             var platformgames = facade.GetPlatformGameGateway().GetAll().ToList();
             List<PlatformGame> selectedPfGames = platformgames.Where(p => p.GameId == id).ToList();
             
-            GamePlatformGame gamePlatformgame = new GamePlatformGame(game, selectedPfGames);
+            GamePlatformGame gamePlatformgame = new GamePlatformGame(game, selectedPfGames, platformId);
 
             return View(gamePlatformgame);
         }
