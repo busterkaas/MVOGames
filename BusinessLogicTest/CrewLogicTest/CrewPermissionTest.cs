@@ -40,5 +40,21 @@ namespace BusinessLogicTest.CrewLogicTest
             bool isFull = cp.IsFull(crewSize);
             Assert.AreEqual(isFull, true);
         }
+
+        [Test]
+        public void User_Joins_Second_Crew_Test()
+        {
+            int crews = 1;
+            bool crewLimitIsFull = cp.CrewLimitIsFull(crews);
+            Assert.AreEqual(crewLimitIsFull, false);
+        }
+
+        [Test]
+        public void User_Joins_Fourth_Crew_Test()
+        {
+            int crews = 3;
+            bool crewLimitIsFull = cp.CrewLimitIsFull(crews);
+            Assert.AreEqual(crewLimitIsFull, true);
+        }
     }
 }
