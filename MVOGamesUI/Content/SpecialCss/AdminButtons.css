@@ -17,12 +17,19 @@ button{
 
 .ButtonEdit{
     margin-top:19px;
+    margin-right:5px; 
+    width:60%;
+     
 }
 
 .ButtonDelete{
     margin-top:6px;
+    margin-right:5px; 
+    width:60%;
 }
 
 .ButtonDetail{
     margin-top:6px;
+    margin-right:5px; 
+    width:60%;
 }
