@@ -13,3 +13,14 @@ h2 {
 #logoutTab {
     padding-left: 35px;
 }
+.detailsHeader {
+	color: #fff;
+	text-shadow: 
+		0 0 10px #fff, 
+        0 0 20px #ff471a,
+		0 0 30px #ff471a, 
+		0 0 50px #ff471a, 
+		0 0 70px #ff471a,
+		0 0 90px #ff471a,
+        0 0 100px #ff471a;
+}

@@ -5,10 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using MVOGamesUI.Areas.User.Models.ShoppingCartModels;
+using MVOGamesUI.Infrastructure;
 using ServiceGateway;
 
 namespace MVOGamesUI.Areas.User.Controllers
 {
+    [Authorize(Roles = "user")]
+    [SelectedTab("shoppingcart")]
     public class ShoppingCartController : Controller
     {
         Facade facade;
