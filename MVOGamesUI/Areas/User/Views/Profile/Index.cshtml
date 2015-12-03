@@ -4,6 +4,7 @@
 }
 
 <div class="itemContainer container">
+<div class="col col-lg-8 col-md-8 col-sm-9">
     <h2 class="detailsHeader">@Model.User.Username</h2>
 
     <br/>
@@ -12,11 +13,29 @@
     <p>@Model.User.ZipCode</p>
     <p>@Model.User.City</p>
     <p>@Model.User.StreetName&nbsp;@Model.User.HouseNr</p>
-
-    <div>
-        @foreach (var crew in Model.Crews)
-        {
-            <p>@crew.Name</p>
-        }
+</div>
+<div class="col col-lg-4 col-md-4 col-sm-3">
+    <div class="panel panel-default crewPanel">
+        <div class="panel-heading">
+            <h4>My Crews</h4>
+        </div>
+        <div class="panel-body">
+            @if (Model.Crews == null)
+            {
+                <p>You are currently not in any crew</p>
+            }
+            else
+            {
+                foreach (var crew in Model.Crews)
+                {
+                    <div class="panel-group panelCrewSingle">
+                            <img src="@crew.CrewImgUrl" class="crewImg"/>
+                            <a href="#">@crew.Name</a>
+                    </div>
+                }
+            }
+        </div>
     </div>
+
+</div>
 </div>
