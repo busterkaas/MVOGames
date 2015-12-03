@@ -134,6 +134,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\GamesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GenresController.cs" />
     <Compile Include="Areas\Admin\Controllers\PlatformsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\ViewModels\RolesUser.cs" />
@@ -219,6 +220,11 @@
     <Content Include="Areas\Admin\Views\Platforms\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Platforms\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Platforms\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Genres\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Genres\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Genres\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Genres\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Genres\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

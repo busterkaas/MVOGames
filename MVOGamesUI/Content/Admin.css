@@ -32,7 +32,6 @@ h2{
     min-width:300px;
 }
 
-/*CreateGame*/
 .myEditorForLength{
     width:850px;
 }
@@ -43,6 +42,15 @@ h2{
 
 .myDisplayFor{
     padding-left:200px;
+}
+
+#block_container
+{
+    text-align:center;
+}
+#bloc1, #bloc2
+{
+    display:inline;
 }
 
 

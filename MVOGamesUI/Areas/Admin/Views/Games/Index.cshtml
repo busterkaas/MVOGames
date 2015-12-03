@@ -12,22 +12,41 @@
         </div>
         <div class="gamePanel col-lg-6 col-md-3 col-xs-3" align="right">
             <div align="left" class="panel panel-body panel-danger" style="background-color:orangered; height:75px; width:60%">
-                <div>
-                    <strong>Order By</strong>
+
+
+                <div style="float:left; width:50%;">
+                    <strong>Genre</strong>
                     <div>
                         @using (Html.BeginForm())
                         {
                             <p style="color:black">
-                                Genre:
                                 @Html.DropDownList("GenreList", (SelectList)ViewBag.GenreList, "All", new { onchange = "javascript:this.form.submit()" })
                             </p>
                         }
                     </div>
                 </div>
+
+
+                <div style="float:left; width:50%">
+                    <strong>Search</strong>
+                    <div>
+                        @using (Html.BeginForm())
+                        {
+                            <p style="color:black">
+                                <input style="width:130px;" type="text" placeholder="Search" />
+                            </p>
+
+                        }
+                    </div>
+                </div>
+
+
+
             </div>
 
 
         </div>
+        
     </div>
     <table class="table table table-condensed table-hover">
         <thead class="table">
