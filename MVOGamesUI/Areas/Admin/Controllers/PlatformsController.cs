@@ -75,7 +75,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // POST: Admin/Platforms/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] Platform platform)
+        public ActionResult Edit([Bind(Include = "Id, Name")] Platform platform)
         {
             if (ModelState.IsValid)
             {
