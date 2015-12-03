@@ -4,16 +4,12 @@
 }
 
 <div class="itemContainer container">
-<div class="col col-lg-8 col-md-8 col-sm-9">
-    <h2 class="detailsHeader">@Model.User.Username</h2>
-
+    <div class="col col-lg-8 col-md-8 col-sm-9">
+        <h2 class="detailsHeader">@Model.User.Username</h2>
+        <h4>@ViewBag.UserUpdated</h4>
     <br/>
-    <p>@Model.User.FirstName&nbsp;@Model.User.LastName</p>
-    <p>@Model.User.Email</p>
-    <p>@Model.User.ZipCode</p>
-    <p>@Model.User.City</p>
-    <p>@Model.User.StreetName&nbsp;@Model.User.HouseNr</p>
-</div>
+        @{ Html.RenderPartial("_UserInformation", Model.User); }
+    </div>
 <div class="col col-lg-4 col-md-4 col-sm-3">
     <div class="panel panel-default crewPanel">
         <div class="panel-heading">
