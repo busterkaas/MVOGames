@@ -134,6 +134,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\GamesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PlatformsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\ViewModels\RolesUser.cs" />
     <Compile Include="Areas\User\Controllers\CrewsController.cs" />
@@ -213,6 +214,11 @@
     <Content Include="Areas\User\Views\Profile\Index.cshtml" />
     <Content Include="Areas\User\Views\ShoppingCart\Index.cshtml" />
     <Content Include="Areas\User\Views\Games\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Platforms\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Platforms\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Platforms\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Platforms\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Platforms\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
