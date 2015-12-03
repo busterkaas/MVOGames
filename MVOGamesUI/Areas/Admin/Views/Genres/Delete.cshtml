@@ -1,7 +1,40 @@
-﻿
+﻿@model ServiceGateway.Models.Genre
+
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete Genre";
 }
 
-<h2>Delete</h2>
 
+<h2>Are you sure you want to delete <strong>@Model.Name</strong>?</h2>
+<div>
+    <hr />
+    <dl class="container itemContainer dl-horizontal">
+        <br />
+        <div class="myDisplayFor">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+
+            <br />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <dd>
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-success" />
+                        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                    </div>
+                </dd>
+            }
+        </div>
+        <br />
+    </dl>
+
+
+
+</div>

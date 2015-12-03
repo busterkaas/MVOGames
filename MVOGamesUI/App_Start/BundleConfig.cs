@@ -34,7 +34,7 @@ namespace MVOGamesUI
             bundles.Add(new StyleBundle("~/Admin/Styles/css").Include(
                      "~/Content/bootstrap.css",
                      "~/Content/Generel.css",
-                     "~/Content/SpecialCss/AdminButtons.css",
+                     "~/Content/SpecialCss/AdminSpeciel.css",
                      "~/Content/Admin.css"));
 
             bundles.Add(new StyleBundle("~/User/Styles/css").Include(

@@ -33,3 +33,14 @@ button{
     margin-right:5px; 
     width:60%;
 }
+
+
+.panelsplit{
+    float:left;
+    width:50%;
+}
+.orderPanel{
+    background-color:orangered;
+    height:75px;
+    width:60%
+}

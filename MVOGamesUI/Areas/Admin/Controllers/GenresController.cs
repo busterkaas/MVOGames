@@ -22,21 +22,6 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             return View(genres);
         }
 
-        // GET: Admin/Genres/Details/5
-        public ActionResult Details(int? id)
-        {
-            if(id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Genre genre = facade.GetGenreGateway().Get(id);
-            if(genre == null)
-            {
-                return HttpNotFound();
-            }
-            return View(genre);
-        }
-
         // GET: Admin/Genres/Create
         public ActionResult Create()
         {
