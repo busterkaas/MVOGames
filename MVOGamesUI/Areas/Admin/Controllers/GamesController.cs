@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using MVOGamesUI.Infrastructure;
 using ServiceGateway;
 using ServiceGateway.Models;
+using System.Net.Http;
 
 namespace MVOGamesUI.Areas.Admin.Controllers
 {
@@ -24,16 +25,14 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             var games = facade.GetGameGateway().GetAll();
             ViewBag.GenreList = new SelectList(facade.GetGenreGateway().GetAll().OrderBy(g => g.Name).Select(g => g.Name));
 
-            //var games = facade.GetGameGateway().GetAll().ToList();
-            //List<Genre> genres = facade.GetGenreGateway().GetAll().ToList();
-
-            //ViewBag.GenreList = new SelectList(genres.OrderBy(g => g.Name).Select(g => g.Name));
-
             if (string.IsNullOrEmpty(GenreList))
                 return View(games);
             else
             {
-                return View(games.Where(a => a.Genres.ToString() == GenreList));
+                var genreGames = from a in games.ToList()
+                                 where a.Genres.Any(g => g.Name == GenreList)
+                                 select a;
+                return View(genreGames);
             }
         }
 
@@ -55,6 +54,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // GET: Admin/Games/Create
         public ActionResult Create()
         {
+            ViewBag.Genres = new SelectList(facade.GetGenreGateway().GetAll(), "Id", "Name");
             return View();
         }
 
@@ -63,14 +63,20 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,ReleaseDate,Price,CoverUrl,TrailerUrl,Description, Genres")] Game game)
+        public ActionResult Create([Bind(Include = "Id,Title,ReleaseDate,Price,CoverUrl,TrailerUrl,Description,Genres")] Game game)
         {
             if (ModelState.IsValid)
             {
-                facade.GetGameGateway().Create(game);
-               
+                HttpResponseMessage response = facade.GetGameGateway().Create(game);
+                if(response.StatusCode == HttpStatusCode.Created)
                 return RedirectToAction("Index");
+                else
+                {
+                    return new HttpStatusCodeResult(response.StatusCode);
+                }
             }
+
+            ViewBag.Genres = new SelectList(facade.GetGenreGateway().GetAll(), "Id", "Name", game.Genres.Any(g => g.Id == g.Id));
             return View(game);
         }
 
@@ -99,7 +105,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 facade.GetGameGateway().Update(game);
-                
+
                 return RedirectToAction("Index");
             }
             return View(game);
@@ -125,9 +131,9 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-           
+
             facade.GetGameGateway().Delete(id);
-      
+
             return RedirectToAction("Index");
         }
 

@@ -1,5 +1,5 @@
 ﻿body {
-    /*background-color: pink;*/
+    color:white;
 }
 
 .smallPic {
@@ -16,11 +16,11 @@ th{
     color:orangered;
 }
 td{
-    color:black;
+    color:white;
 }
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-  background-color:lightgray;
+  background-color:orangered;
 }
 
 h2{
@@ -29,6 +29,20 @@ h2{
 
 .gamePanel{
     top:10px;
+    min-width:300px;
+}
+
+/*CreateGame*/
+.myEditorForLength{
+    width:850px;
+}
+.myEditorForLengthEdit{
+    width:950px;
+    padding-left:220px;
+}
+
+.myDisplayFor{
+    padding-left:200px;
 }
 
 

@@ -4,55 +4,61 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Game Details</h2>
 
 <div>
-    <h4>Game</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+    <dl class="container itemContainer dl-horizontal">
+        <br />
+        <div class="myDisplayFor">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ReleaseDate)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ReleaseDate)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ReleaseDate)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CoverUrl)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.CoverUrl)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CoverUrl)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CoverUrl)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TrailerUrl)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.TrailerUrl)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TrailerUrl)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.TrailerUrl)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <br />
+            <dd>
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                </p>
+            </dd>
+        </div>
     </dl>
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
