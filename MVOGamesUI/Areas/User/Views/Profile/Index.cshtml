@@ -1,16 +1,22 @@
-﻿@model ServiceGateway.Models.User
+﻿@model MVOGamesUI.Areas.User.ViewModels.UserCrew
 @{
     ViewBag.Title = "Index";
 }
 
 <div class="itemContainer container">
-    <h3>@Model.Username's Profile</h3>
+    <h2 class="detailsHeader">@Model.User.Username</h2>
 
     <br/>
-    <p>@Model.FirstName&nbsp;@Model.LastName &nbsp; @Model.Id</p>
-    <p>@Model.Email</p>
-    <p>@Model.ZipCode</p>
-    <p>@Model.City</p>
-    <p>@Model.StreetName&nbsp;@Model.HouseNr</p>
-    
+    <p>@Model.User.FirstName&nbsp;@Model.User.LastName</p>
+    <p>@Model.User.Email</p>
+    <p>@Model.User.ZipCode</p>
+    <p>@Model.User.City</p>
+    <p>@Model.User.StreetName&nbsp;@Model.User.HouseNr</p>
+
+    <div>
+        @foreach (var crew in Model.Crews)
+        {
+            <p>@crew.Name</p>
+        }
+    </div>
 </div>
