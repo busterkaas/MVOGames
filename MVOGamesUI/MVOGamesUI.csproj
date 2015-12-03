@@ -134,6 +134,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\GamesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PlatformsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\ViewModels\RolesUser.cs" />
     <Compile Include="Areas\User\Controllers\CrewsController.cs" />
@@ -144,6 +145,8 @@
     <Compile Include="Areas\User\Models\ShoppingCartModels\ShoppingCartItem.cs" />
     <Compile Include="Areas\User\Models\ShoppingCartModels\ShoppingCartModel.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
+    <Compile Include="Areas\User\ViewModels\GamePlatformGame.cs" />
+    <Compile Include="Areas\User\ViewModels\GamePlatformGenre.cs" />
     <Compile Include="Auth.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
@@ -180,6 +183,7 @@
     <Content Include="Content\Images\MVOGamesLogos\logo9.png" />
     <Content Include="Content\Images\MVOGamesLogos\logoOrange.png" />
     <Content Include="Content\SpecialCss\AdminButtons.css" />
+    <Content Include="Content\SpecialCss\GameDetails.css" />
     <Content Include="Content\SpecialCss\UserGamesView.css" />
     <Content Include="Content\User.css" />
     <Content Include="favicon.ico" />
@@ -209,6 +213,12 @@
     <Content Include="Areas\User\Views\Crews\Index.cshtml" />
     <Content Include="Areas\User\Views\Profile\Index.cshtml" />
     <Content Include="Areas\User\Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Areas\User\Views\Games\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Platforms\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Platforms\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Platforms\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Platforms\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Platforms\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -1,0 +1,70 @@
+﻿@model MVOGamesUI.Areas.User.ViewModels.GamePlatformGame
+@{
+    ViewBag.Title = "Details";
+}
+<head>
+    <link rel="stylesheet" href="~/Content/SpecialCSS/GameDetails.css" />
+</head>
+
+
+<div class="container itemContainer">
+    <div class="dcontainer">
+        <div class="col col-lg-4 col-md-4 col-sm-6">
+            <div class="leftDiv">
+                <img class="img-responsive imgGameCover" src="@Model.Game.CoverUrl"/>
+                <div class="genreDiv">
+                    @foreach (var genre in Model.Game.Genres)
+                    {
+                        <div class="container itemContainer genreContainer">
+                            @genre.Name
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-6 col-lg-6 infoDiv">
+            <h1 class="detailsHeader">@Model.Game.Title</h1>
+            @{ int i = 2000 + Model.Game.ReleaseDate.Year; }
+            <h4>@i</h4>
+
+            <br/>
+            <h4>Available on: </h4>
+            @foreach (var platformgame in Model.PlatformGames)
+            {
+                <a href='@Url.Action("Details", "Games", new {id = @Model.Game.Id, platformId = platformgame.PlatformId})'>@platformgame.Platform.Name</a><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+            }
+            <br/>
+            <br/>
+            <br/>
+            <div class="descDiv container itemContainer">
+                <h4>Description of: @Model.Game.Title</h4>
+                <p>@Model.Game.Description</p>
+            </div>
+
+
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <div class="container itemContainer">
+                <div class="buyDiv">
+                @if (Model.PlatformGame != null)
+                {
+                    <h4>@Model.PlatformGame.Platform.Name</h4>
+                    <h4>Price: @Model.PlatformGame.Price</h4>
+
+                    <a class="btn btn-danger btnBuy" href='@Url.Action("Add", "ShoppingCart", new {id = Model.PlatformGame.Id})'>BUY</a>
+                }
+                else
+                {
+                    <h4>No platform selected</h4>
+                }
+                </div>
+            </div>
+        </div>
+
+
+       
+    </div>
+
+   
+
+</div>

@@ -1,0 +1,75 @@
+﻿body {
+    color: white;
+}
+
+.dcontainer {
+    padding: 35px;
+}
+.leftDiv {
+    border-right: darkgray;
+    border-right: 2px solid rgba(255, 71, 26, 0.3);
+}
+.imgGameCover {
+    border-radius: 40px;
+    border: darkgray;
+    border:10px solid rgba(255, 71, 26, 0.3);
+    height: 350px;
+    max-height: 400px;
+}
+.detailsHeader {
+	color: #fff;
+	text-shadow: 
+		0 0 10px #fff, 
+        0 0 20px #ff471a,
+		0 0 30px #ff471a, 
+		0 0 50px #ff471a, 
+		0 0 70px #ff471a,
+		0 0 90px #ff471a,
+        0 0 100px #ff471a;
+}
+h4 {
+    padding-left: 5px;
+    color: white;
+    text-shadow: 0 0 20px #ff471a;
+}
+.infoDiv {
+    padding-left: 50px;
+}
+.infoDiv .itemContainer {
+    max-width: 500px;
+}
+.descDiv {
+    padding: 0;
+    margin: 0;
+}
+.genreDiv {
+    padding-right: 60px; 
+    display: table;
+    margin: auto;
+    /*padding-left: 20px;*/
+    padding-top: 10px;
+}
+.genreContainer {
+    text-align: center;
+    color: white;
+    float: left;
+    border-radius: 40px;
+    background: darkgray;
+   background: rgba(255, 71, 26, 0.7);
+    padding: 10px;
+    margin: 10px;
+    width: 80px; 
+}
+.buyDiv {
+    padding: 10px;
+    
+}
+.btnBuy {
+    background-color: #ff471a;
+    border: 1px #303030 solid;
+    
+    padding: 10px;
+}
+
+
+

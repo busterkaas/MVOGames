@@ -41,7 +41,8 @@ namespace MVOGamesUI
                     "~/Content/bootstrap.css",
                     "~/Content/Generel.css",
                     "~/Content/User.css",
-                    "~/Content/SpecialCSS/UserGamesView.css")
+                    "~/Content/SpecialCss/UserGamesView.css",
+                    "~/Content/SpecialCss/GameDetails.css")
                     );
         }
     }

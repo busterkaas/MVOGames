@@ -32,11 +32,17 @@ namespace MVOGamesUI.Areas.User.Controllers
         {
             return View(cartModel);
         }
+        // GET: /ShoppingCart/Add
+        public ActionResult Add(int id)
+        {
+            cartModel.Add(id);
+            return RedirectToAction("Index", "Games", new {Area = "User"});
+        }
 
         // The Initialize() method is invoked just after the constructor. It is
         // used to initialize data that is not available when the constructor is
         // executed.
-     
+
 
         // Child action: returns the number of items in the shopping cart
         [ChildActionOnly]
