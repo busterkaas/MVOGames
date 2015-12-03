@@ -57,12 +57,19 @@ h4 {
     background: darkgray;
    background: rgba(255, 71, 26, 0.7);
     padding: 10px;
-    
     margin: 10px;
     width: 80px; 
-
 }
-
+.buyDiv {
+    padding: 10px;
+    
+}
+.btnBuy {
+    background-color: #ff471a;
+    border: 1px #303030 solid;
+    
+    padding: 10px;
+}
 
 
 
