@@ -1,98 +1,96 @@
-﻿using System;
+﻿using MVOGamesUI.Infrastructure;
+using ServiceGateway;
+using ServiceGateway.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MVOGamesUI.Infrastructure;
-using ServiceGateway;
-using ServiceGateway.Models;
 
 namespace MVOGamesUI.Areas.Admin.Controllers
 {
     [Authorize(Roles = "admin")]
     [SelectedTab("platforms")]
-    public class PlatformsController : Controller
+    public class GenresController : Controller
     {
         private Facade facade = new Facade();
-        // GET: Admin/Platforms
+        // GET: Admin/Genres
         public ActionResult Index()
         {
-            var platforms = facade.GetPlatformGateway().GetAll();
-            return View(platforms);
+            var genres = facade.GetGenreGateway().GetAll();
+            return View(genres);
         }
 
-        // GET: Admin/Platforms/Create
+        // GET: Admin/Genres/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Platforms/Create
+        // POST: Admin/Genres/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name")] Platform platform)
+        public ActionResult Create([Bind(Include = "Id,Name")] Genre genre)
         {
             if (ModelState.IsValid)
             {
-                facade.GetPlatformGateway().Create(platform);
+                facade.GetGenreGateway().Create(genre);
 
                 return RedirectToAction("Index");
             }
-            return View(platform);
+            return View(genre);
         }
 
-        // GET: Admin/Platforms/Edit/5
+        // GET: Admin/Genres/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Platform platform = facade.GetPlatformGateway().Get(id);
-            if (platform == null)
+            Genre genre = facade.GetGenreGateway().Get(id);
+            if (genre == null)
             {
                 return HttpNotFound();
             }
-            return View(platform);
+            return View(genre);
         }
 
-        // POST: Admin/Platforms/Edit/5
+        // POST: Admin/Genres/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id, Name")] Platform platform)
+        public ActionResult Edit([Bind(Include = "Id,Name")] Genre genre)
         {
             if (ModelState.IsValid)
             {
-                facade.GetPlatformGateway().Update(platform);
+                facade.GetGenreGateway().Update(genre);
 
                 return RedirectToAction("Index");
             }
-            return View(platform);
+            return View(genre);
         }
 
-        // GET: Admin/Platforms/Delete/5
+        // GET: Admin/Genres/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Platform platform = facade.GetPlatformGateway().Get(id);
-            if (platform == null)
+            Genre genre = facade.GetGenreGateway().Get(id);
+            if (genre == null)
             {
                 return HttpNotFound();
             }
-            return View(platform);
+            return View(genre);
         }
 
-        // POST: Admin/Platforms/Delete/5
+        // POST: Admin/Genres/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int? id)
         {
-
-            facade.GetPlatformGateway().Delete(id);
+            facade.GetGenreGateway().Delete(id);
 
             return RedirectToAction("Index");
         }

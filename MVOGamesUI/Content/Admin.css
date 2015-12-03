@@ -19,6 +19,10 @@ td{
     color:white;
 }
 
+.tablehederColor{
+    background-color:#303030;
+}
+
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
   background-color:orangered;
 }
@@ -32,7 +36,6 @@ h2{
     min-width:300px;
 }
 
-/*CreateGame*/
 .myEditorForLength{
     width:850px;
 }
@@ -44,6 +47,10 @@ h2{
 .myDisplayFor{
     padding-left:200px;
 }
+
+
+
+
 
 
 

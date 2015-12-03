@@ -11,27 +11,46 @@
             <button class="buttonCreateG btn btn-success" onclick="window.location.href = '@Url.Action("Create", "Games")'">Create Game</button>
         </div>
         <div class="gamePanel col-lg-6 col-md-3 col-xs-3" align="right">
-            <div align="left" class="panel panel-body panel-danger" style="background-color:orangered; height:75px; width:60%">
-                <div>
-                    <strong>Order By</strong>
+            <div align="left" class="panel panel-body panel-danger orderPanel">
+
+
+                <div class="panelsplit">
+                    <strong>Genre</strong>
                     <div>
                         @using (Html.BeginForm())
                         {
-                            <p style="color:black">
-                                Genre:
+                            <p>
                                 @Html.DropDownList("GenreList", (SelectList)ViewBag.GenreList, "All", new { onchange = "javascript:this.form.submit()" })
                             </p>
                         }
                     </div>
                 </div>
+
+
+                <div class="panelsplit">
+                    <strong>Search</strong>
+                    <div>
+                        @using (Html.BeginForm())
+                        {
+                            <p>
+                                <input style="width:130px;" type="text" placeholder="Search" />
+                            </p>
+
+                        }
+                    </div>
+                </div>
+
+
+
             </div>
 
 
         </div>
+
     </div>
     <table class="table table table-condensed table-hover">
         <thead class="table">
-            <tr style="background-color:#303030;">
+            <tr class="tablehederColor">
                 <th class="col-md-1">
                     Cover
                 </th>
@@ -93,7 +112,7 @@
                     </td>
                     <td>
                         @foreach (var genre in item.Genres)
-                {
+                        {
                             <div>@Html.DisplayFor(modelItem => genre.Name)</div>
                         }
                     </td>
