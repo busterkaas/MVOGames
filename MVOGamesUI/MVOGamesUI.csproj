@@ -215,7 +215,6 @@
     <Content Include="Areas\User\Views\ShoppingCart\Index.cshtml" />
     <Content Include="Areas\User\Views\Games\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Platforms\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Platforms\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Platforms\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Platforms\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Platforms\Delete.cshtml" />
