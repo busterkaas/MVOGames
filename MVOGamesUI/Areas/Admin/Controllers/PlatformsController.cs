@@ -22,21 +22,6 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             return View(platforms);
         }
 
-        // GET: Admin/Platforms/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Platform platform = facade.GetPlatformGateway().Get(id);
-            if (platform == null)
-            {
-                return HttpNotFound();
-            }
-            return View(platform);
-        }
-
         // GET: Admin/Platforms/Create
         public ActionResult Create()
         {
