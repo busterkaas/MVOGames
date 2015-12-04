@@ -19,7 +19,7 @@ namespace MVOGamesUI.Areas.User.Controllers
         // GET: User/Profile
         public ActionResult Index()
         {
-            ViewBag.UserUpdated = "";
+            ViewBag.message = "";
             var user = facade.GetUserGateway().Get(Auth.user.Id);
             var crews = facade.GetCrewGateway().GetAll().ToList();
             var userCrews = from c in crews
@@ -34,7 +34,7 @@ namespace MVOGamesUI.Areas.User.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index([Bind(Include = "Username,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email")] ServiceGateway.Models.User user)
         {
-            ViewBag.UserUpdated = " - User has been updated!";
+            ViewBag.message = " - User has been updated!";
             ServiceGateway.Models.User newUser = Auth.user;
             newUser.Username = user.Username;
             newUser.FirstName = user.FirstName;

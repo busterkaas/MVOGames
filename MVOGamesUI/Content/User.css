@@ -25,6 +25,7 @@ h2 {
         0 0 100px #ff471a;
 }
 
+/*The next section is for the crew panel in Profile Index view!*/
 .crewPanel {
     border: black solid 1px;
     margin-top: 30px;
@@ -69,3 +70,23 @@ h2 {
     padding-left: 10px;
     color: #ff471a;
 }
+
+/*The next section is for MyCrew-View*/
+.crewHeaderDiv {
+    padding: 35px;
+    border-bottom: 1px solid #ff471a;
+    
+}
+.crewHeaderDiv img {
+     background-color: black;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+      border: #ff471a solid 1px;
+    border-radius: 10px;
+   
+    clear: both;
+}
+.crewHeaderDiv .detailsHeader {
+    padding-top: 80px;
+}
+

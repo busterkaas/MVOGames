@@ -6,7 +6,7 @@
 <div class="itemContainer container">
     <div class="col col-lg-8 col-md-8 col-sm-9">
         <h2 class="detailsHeader">@Model.User.Username</h2>
-        <h4>@ViewBag.UserUpdated</h4>
+        <h4>@Html.Raw(ViewBag.message)</h4>
     <br/>
         @{ Html.RenderPartial("_UserInformation", Model.User); }
     </div>
@@ -26,7 +26,7 @@
                 {
                     <div class="panel-group panelCrewSingle">
                             <img src="@crew.CrewImgUrl" class="crewImg"/>
-                            <a href="#">@crew.Name</a>
+                            <a href="@Url.Action("MyCrew", "Crews", new {id = crew.Id})">@crew.Name</a>
                     </div>
                 }
             }
