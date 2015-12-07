@@ -146,6 +146,7 @@
     <Compile Include="Areas\User\Models\ShoppingCartModels\ShoppingCartItem.cs" />
     <Compile Include="Areas\User\Models\ShoppingCartModels\ShoppingCartModel.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
+    <Compile Include="Areas\User\ViewModels\CrewCrewGameSuggestion.cs" />
     <Compile Include="Areas\User\ViewModels\GamePlatformGame.cs" />
     <Compile Include="Areas\User\ViewModels\GamePlatformGenre.cs" />
     <Compile Include="Areas\User\ViewModels\UserCrew.cs" />

@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Facade.cs" />
+    <Compile Include="Gateways\CrewGameSuggestionGateway.cs" />
     <Compile Include="Gateways\CrewGateway.cs" />
     <Compile Include="Gateways\GameGateway.cs" />
     <Compile Include="Gateways\GenreGateway.cs" />
@@ -74,9 +75,11 @@
     <Compile Include="Gateways\PlatformGateway.cs" />
     <Compile Include="Gateways\RoleGateway.cs" />
     <Compile Include="Gateways\ServiceGateway.cs" />
+    <Compile Include="Gateways\SuggestionUsersGateway.cs" />
     <Compile Include="Gateways\UserGateway.cs" />
     <Compile Include="Models\Crew.cs" />
     <Compile Include="Models\CrewApplication.cs" />
+    <Compile Include="Models\CrewGameSuggestion.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Order.cs" />
@@ -84,6 +87,7 @@
     <Compile Include="Models\Platform.cs" />
     <Compile Include="Models\PlatformGame.cs" />
     <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\SuggestionUsers.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
