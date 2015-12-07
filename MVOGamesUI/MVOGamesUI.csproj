@@ -224,6 +224,8 @@
     <Content Include="Areas\Admin\Views\Genres\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Genres\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Genres\Delete.cshtml" />
+    <Content Include="Areas\User\Views\Shared\_UserInformation.cshtml" />
+    <Content Include="Areas\User\Views\Crews\MyCrew.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
