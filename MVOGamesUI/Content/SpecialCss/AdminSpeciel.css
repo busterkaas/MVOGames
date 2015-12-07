@@ -12,7 +12,7 @@ button{
 
 .buttonCreateU{
     position:absolute;
-    bottom:-66px;
+    bottom:-83px;
 }
 
 .ButtonEdit{
@@ -33,3 +33,28 @@ button{
     margin-right:5px; 
     width:60%;
 }
+
+
+.panelsplit{
+    float:left;
+    width:50%;
+}
+.orderPanel{
+    background-color:orangered;
+    height:75px;
+    width:60%
+}
+
+.dropdown{
+    height:5px;
+    width:100px;
+}
+
+button
+{
+-webkit-appearance: none;
+outline: none;
+border: 0;
+background: transparent;
+}
+

@@ -10,6 +10,7 @@ using MVOGamesUI.Infrastructure;
 using ServiceGateway;
 using ServiceGateway.Models;
 using System.Net.Http;
+using BusinessLogic.SearchLogic;
 
 namespace MVOGamesUI.Areas.Admin.Controllers
 {
@@ -18,20 +19,22 @@ namespace MVOGamesUI.Areas.Admin.Controllers
     public class GamesController : Controller
     {
         private Facade facade = new Facade();
+        SearchLogic sl = new SearchLogic();
 
         // GET: Admin/Games
-        public ActionResult Index(string GenreList)
+        public ActionResult Index(string GenreList, string search)
         {
             var games = facade.GetGameGateway().GetAll();
             ViewBag.GenreList = new SelectList(facade.GetGenreGateway().GetAll().OrderBy(g => g.Name).Select(g => g.Name));
 
-            if (string.IsNullOrEmpty(GenreList))
+            if (string.IsNullOrEmpty(GenreList) && string.IsNullOrEmpty(search))
                 return View(games);
             else
             {
                 var genreGames = from a in games.ToList()
                                  where a.Genres.Any(g => g.Name == GenreList)
                                  select a;
+
                 return View(genreGames);
             }
         }
@@ -63,10 +66,17 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,ReleaseDate,Price,CoverUrl,TrailerUrl,Description,Genres")] Game game)
+        public ActionResult Create([Bind(Include = "Id,Title,ReleaseDate,CoverUrl,TrailerUrl,Description")] Game game, int[] Genres)
         {
             if (ModelState.IsValid)
             {
+                List<Genre> NewGenres = new List<Genre>();
+                foreach (var genreID in Genres)
+                {
+                    NewGenres.Add(new Genre() { Id = genreID });
+                }
+                game.Genres = NewGenres;
+
                 HttpResponseMessage response = facade.GetGameGateway().Create(game);
                 if(response.StatusCode == HttpStatusCode.Created)
                 return RedirectToAction("Index");
@@ -77,6 +87,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             }
 
             ViewBag.Genres = new SelectList(facade.GetGenreGateway().GetAll(), "Id", "Name", game.Genres.Any(g => g.Id == g.Id));
+            //ViewBag.Genres = new SelectList(facade.GetGenreGateway().GetAll(), "Id", "Name", game.Genres.Any(g => g.Id == g.Id));
             return View(game);
         }
 
@@ -135,6 +146,12 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             facade.GetGameGateway().Delete(id);
 
             return RedirectToAction("Index");
+        }
+
+        public IEnumerable<Game> GetGameSearch(string input)
+        {
+            IEnumerable<Game> games = sl.GameSearch(facade.GetGameGateway().GetAll(), input);
+            return games;
         }
 
     }

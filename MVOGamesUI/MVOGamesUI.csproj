@@ -184,7 +184,7 @@
     <Content Include="Content\Images\MVOGamesLogos\logo8.png" />
     <Content Include="Content\Images\MVOGamesLogos\logo9.png" />
     <Content Include="Content\Images\MVOGamesLogos\logoOrange.png" />
-    <Content Include="Content\SpecialCss\AdminButtons.css" />
+    <Content Include="Content\SpecialCss\AdminSpeciel.css" />
     <Content Include="Content\SpecialCss\GameDetails.css" />
     <Content Include="Content\SpecialCss\UserGamesView.css" />
     <Content Include="Content\User.css" />
@@ -221,10 +221,11 @@
     <Content Include="Areas\Admin\Views\Platforms\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Platforms\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Genres\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Genres\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Genres\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Genres\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Genres\Delete.cshtml" />
+    <Content Include="Areas\User\Views\Shared\_UserInformation.cshtml" />
+    <Content Include="Areas\User\Views\Crews\MyCrew.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

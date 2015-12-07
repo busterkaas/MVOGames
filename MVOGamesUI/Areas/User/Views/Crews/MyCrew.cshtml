@@ -1,0 +1,18 @@
+﻿@model ServiceGateway.Models.Crew
+
+
+<div class="container itemContainer">
+    <div class="container crewHeaderDiv">
+        <div class="col-sm-6 col-md-4 col-lg-2">
+            <img src="@Model.CrewImgUrl"/>
+        </div>
+        <div class="col-sm-6 col-md-8 col-lg-10">
+            <h1 class="detailsHeader">@Model.Name</h1>
+        </div>
+    </div>
+    @foreach (var user in Model.Users)
+    {
+        <p>@user.FirstName</p>
+
+    }
+</div>

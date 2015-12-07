@@ -19,6 +19,10 @@ td{
     color:white;
 }
 
+.tablehederColor{
+    background-color:#303030;
+}
+
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
   background-color:orangered;
 }
@@ -44,14 +48,9 @@ h2{
     padding-left:200px;
 }
 
-#block_container
-{
-    text-align:center;
-}
-#bloc1, #bloc2
-{
-    display:inline;
-}
+
+
+
 
 
 
