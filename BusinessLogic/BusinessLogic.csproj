@@ -44,6 +44,13 @@
     <Compile Include="OrderLogic\CartLogic.cs" />
     <Compile Include="OrderLogic\CrewDiscount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchLogic\SearchLogic.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ServiceGateway\ServiceGateway.csproj">
+      <Project>{5d8d1638-b37b-4583-a756-71782afe1ed8}</Project>
+      <Name>ServiceGateway</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

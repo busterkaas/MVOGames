@@ -10,6 +10,7 @@ using MVOGamesUI.Areas.Admin.ViewModels;
 using MVOGamesUI.Infrastructure;
 using ServiceGateway;
 using ServiceGateway.Models;
+using BusinessLogic.SearchLogic;
 
 namespace MVOGamesUI.Areas.Admin.Controllers
 {
@@ -18,13 +19,19 @@ namespace MVOGamesUI.Areas.Admin.Controllers
     public class UsersController : Controller
     {
         private Facade facade = new Facade();
+        SearchLogic sl = new SearchLogic();
 
         // GET: Admin/Users
-        public ActionResult Index()
+        public ActionResult Index(string search)
         {
             List<ServiceGateway.Models.User> users = facade.GetUserGateway().GetAll().ToList();
-            return View(users);
-            //return View(facade.GetUserRepository().ReadAll().ToList());
+
+            if (string.IsNullOrEmpty(search))
+                return View(users);
+            else
+            {
+                return View(GetUserSearch(search));
+            }
         }
 
         // GET: Admin/Users/Details/5
@@ -128,7 +135,13 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         //    {
         //        db.Dispose();
         //    }
-        //    base.Dispose(disposing);
-        //}
+        //    base.Dispose(dispos
+
+
+        public IEnumerable<ServiceGateway.Models.User> GetUserSearch(string input)
+        {
+            IEnumerable<ServiceGateway.Models.User> users = sl.UserSearch(facade.GetUserGateway().GetAll(), input);
+            return users;
+        }
     }
 }

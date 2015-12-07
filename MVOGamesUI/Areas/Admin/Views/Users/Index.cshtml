@@ -11,24 +11,35 @@
             <button class="buttonCreateU btn btn-success" onclick="window.location.href = '@Url.Action("Create", "Users")'">Create User</button>
         </div>
         <div class="gamePanel col-lg-6 col-md-3 col-xs-3" align="right">
-            <div align="left" class="panel panel-body panel-danger" style="background-color:orangered; height:55px; width:60%">
-                <div>
+            <div align="left" class="panel panel-body panel-danger orderPanel">
+
+                @*<div class="panelsplit">
+                        <strong>Roles</strong>
+                        <div>
+                            @using (Html.BeginForm())
+                            {
+                                <p>
+                                    @Html.DropDownList("RoleList", (SelectList)ViewBag.RoleList, "All", new { onchange = "javascript:this.form.submit()" })
+                                </p>
+                            }
+                        </div>
+                    </div>*@
+
+
+                <div class="panelsplit">
                     <div>
-                        @using (Html.BeginForm())
-                        {
-                            <p style="color:black">
-                                Search:
-                                <input type="text" placeholder="Search" />
-                            </p>
-                        }
+                        <form method="get" >
+                            <input type="text" id="search" name="search" placeholder="Search" />
+                            @*<button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>*@
+                        </form>
                     </div>
                 </div>
+
             </div>
-
-
         </div>
     </div>
-
     <table class="table table table-condensed table-hover">
         <thead class="table">
             <tr style="background-color:#303030;">

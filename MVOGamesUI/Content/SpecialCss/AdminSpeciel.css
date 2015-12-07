@@ -12,7 +12,7 @@ button{
 
 .buttonCreateU{
     position:absolute;
-    bottom:-66px;
+    bottom:-83px;
 }
 
 .ButtonEdit{
@@ -44,3 +44,17 @@ button{
     height:75px;
     width:60%
 }
+
+.dropdown{
+    height:5px;
+    width:100px;
+}
+
+button
+{
+-webkit-appearance: none;
+outline: none;
+border: 0;
+background: transparent;
+}
+
