@@ -50,15 +50,8 @@ namespace MVOGamesUI.Areas.User.Controllers
 
         public ActionResult Payment()
         {
-            if (cartModel == null || cartModel.Items.Count < 1)
-            {
-                return RedirectToAction("Index");
-            }
-            ServiceGateway.Models.User user = Auth.user;
-
+            return View();
         }
-
-
 
         // GET: /ShoppingCart/Add
         public ActionResult Add(int id)

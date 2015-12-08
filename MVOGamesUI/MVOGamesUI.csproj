@@ -188,6 +188,7 @@
     <Content Include="Content\Images\MVOGamesLogos\logoOrange.png" />
     <Content Include="Content\SpecialCss\AdminSpeciel.css" />
     <Content Include="Content\SpecialCss\GameDetails.css" />
+    <Content Include="Content\SpecialCss\ProgressBar.css" />
     <Content Include="Content\SpecialCss\UserGamesView.css" />
     <Content Include="Content\User.css" />
     <Content Include="favicon.ico" />
@@ -229,6 +230,7 @@
     <Content Include="Areas\User\Views\Shared\_UserInformation.cshtml" />
     <Content Include="Areas\User\Views\Crews\MyCrew.cshtml" />
     <Content Include="Areas\User\Views\ShoppingCart\Confirmation.cshtml" />
+    <Content Include="Areas\User\Views\ShoppingCart\Payment.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
