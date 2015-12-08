@@ -7,6 +7,7 @@ using System.Web.Routing;
 using MVOGamesUI.Areas.User.Models.ShoppingCartModels;
 using MVOGamesUI.Infrastructure;
 using ServiceGateway;
+using MVOGamesUI.Areas.User.ViewModels;
 
 namespace MVOGamesUI.Areas.User.Controllers
 {
@@ -35,6 +36,23 @@ namespace MVOGamesUI.Areas.User.Controllers
         {
             return View(cartModel);
         }
+
+        public ActionResult Confirmation()
+        {
+            if (cartModel == null ||cartModel.Items.Count<1)
+            {
+                return RedirectToAction("Index");
+            }
+            ServiceGateway.Models.User user = Auth.user;
+            UserCart uc = new UserCart(user, cartModel);
+            return View(uc);
+        }
+
+        public ActionResult Payment()
+        {
+            return View();
+        }
+
         // GET: /ShoppingCart/Add
         public ActionResult Add(int id)
         {

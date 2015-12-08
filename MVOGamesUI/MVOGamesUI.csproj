@@ -147,8 +147,10 @@
     <Compile Include="Areas\User\Models\ShoppingCartModels\ShoppingCartItem.cs" />
     <Compile Include="Areas\User\Models\ShoppingCartModels\ShoppingCartModel.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
+    <Compile Include="Areas\User\ViewModels\CrewCrewGameSuggestion.cs" />
     <Compile Include="Areas\User\ViewModels\GamePlatformGame.cs" />
     <Compile Include="Areas\User\ViewModels\GamePlatformGenre.cs" />
+    <Compile Include="Areas\User\ViewModels\UserCart.cs" />
     <Compile Include="Areas\User\ViewModels\UserCrew.cs" />
     <Compile Include="Auth.cs" />
     <Compile Include="Controllers\AuthController.cs" />
@@ -187,6 +189,7 @@
     <Content Include="Content\Images\MVOGamesLogos\logoOrange.png" />
     <Content Include="Content\SpecialCss\AdminSpeciel.css" />
     <Content Include="Content\SpecialCss\GameDetails.css" />
+    <Content Include="Content\SpecialCss\ProgressBar.css" />
     <Content Include="Content\SpecialCss\UserGamesView.css" />
     <Content Include="Content\User.css" />
     <Content Include="favicon.ico" />
@@ -231,6 +234,8 @@
     <Content Include="Areas\Admin\Views\Orders\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Orders\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Orders\Edit.cshtml" />
+    <Content Include="Areas\User\Views\ShoppingCart\Confirmation.cshtml" />
+    <Content Include="Areas\User\Views\ShoppingCart\Payment.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

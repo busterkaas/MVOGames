@@ -1,0 +1,55 @@
+﻿
+/* PROGRESS TRACKER */
+.progress-tracker {
+   padding-top:30px;
+  	display: block;
+	  margin: 0;
+    counter-reset: item;
+    list-style-type: none;
+    overflow: auto;
+    position: relative;
+    width: 100%;
+}
+
+.progress-tracker .step:before {
+	  background: #ff471a;
+    border-radius: 40px;
+    color: #FFFFFF;
+    content: "";
+    display: list-item;
+    font-size: 18px;
+    line-height: 1.8em;
+    padding: 0 0 0 13px;
+    position: absolute;
+    width: 35px;
+    height: 35px;
+	  box-sizing: border-box;
+	  -moz-box-sizing: border-box;
+	  -webkit-box-sizing: border-box;
+    content: counter(item) "  "; 
+    counter-increment: item;
+}
+.progress-tracker .step {
+	  display: block;
+  float: left;
+  list-style-position: inside;
+  width: 31%;
+}
+.progress-tracker .step .step-name{
+	  border-top: 8px solid rgba(255, 71, 26, 0.4);
+  display: block;
+  margin: 15px 0;
+  padding: 20px 0;
+}
+/*last step*/
+.progress-tracker .step:last-child { width: auto;}
+.progress-tracker .step:last-child .step-name{ border-color: transparent;}
+
+/*active step*/
+.progress-tracker .step.active .step-name {color: #ff471a}
+.progress-tracker .step.active:before {background: #ff471a; box-shadow: 
+		0 0 10px #fff, 
+        0 0 20px #ff471a,
+		0 0 30px #ff471a, 
+		0 0 50px #ff471a, 
+		0 0 70px #ff471a;}
