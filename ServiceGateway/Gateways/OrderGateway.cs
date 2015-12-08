@@ -21,7 +21,7 @@ namespace ServiceGateway.Gateways
         public HttpResponseMessage Delete(int? id)
         {
             HttpClient client = sg.GetHttpClient();
-            HttpResponseMessage response = client.DeleteAsync("api/order/" + id).Result;
+            HttpResponseMessage response = client.DeleteAsync("api/orders/" + id).Result;
             return response;
         }
 

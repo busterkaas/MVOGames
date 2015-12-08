@@ -85,15 +85,13 @@ namespace MVOGamesUI.Areas.Admin.Controllers
                     return new HttpStatusCodeResult(response.StatusCode);
                 }
             }
-
-            ViewBag.Genres = new SelectList(facade.GetGenreGateway().GetAll(), "Id", "Name", game.Genres.Any(g => g.Id == g.Id));
-            //ViewBag.Genres = new SelectList(facade.GetGenreGateway().GetAll(), "Id", "Name", game.Genres.Any(g => g.Id == g.Id));
             return View(game);
         }
 
         // GET: Admin/Games/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.Genres = new SelectList(facade.GetGenreGateway().GetAll(), "Id", "Name");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -111,12 +109,17 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,ReleaseDate,Price,CoverUrl,TrailerUrl,Description")] Game game)
+        public ActionResult Edit([Bind(Include = "Id,Title,ReleaseDate,Price,CoverUrl,TrailerUrl,Description")] Game game, int[] Genres)
         {
             if (ModelState.IsValid)
             {
+                List<Genre> NewGenres = new List<Genre>();
+                foreach (var genreID in Genres)
+                {
+                    NewGenres.Add(new Genre() { Id = genreID });
+                }
+                game.Genres = NewGenres;
                 facade.GetGameGateway().Update(game);
-
                 return RedirectToAction("Index");
             }
             return View(game);
@@ -153,6 +156,5 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             IEnumerable<Game> games = sl.GameSearch(facade.GetGameGateway().GetAll(), input);
             return games;
         }
-
     }
 }
