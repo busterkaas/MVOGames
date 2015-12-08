@@ -135,6 +135,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\GamesController.cs" />
     <Compile Include="Areas\Admin\Controllers\GenresController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Admin\Controllers\PlatformsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\ViewModels\RolesUser.cs" />
@@ -230,6 +231,10 @@
     <Content Include="Areas\Admin\Views\Genres\Delete.cshtml" />
     <Content Include="Areas\User\Views\Shared\_UserInformation.cshtml" />
     <Content Include="Areas\User\Views\Crews\MyCrew.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Edit.cshtml" />
     <Content Include="Areas\User\Views\ShoppingCart\Confirmation.cshtml" />
     <Content Include="Areas\User\Views\ShoppingCart\Payment.cshtml" />
     <Content Include="Areas\User\Views\Shared\_PaymentInfo.cshtml" />

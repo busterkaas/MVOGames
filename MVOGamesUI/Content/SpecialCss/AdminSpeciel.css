@@ -2,59 +2,64 @@
 }
 
 
-button{
+button {
 }
 
-.buttonCreateG{
-    position:absolute;
-    bottom:-83px;
+.buttonCreateG {
+    position: absolute;
+    bottom: -83px;
 }
 
-.buttonCreateU{
-    position:absolute;
-    bottom:-83px;
+.buttonCreateU {
+    position: absolute;
+    bottom: -83px;
 }
 
-.ButtonEdit{
-    margin-top:19px;
-    margin-right:5px; 
-    width:60%;
-     
+.ButtonEdit {
+    margin-top: 19px;
+    margin-right: 5px;
+    width: 60%;
 }
 
-.ButtonDelete{
-    margin-top:6px;
-    margin-right:5px; 
-    width:60%;
+.ButtonDelete {
+    margin-top: 6px;
+    margin-right: 5px;
+    width: 60%;
 }
 
-.ButtonDetail{
-    margin-top:6px;
-    margin-right:5px; 
-    width:60%;
+.ButtonDetail {
+    margin-top: 6px;
+    margin-right: 5px;
+    width: 60%;
 }
 
 
-.panelsplit{
-    float:left;
-    width:50%;
-}
-.orderPanel{
-    background-color:orangered;
-    height:75px;
-    width:60%
+.panelsplit {
+    float: left;
+    width: 50%;
 }
 
-.dropdown{
-    height:5px;
-    width:100px;
+.orderPanel {
+    background-color: orangered;
+    height: 75px;
+    width: 60%;
 }
 
-button
-{
--webkit-appearance: none;
-outline: none;
-border: 0;
-background: transparent;
+.dropdown {
+    height: 5px;
+    width: 100px;
+}
+
+button {
+    -webkit-appearance: none;
+    outline: none;
+    border: 0;
+    background: transparent;
+}
+
+.orderButtons {
+    margin-top: 6px;
+    margin-right: 5px;
+    width: 100px;
 }
 

@@ -11,7 +11,7 @@ using System.Web.Mvc;
 namespace MVOGamesUI.Areas.Admin.Controllers
 {
     [Authorize(Roles = "admin")]
-    [SelectedTab("platforms")]
+    [SelectedTab("genres")]
     public class GenresController : Controller
     {
         private Facade facade = new Facade();
