@@ -142,6 +142,7 @@
     <Compile Include="Areas\User\Controllers\GamesController.cs" />
     <Compile Include="Areas\User\Controllers\ProfileController.cs" />
     <Compile Include="Areas\User\Controllers\ShoppingCartController.cs" />
+    <Compile Include="Areas\User\Models\FakePayment.cs" />
     <Compile Include="Areas\User\Models\ShoppingCartModels\IShoppingCartModel.cs" />
     <Compile Include="Areas\User\Models\ShoppingCartModels\ShoppingCartItem.cs" />
     <Compile Include="Areas\User\Models\ShoppingCartModels\ShoppingCartModel.cs" />
@@ -231,6 +232,8 @@
     <Content Include="Areas\User\Views\Crews\MyCrew.cshtml" />
     <Content Include="Areas\User\Views\ShoppingCart\Confirmation.cshtml" />
     <Content Include="Areas\User\Views\ShoppingCart\Payment.cshtml" />
+    <Content Include="Areas\User\Views\Shared\_PaymentInfo.cshtml" />
+    <Content Include="Areas\User\Views\ShoppingCart\Checkout.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

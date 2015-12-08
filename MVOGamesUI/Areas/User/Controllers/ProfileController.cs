@@ -34,6 +34,10 @@ namespace MVOGamesUI.Areas.User.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index([Bind(Include = "Username,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email")] ServiceGateway.Models.User user)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(user);
+            }
             ViewBag.message = " - User has been updated!";
             ServiceGateway.Models.User newUser = Auth.user;
             newUser.Username = user.Username;
