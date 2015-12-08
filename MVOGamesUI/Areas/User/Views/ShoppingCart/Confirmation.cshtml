@@ -1,0 +1,61 @@
+﻿@model MVOGamesUI.Areas.User.ViewModels.UserCart
+
+<div class="container itemContainer">
+
+    <h2 class="detailsHeader">Confirmation</h2>
+    <br />
+
+
+    <div class="col col-lg-6 col-md-6 col-sm-6">
+
+        @{
+            Html.RenderPartial("_Userinformation", Model.User);
+        }
+    </div>
+
+    <div class="col col-lg-6 col-md-6 col-sm-6 ">
+        <h4>Games Ordered:</h4>
+        @{
+            decimal i = 0;
+            <table class="table-condensed" style="width:400px;">
+                <thead style="border-bottom:solid">
+                    <tr>
+                        <td>
+                            <strong>Title</strong>
+
+                        </td>
+                        <td>
+                            <strong> Quantity</strong>
+                        </td>
+                        <td>
+                            <strong>Price</strong>
+                        </td>
+                        <td></td>
+                    </tr>
+                </thead>
+                @foreach (var item in Model.cartModel.Items)
+            {
+                    <tr style="border-bottom:groove">
+                        <td>
+                            @item.Title
+                        </td>
+                        <td>
+                            @item.Quantity
+                        </td>
+                        <td>
+                            @{decimal u = @item.UnitPrice * @item.Quantity;}
+                            @u
+                        </td>
+
+                        @{i = i + @item.UnitPrice * @item.Quantity;
+                        }
+                    </tr>
+                            }
+            </table>
+            <br />
+            <p><strong>Total Price: @i DKK</strong> </p>
+        }
+    </div>
+    <a href="@Url.Action("Payment")">Go To Payment</a>
+</div>
+
