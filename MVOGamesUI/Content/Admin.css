@@ -53,6 +53,10 @@ h2{
     
 }
 
+.moveRight50 {
+    padding-left: -50px;
+}
+
 .crewTable th {
     border-bottom: 0px;
 }
