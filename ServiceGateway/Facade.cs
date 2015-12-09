@@ -18,6 +18,8 @@ namespace ServiceGateway
         PlatformGateway platformGW;
         RoleGateway roleGW;
         UserGateway userGW;
+        CrewGameSuggestionGateway crewGameSuggestionGW;
+        SuggestionUsersGateway suggestionUsersGW;
 
         public GameGateway GetGameGateway()
         {
@@ -54,6 +56,14 @@ namespace ServiceGateway
         public UserGateway GetUserGateway()
         {
             return userGW != null ? userGW : userGW = new UserGateway();
+        }
+        public CrewGameSuggestionGateway GetCrewGameSuggestionGateway()
+        {
+            return crewGameSuggestionGW != null ? crewGameSuggestionGW : crewGameSuggestionGW = new CrewGameSuggestionGateway();
+        }
+        public SuggestionUsersGateway GetSuggestionUsersGateway()
+        {
+            return suggestionUsersGW != null ? suggestionUsersGW : suggestionUsersGW = new SuggestionUsersGateway();
         }
     }
 }

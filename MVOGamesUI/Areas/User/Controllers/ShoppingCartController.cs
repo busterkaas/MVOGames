@@ -7,6 +7,8 @@ using System.Web.Routing;
 using MVOGamesUI.Areas.User.Models.ShoppingCartModels;
 using MVOGamesUI.Infrastructure;
 using ServiceGateway;
+using MVOGamesUI.Areas.User.ViewModels;
+using MVOGamesUI.Areas.User.Models;
 
 namespace MVOGamesUI.Areas.User.Controllers
 {
@@ -35,6 +37,38 @@ namespace MVOGamesUI.Areas.User.Controllers
         {
             return View(cartModel);
         }
+
+        public ActionResult Confirmation()
+        {
+            if (cartModel == null ||cartModel.Items.Count<1)
+            {
+                return RedirectToAction("Index");
+            }
+            ServiceGateway.Models.User user = Auth.user;
+            UserCart uc = new UserCart(user, cartModel);
+            return View(uc);
+        }
+
+        public ActionResult Payment()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Payment([Bind(Include = "CardType, CardNumber, ExpirationDate, Cvv, CardOwner")] FakePayment fakepayment)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(fakepayment);
+            }
+            return RedirectToAction("Checkout", "ShoppingCart", new { payment = fakepayment });
+        }
+
+        public ActionResult Checkout(FakePayment payment)
+        {
+            return View(payment);
+        }
+
         // GET: /ShoppingCart/Add
         public ActionResult Add(int id)
         {

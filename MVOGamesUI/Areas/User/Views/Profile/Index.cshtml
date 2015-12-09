@@ -16,9 +16,9 @@
             <h4>My Crews</h4>
         </div>
         <div class="panel-body">
-            @if (Model.Crews == null)
+            @if (Model.Crews.Count<1)
             {
-                <p>You are currently not in any crew</p>
+                <h5>You are currently not in any crew</h5>
             }
             else
             {

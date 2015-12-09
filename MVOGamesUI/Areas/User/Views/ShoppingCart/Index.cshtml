@@ -1,44 +1,60 @@
 ﻿@model MVOGamesUI.Areas.User.Models.ShoppingCartModels.ShoppingCartModel
 
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h2 class="detailsHeader">Index</h2>
+<ol class="progress-tracker">
+    <li class="step active"><span class="step-name">Shopping Cart</span></li>
+    <li class="step"><span class="step-name">Confirmation</span></li>
+    <li class="step"><span class="step-name">Payment</span></li>
+    <li class="step"><span class="step-name">Checkout</span></li>
+</ol>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("Title")
-        </th>
-        <th>
-            @Html.DisplayName("Platform")
-        </th>
-        <th>
-            @Html.DisplayName("Quantity")
-        </th>
-        <th>
-            @Html.DisplayName("Price")
-        </th>
-        <th></th>
-    </tr>
+<div class="container itemContainer">
+    <h2 class="detailsHeader">Shoppingcart</h2>
+   
+  
 
-@foreach (var item in Model.Items) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Platform)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UnitPrice)
-        </td>
-       
-    </tr>
-}
+   
 
-</table>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Title")
+            </th>
+            <th>
+                @Html.DisplayName("Platform")
+            </th>
+            <th>
+                @Html.DisplayName("Quantity")
+            </th>
+            <th>
+                @Html.DisplayName("Price")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Platform)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+            </tr>
+        }
+    </table>
+
+    <br />
+    <a href="@Url.Action("Confirmation")">Go To Confirmation</a>
+</div>

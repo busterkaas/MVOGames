@@ -42,7 +42,8 @@ namespace MVOGamesUI
                     "~/Content/Generel.css",
                     "~/Content/User.css",
                     "~/Content/SpecialCss/UserGamesView.css",
-                    "~/Content/SpecialCss/GameDetails.css")
+                    "~/Content/SpecialCss/GameDetails.css",
+                    "~/Content/SpecialCss/ProgressBar.css")
                     );
         }
     }

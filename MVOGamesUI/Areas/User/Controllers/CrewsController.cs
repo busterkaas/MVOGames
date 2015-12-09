@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ServiceGateway;
 using ServiceGateway.Models;
+using MVOGamesUI.Areas.User.ViewModels;
 
 namespace MVOGamesUI.Areas.User.Controllers
 {
@@ -26,8 +27,11 @@ namespace MVOGamesUI.Areas.User.Controllers
                 return HttpNotFound();
             }
             var crew = facade.GetCrewGateway().Get(id);
+            var platformgamesForCrews = facade.GetCrewGameSuggestionGateway().GetAll().ToList().Where(p=> p.CrewId == crew.Id).ToList();
+            
+            CrewCrewGameSuggestion ccgs = new CrewCrewGameSuggestion(crew, platformgamesForCrews);
 
-            return View(crew);
+            return View(ccgs);
         }
     }
 }
