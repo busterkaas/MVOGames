@@ -1,15 +1,65 @@
 ﻿@model System.Collections.Generic.IEnumerable<ServiceGateway.Models.Crew>
 
 
-<!DOCTYPE html>
+<h2><strong>Crews</strong></h2>
 
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
+<button class="btn btn-success" onclick="window.location.href = '@Url.Action("Create", "Crews")'">Create Platform</button>
+<br />
+<br />
+<div class="container itemContainer">
+    <table class="table table-condensed table-hover">
+        <thead class="col-lg-12 ">
+            <tr>
+                <th>
+                    Image
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Crew Leader
+                </th>
+            </tr>
+        </thead>
+        <tbody class="col-lg-12">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (item.CrewImgUrl.IsEmpty() == true)
+                {
+                            <img src="/content/images/CommingSoon2.gif" class="smallPic" />
+                        }
+                        else
+                        {
+                            <img src="@item.CrewImgUrl" class="smallPic" />
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+
+                    <td>
+                        @foreach (var users in item.Users)
+                        {
+                            if (users.Id == item.CrewLeaderId)
+                            {
+                                @Html.DisplayName(users.Username)
+                            }
+                        }
+                    </td>
+
+                    <td align="right">
+                        <button class="btn btn-warning" onclick="window.location.href = '/Admin/Crews/Edit/@item.Id'">Edit</button>
+                        <button class="btn btn-danger" onclick="window.location.href = '/Admin/Crews/Delete/@item.Id'">Delete</button>
+                        <button class="btn btn-info" onclick="window.location.href = '/Admin/Crews/Details/@item.Id'">Details</button>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
 </div>
-</body>
-</html>
+
