@@ -1,1 +1,16 @@
-﻿
+﻿@model MVOGamesUI.Areas.User.Models.FakePayment
+
+<ol class="progress-tracker">
+    <li class="step "><span class="step-name">Shopping Cart</span></li>
+    <li class="step "><span class="step-name">Confirmation</span></li>
+    <li class="step active"><span class="step-name">Payment</span></li>
+    <li class="step"><span class="step-name">Checkout</span></li>
+</ol>
+
+<div class="container itemContainer">
+    <h2 class="detailsHeader">Payment</h2>
+    <br />
+    @{ 
+        Html.RenderPartial("_PaymentInfo", Model);
+    }
+    </div>

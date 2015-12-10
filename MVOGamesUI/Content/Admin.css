@@ -48,6 +48,18 @@ h2{
     padding-left:200px;
 }
 
+.crewTable th, .crewTable td {
+    width: 80px;
+    
+}
+
+.moveRight50 {
+    padding-left: -50px;
+}
+
+.crewTable th {
+    border-bottom: 0px;
+}
 
 
 

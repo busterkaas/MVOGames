@@ -1,0 +1,107 @@
+﻿@model ServiceGateway.Models.Crew
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Crew</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="myEditorForLengthEdit form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="myEditorForLengthEdit form-group">
+            @Html.LabelFor(model => model.CrewImgUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CrewImgUrl, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CrewImgUrl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="myEditorForLengthEdit form-group">
+            @Html.LabelFor(model => model.CrewLeaderId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CrewLeaderId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CrewLeaderId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="container">
+            <table class="table table-condensed table-hover crewTable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Users)
+                        </th>
+                        <th>
+                            @Html.DisplayName("Role")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Id")
+                        </th>
+                        
+                    </tr>
+                </thead>
+                <tbody >
+                    @foreach (var item in Model.Users)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                                </td>
+                            <td>
+                                @if (item.Id == Model.CrewLeaderId)
+                                {
+                                    @Html.DisplayName("Crew Leader")
+                                }
+                                else
+                                {
+                                    @Html.DisplayName("Crew Member")
+                                }
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            
+                             
+                            <td class="col-md-12" align="right">
+
+                                <a href='@Url.Action("DeleteUserFromCrew", "Crews", new {id = @item.Id, crewId = @Model.Id})'>Remove</a>
+                                @*<button class="btn btn-danger" onclick="@">Delete</button>*@
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+
+    
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-success" /> |
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
