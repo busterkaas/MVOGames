@@ -128,7 +128,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
 
-            facade.GetPlatformGateway().Delete(id);
+            facade.GetCrewGateway().Delete(id);
 
             return RedirectToAction("Index");
         }
