@@ -1,7 +1,7 @@
 ﻿@helper SelectedTabClass(string tabName)
 {
-    if (tabName == ViewBag.SelectedTab)
-    {
+if (tabName == ViewBag.SelectedTab)
+{
         @: active
     }
 }
@@ -16,75 +16,114 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Tooggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><img id="topLogo" src="/Content/Images/MVOGamesLogos/logo3.png"/></a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="@SelectedTabClass("games")">
-                    @Html.ActionLink("Games", "Index", "Games", new {area = "Admin"}, new {})
-                </li>
-                <li class="@SelectedTabClass("users")">
-                    @Html.ActionLink("Users", "Index", "Users", new {area = "Admin"}, new {})
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Config<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-header">Administration</li>
-                        <li>
-                            <a href="/Admin/Genres/Index">Genres</a>
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Tooggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img id="topLogo" src="/Content/Images/MVOGamesLogos/logo3.png" /></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="@SelectedTabClass("games")">
+                        @Html.ActionLink("Games", "Index", "Games", new { area = "Admin" }, new { })
+                    </li>
+                    <li class="@SelectedTabClass("users")">
+                        @Html.ActionLink("Users", "Index", "Users", new { area = "Admin" }, new { })
+                    </li>
+                    <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Config<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-header">Administration</li>
+                                <li>
+                                    <a href="/Admin/Genres/Index">Genres</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/Platforms/Index">Platforms</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/Crews/Index">Crews</a>
+                                </li>
+                                <li class="dropdown-header">Orders</li>
+                                <li>
+                                    <a href="/Admin/Orders/Index">Order</a>
+                                </li>
+                                <li>
+                                    <a href="#">Crew Order</a>
+                                </li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="/Admin/Platforms/Index">Platforms</a>
-                        </li>
-                        <li>
-                            <a href="#">Crews</a>
-                        </li>
-                        <li class="dropdown-header">Orders</li>
-                        <li>
-                            <a href="/Admin/Orders/Index">Order</a>
-                        </li>
-                        <li>
-                            <a href="#">Crew Order</a>
-                        </li>
-                    </ul>
-                </li>
-                <li >
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <a href="@Url.RouteUrl("logout")">Logout</a>
-                    }
-                </li>
-              
-            </ul>
+                    @*<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Game<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Administration</li>
+                            <li>
+                                <a href="/Admin/Games/Index">Games</a>
+                            </li>
+                            <li>
+                                <a href="/Admin/Genres/Index">Genres</a>
+                            </li>
+                            <li>
+                                <a href="/Admin/Platforms/Index">Platforms</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">User<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Administration</li>
+                            <li>
+                                <a href="/Admin/Users/Index">Users</a>
+                            </li>
+                            <li>
+                                <a href="/Admin/Orders/Index">Orders</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Crew<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Administration</li>
+                            <li>
+                                <a href="/Admin/Crews/Index">Crews</a>
+                            </li>
+                            <li>
+                                <a href="#">Crew Orders</a>
+                            </li>
+                        </ul>
+                    </li>*@
+                    <li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a href="@Url.RouteUrl("logout")">Logout</a>
+                        }
+                    </li>
 
+                </ul>
+
+            </div>
         </div>
     </div>
-</div>
 
 
 
 
 
 
-<div class="container body-content">
-    @RenderBody()
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-    </footer>
-</div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -63,10 +63,14 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Username,Password,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email")] ServiceGateway.Models.User user)
+        public ActionResult Create([Bind(Include = "Id,Username,PasswordHash,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email")] ServiceGateway.Models.User user)
         {
             if (ModelState.IsValid)
             {
+                user.SetPassword(user.PasswordHash);
+                //get user role and set it for the new user
+                Role role = facade.GetRoleGateway().Get(2);
+                user.Role = role;
                 facade.GetUserGateway().Create(user);
                 return RedirectToAction("Index");
             }
@@ -94,10 +98,15 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Username,Password,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email")] ServiceGateway.Models.User user)
+        public ActionResult Edit([Bind(Include = "Id,Username,PasswordHash,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email, RoleId")] ServiceGateway.Models.User user)
         {
+            
             if (ModelState.IsValid)
             {
+                user.SetPassword(user.PasswordHash);
+                Role role = facade.GetRoleGateway().Get(2);
+                user.Role = role;
+
                 facade.GetUserGateway().Update(user);
                 return RedirectToAction("Index");
             }

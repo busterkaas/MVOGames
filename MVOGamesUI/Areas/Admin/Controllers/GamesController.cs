@@ -109,7 +109,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,ReleaseDate,Price,CoverUrl,TrailerUrl,Description")] Game game, int[] Genres)
+        public ActionResult Edit([Bind(Include = "Id,Title,ReleaseDate,CoverUrl,TrailerUrl,Description")] Game game, int[] Genres)
         {
             if (ModelState.IsValid)
             {
