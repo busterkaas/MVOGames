@@ -6,10 +6,48 @@
 
 
 <div class="itemContainer container">
-    <h2>Index</h2>
+    <h2 class="detailsHeader">Crews</h2>
+    <ul class="crewItems">
+
         @foreach (var crew in Model)
         {
-            <p>@crew.Name</p>
-            <p>@crew.CrewLeaderId</p>
+            <li>
+                <img class="img-responsive col-lg-4 col-md-4 col-sm-4" src="@crew.CrewImgUrl" />
+                <h4 class="col-lg-8 col-md-8 col-sm-8">Crew @crew.Name</h4>
+                <a href="">Ask for membership</a>
+            </li>
+            <li>
+                <img class="img-responsive col-lg-4 col-md-4 col-sm-4" src="@crew.CrewImgUrl" />
+                <h4 class="col-lg-8 col-md-8 col-sm-8">Crew @crew.Name</h4>
+                <a href="">Ask for membership</a>
+            </li>
+            <li>
+                <img class="img-responsive col-lg-4 col-md-4 col-sm-4" src="@crew.CrewImgUrl" />
+                <h4 class="col-lg-8 col-md-8 col-sm-8">Crew @crew.Name</h4>
+                <a href="">Ask for membership</a>
+            </li>
+            <li>
+                <img class="img-responsive col-lg-4 col-md-4 col-sm-4" src="@crew.CrewImgUrl" />
+                <h4 class="col-lg-8 col-md-8 col-sm-8">Crew @crew.Name</h4>
+                <a href="">Ask for membership</a>
+            </li>
+            <li>
+                <img class="img-responsive col-lg-4 col-md-4 col-sm-4" src="@crew.CrewImgUrl" />
+                <h4 class="col-lg-8 col-md-8 col-sm-8">Crew @crew.Name</h4>
+                <a href="">Ask for membership</a>
+            </li>
+            <li>
+                <img class="img-responsive col-lg-4 col-md-4 col-sm-4" src="@crew.CrewImgUrl" />
+                <h4 class="col-lg-8 col-md-8 col-sm-8">Crew @crew.Name</h4>
+                <a href="">Ask for membership</a>
+            </li>
+
+
+
+
+
+
+
         }
+    </ul>
 </div>

@@ -152,6 +152,7 @@
     <Compile Include="Areas\User\ViewModels\GamePlatformGame.cs" />
     <Compile Include="Areas\User\ViewModels\GamePlatformGenre.cs" />
     <Compile Include="Areas\User\ViewModels\UserCart.cs" />
+    <Compile Include="Areas\User\ViewModels\UserCartPayment.cs" />
     <Compile Include="Areas\User\ViewModels\UserCrew.cs" />
     <Compile Include="Auth.cs" />
     <Compile Include="Controllers\AuthController.cs" />

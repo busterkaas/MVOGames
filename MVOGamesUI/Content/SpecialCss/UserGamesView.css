@@ -32,8 +32,8 @@ color: lightgray;
 .item {
     border-radius: 2px;
     border: 1px solid #ff471a;
-   background: rgb(60, 60, 60);
-    background: rgba(90, 90, 90, 0.7);
+   background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5);
     float: left;
     margin:20px;
     width: 201px;

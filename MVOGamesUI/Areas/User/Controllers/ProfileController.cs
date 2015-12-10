@@ -20,7 +20,7 @@ namespace MVOGamesUI.Areas.User.Controllers
         public ActionResult Index()
         {
             ViewBag.message = "";
-            var user = facade.GetUserGateway().Get(Auth.user.Id);
+            var user = Auth.user;
             var crews = facade.GetCrewGateway().GetAll().ToList();
             var userCrews = from c in crews
                 where c.Users.Any(u => u.Id == user.Id)
@@ -32,12 +32,20 @@ namespace MVOGamesUI.Areas.User.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index([Bind(Include = "Username,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email")] ServiceGateway.Models.User user)
+        public ActionResult Index([Bind(Include = "Username,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email, PasswordHash")] ServiceGateway.Models.User user)
         {
             if (!ModelState.IsValid)
             {
-                return View(user);
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                var userLoggedIn = Auth.user;
+                var crews = facade.GetCrewGateway().GetAll().ToList();
+                var userCrews = from c in crews
+                                where c.Users.Any(u => u.Id == userLoggedIn.Id)
+                                select c;
+                UserCrew uc = new UserCrew(userLoggedIn, userCrews.ToList());
+                return View(uc);
             }
+
             ViewBag.message = " - User has been updated!";
             ServiceGateway.Models.User newUser = Auth.user;
             newUser.Username = user.Username;
@@ -49,9 +57,19 @@ namespace MVOGamesUI.Areas.User.Controllers
             newUser.City = user.City;
             newUser.Email = user.Email;
             FormsAuthentication.SetAuthCookie(newUser.Username, true);
-            
+
+           
+
             facade.GetUserGateway().Update(newUser);
-            return RedirectToAction("Index");
+
+
+            var crewss = facade.GetCrewGateway().GetAll().ToList();
+            var userCrewss = from c in crewss
+                            where c.Users.Any(u => u.Id == newUser.Id)
+                            select c;
+            UserCrew ucc = new UserCrew(newUser, userCrewss.ToList());
+
+            return View(ucc);
         }
     }
 }

@@ -50,7 +50,6 @@ h2 {
     
 }
 .crewPanel h4 {
-    text-effect: engrave;
     color: #ff471a;
     text-shadow: none;
 }
@@ -106,5 +105,55 @@ h2 {
 
 
 }
+
+/**/
+input[type=submit] {
+  
+    background-color:#ff471a; 
+    border:0 none;
+   
+    border-radius: 5px; 
+}
+.expDate{
+    float:left;
+}
+
+
+
+/*Find a crew - Crews index*/
+
+ 
+ .crewItems{
+     padding-top:50px;
+	margin-top:20px;
+	list-style: none;
+	width:90%;
+	margin:0 auto;
+}
+
+.crewItems li {
+ 
+    border-radius:10px;
+    border: 1px solid #ff471a;
+	width:30%;
+	height:100px;
+	background: rgba(0, 0, 0, 0.5);
+	display:inline-block;
+	margin:1%;
+	line-height: 100px;	
+	text-align:center;
+	vertical-align: middle;
+    
+}
+.crewItems li img {
+    background:black;
+    border-radius:10px;
+    padding:0;
+    margin:0;
+	width:30%;
+	height:100%;
+    float:left;
+}
+
 
 

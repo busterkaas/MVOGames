@@ -55,18 +55,40 @@ namespace MVOGamesUI.Areas.User.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Payment([Bind(Include = "CardType, CardNumber, ExpirationDate, Cvv, CardOwner")] FakePayment fakepayment)
+        public ActionResult Payment([Bind(Include = "CardType, CardNumber, ExpMonth, ExpYear, Cvv, CardOwner")] FakePayment fakepayment)
         {
             if (!ModelState.IsValid)
             {
                 return View(fakepayment);
             }
-            return RedirectToAction("Checkout", "ShoppingCart", new { payment = fakepayment });
+            return RedirectToAction("Checkout", "ShoppingCart", new { cardType = fakepayment.CardType, cardNumber = fakepayment.CardNumber, expMonth = fakepayment.ExpMonth, expYear = fakepayment.ExpYear, cvv = fakepayment.Cvv, cardOwner = fakepayment.CardOwner });
         }
 
-        public ActionResult Checkout(FakePayment payment)
+        public ActionResult Checkout(string cardType, int cardNumber, int expMonth, int expYear, int cvv, string cardOwner)
         {
-            return View(payment);
+            FakePayment payment = new FakePayment(cardType, cardNumber, expMonth, expYear, cvv, cardOwner);
+            ServiceGateway.Models.User user = Auth.user;
+            UserCartPayment ucp = new UserCartPayment(user, cartModel, payment);
+            try {
+                facade.GetOrderGateway().Create(
+                    new ServiceGateway.Models.Order() {
+                        Date = DateTime.Now, UserId = user.Id });
+
+                var order = facade.GetOrderGateway().GetAll().ToList().Last();
+                foreach (var item in cartModel.Items)
+                {
+                    facade.GetOrderlineGateway().Create(
+                        new ServiceGateway.Models.Orderline() {
+                            OrderId = order.Id, PlatformGameId = 
+                            item.PlatformGameId, Amount = item.Quantity,
+                            Discount = 0});
+                }
+            return View(ucp);
+            }
+            catch
+            {
+                return HttpNotFound();
+            }
         }
 
         // GET: /ShoppingCart/Add
