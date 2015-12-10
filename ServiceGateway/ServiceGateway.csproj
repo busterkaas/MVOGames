@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Facade.cs" />
+    <Compile Include="Gateways\CrewApplicationGateway.cs" />
     <Compile Include="Gateways\CrewGameSuggestionGateway.cs" />
     <Compile Include="Gateways\CrewGateway.cs" />
     <Compile Include="Gateways\GameGateway.cs" />

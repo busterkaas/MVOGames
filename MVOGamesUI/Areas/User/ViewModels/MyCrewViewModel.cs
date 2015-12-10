@@ -6,14 +6,18 @@ using System.Web;
 
 namespace MVOGamesUI.Areas.User.ViewModels
 {
-    public class CrewCrewGameSuggestion
+    public class MyCrewViewModel
     {
-        public CrewCrewGameSuggestion(Crew crew, List<CrewGameSuggestion> crewSuggestions)
+        public MyCrewViewModel(ServiceGateway.Models.User user, Crew crew, List<CrewGameSuggestion> crewSuggestions, List<CrewApplication> applications)
         {
+            User = user;
             Crew = crew;
             CrewSuggestions = crewSuggestions;
+            Applications = applications;
         }
         public Crew Crew { get; set; }
         public List<CrewGameSuggestion> CrewSuggestions { get; set; }
+        public List<CrewApplication> Applications { get; set; }
+        public ServiceGateway.Models.User User { get; set; }
     }
 }

@@ -20,6 +20,7 @@ namespace ServiceGateway
         UserGateway userGW;
         CrewGameSuggestionGateway crewGameSuggestionGW;
         SuggestionUsersGateway suggestionUsersGW;
+        CrewApplicationGateway crewApplicationGW;
 
         public GameGateway GetGameGateway()
         {
@@ -64,6 +65,10 @@ namespace ServiceGateway
         public SuggestionUsersGateway GetSuggestionUsersGateway()
         {
             return suggestionUsersGW != null ? suggestionUsersGW : suggestionUsersGW = new SuggestionUsersGateway();
+        }
+        public CrewApplicationGateway GetCrewApplicationGateway()
+        {
+            return crewApplicationGW != null ? crewApplicationGW : crewApplicationGW = new CrewApplicationGateway();
         }
     }
 }

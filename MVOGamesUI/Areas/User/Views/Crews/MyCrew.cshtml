@@ -1,18 +1,31 @@
-﻿@model MVOGamesUI.Areas.User.ViewModels.CrewCrewGameSuggestion
+﻿@model MVOGamesUI.Areas.User.ViewModels.MyCrewViewModel
 
 
 <div class="container itemContainer">
-    <div class="container crewHeaderDiv">
-        <div class="col-sm-6 col-md-4 col-lg-2">
+    <div class="container">
+        <div class="col-sm-6 col-md-4 col-lg-2 myCrewLeft">
             <img src="@Model.Crew.CrewImgUrl"/>
+            <br />
+            @foreach (var user in Model.Crew.Users)
+            {
+                <h4>@user.FirstName</h4>
+            }
         </div>
-        <div class="col-sm-6 col-md-8 col-lg-10">
+        <div class="col-sm-6 col-md-8 col-lg-10 myCrewRight">
             <h1 class="detailsHeader">@Model.Crew.Name</h1>
+
+            @if (Model.User.Id == Model.Crew.CrewLeaderId)
+            {
+            <div class="crewApplications">
+                <p>You are the admin! </p>
+                @foreach (var application in Model.Applications)
+                {
+                    <p>@application.User.Username</p>
+                    <a href="@Url.Action("HandleApplications", "Crews", new { userId = application.UserId, crewId= Model.Crew.Id, appId = application.Id, accepted =false})">remove</a>
+                    <a href="@Url.Action("HandleApplications", "Crews", new { userId = application.UserId, crewId= Model.Crew.Id, appId = application.Id, accepted =true})">Accept</a>
+                }
+            </div>
+            }
         </div>
     </div>
-    @foreach (var user in Model.Crew.Users)
-    {
-        <p>@user.FirstName</p>
-
-    }
 </div>
