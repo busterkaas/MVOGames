@@ -24,6 +24,15 @@
             <dd>
                 @Html.DisplayFor(model => model.Date)
             </dd>
+            <dt>
+                Movie(s)
+            </dt>
+            <dd>
+                @foreach (var item in Model.Orderlines)
+                {
+                    @Html.DisplayFor(modelItem => item.PlatformGame.GameId)
+                }
+            </dd>
             <br />
             @using (Html.BeginForm())
             {
@@ -35,6 +44,7 @@
                     </div>
                 </dd>
             }
+            <br />
         </div>
     </dl>
 </div>

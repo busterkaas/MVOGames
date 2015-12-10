@@ -9,7 +9,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="container itemContainer form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -54,8 +54,19 @@
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
+        <div class="myEditorForLengthEdit form-group">
+            @Html.Label("Current genre(s)", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @foreach (var genre in Model.Genres)
+                {
+                    @Html.Label(genre.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Genres, "", new { @class = "text-danger" })
+                    <br />
+                }
+            </div>
+        </div>
 
-        <div class="form-group">
+        <div class="myEditorForLengthEdit form-group">
             @Html.LabelFor(model => model.Genres, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.ListBox("Genres", null, new { htmlAttributes = new { @class = "form-control" } })

@@ -62,9 +62,18 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         }
 
         // GET: Admin/Order/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Order order = facade.GetOrderGateway().Get(id);
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+            return View(order);
         }
 
         // POST: Admin/Order/Edit/5

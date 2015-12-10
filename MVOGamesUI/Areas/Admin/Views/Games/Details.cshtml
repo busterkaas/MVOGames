@@ -50,6 +50,20 @@
             <dd>
                 @Html.DisplayFor(model => model.Description)
             </dd>
+
+            <br />
+            <dt>
+                @Html.DisplayNameFor(model => model.Genres)
+            </dt>
+
+            <dd>
+                @foreach (var genre in Model.Genres)
+                {
+                    @Html.DisplayFor(model => genre.Name)
+                    <br />
+                }
+            </dd>
+
             <br />
             <dd>
                 <p>
