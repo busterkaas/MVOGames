@@ -11,34 +11,38 @@
     <dl class="container itemContainer dl-horizontal">
         <div class="col-lg-12">
             <br />
-                <dt>
-                    Name
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.GetOrder().User.FirstName)
-                    @Html.DisplayFor(model => model.GetOrder().User.LastName)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.GetOrder().Date)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.GetOrder().Date)
-                </dd>
-                <dt>
-                    Total price
-                </dt>
-                <dd>
-                    @{decimal sum = 0;
-                    @foreach (var order in Model.GetOrderlines())
+            <dt>
+                Name
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.GetOrder().User.FirstName)
+                @Html.DisplayFor(model => model.GetOrder().User.LastName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.GetOrder().Date)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.GetOrder().Date)
+            </dd>
+            <dt>
+                Total price
+            </dt>
+            <dd>
+                @{
+                    decimal sum = 0;
+                    foreach (var order in Model.GetOrderlines())
                     {
-                        sum += order.Amount * order.PlatformGame.Price;
+                        sum = sum + order.Amount * order.PlatformGame.Price;
                     }
-                    
-                    @Html.Display(sum.ToString());}
-                </dd>
+                }
+                @sum
+            </dd>
         </div>
         <div class="col-lg-12">
             <table class="table table-condensed">
+                @*<tr>
+                    <h2><strong>Ordered Games</strong></h2>
+                </tr>*@
                 <tr class="tablehederColor">
                     <th>
                         Game
@@ -69,7 +73,7 @@
                             @Html.Label(order.PlatformGame.Price.ToString())
                         </td>
                     </tr>
-                        <br />
+                    <br />
                 }
             </table>
             <p align="right">
