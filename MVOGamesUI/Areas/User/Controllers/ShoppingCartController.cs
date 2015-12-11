@@ -72,7 +72,7 @@ namespace MVOGamesUI.Areas.User.Controllers
             try {
                 facade.GetOrderGateway().Create(
                     new ServiceGateway.Models.Order() {
-                        Date = DateTime.Now, UserId = user.Id });
+                        Date = DateTime.Now, UserId = user.Id, User = user });
 
                 var order = facade.GetOrderGateway().GetAll().ToList().Last();
                 foreach (var item in cartModel.Items)
