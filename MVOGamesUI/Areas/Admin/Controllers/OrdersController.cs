@@ -1,4 +1,5 @@
-﻿using MVOGamesUI.Infrastructure;
+﻿using MVOGamesUI.Areas.Admin.ViewModels;
+using MVOGamesUI.Infrastructure;
 using ServiceGateway;
 using ServiceGateway.Models;
 using System;
@@ -25,17 +26,31 @@ namespace MVOGamesUI.Areas.Admin.Controllers
 
         // GET: Admin/Order/Details/5
         public ActionResult Details(int? id)
-        { 
+        {
+            List<PlatformGame> platforGames = new List<PlatformGame>();
+            List<Game> games = new List<Game>();
+            decimal sum = 0;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Order order = facade.GetOrderGateway().Get(id);
+            List<Orderline> orderlines = facade.GetOrderlineGateway().GetAll().Where(o => o.OrderId == order.Id).ToList();
+
+            foreach (var o in orderlines)
+            {
+                platforGames.Add(facade.GetPlatformGameGateway().Get(o.PlatformGameId));
+            }
+            foreach (var p in platforGames)
+            {
+                games.Add(facade.GetGameGateway().Get(p.GameId));
+            }
+            OrderGames og = new OrderGames(order, orderlines, platforGames, games);
             if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(order);
+            return View(og);
         }
 
         // GET: Admin/Order/Create

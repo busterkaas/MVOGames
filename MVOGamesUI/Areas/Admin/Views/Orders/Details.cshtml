@@ -1,55 +1,83 @@
-﻿@model ServiceGateway.Models.Order
+﻿@model MVOGamesUI.Areas.Admin.ViewModels.OrderGames
 
 @{
     ViewBag.Title = "Details Order";
 }
 
 <h2>Order Details</h2>
-
 <div>
+
     <hr />
     <dl class="container itemContainer dl-horizontal">
-        <br />
-        <div class="myDisplayFor">
-            <dt>
-                Name
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.User.FirstName)
-                @Html.DisplayFor(model => model.User.LastName)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Date)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Date)
-            </dd>
-            <dt>
-                Movie(s)
-            </dt>
-            <dd>
-                @foreach (var item in Model.Orderlines)
-                {
-                    @Html.DisplayFor(modelItem => item.PlatformGame.GameId)
-                }
-            </dd>
-
-            <dt>
-                Total price
-            </dt>
-            <dd>
-                @foreach (var item in Model.Orderlines)
-                {
-
-                }
-            </dd>
+        <div class="col-lg-12">
             <br />
-            <dd>
-                <p>
-                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" }) |
-                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
-                </p>
-            </dd>
+                <dt>
+                    Name
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.GetOrder().User.FirstName)
+                    @Html.DisplayFor(model => model.GetOrder().User.LastName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.GetOrder().Date)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.GetOrder().Date)
+                </dd>
+                <dt>
+                    Total price
+                </dt>
+                <dd>
+                    @{decimal sum = 0;
+                    @foreach (var order in Model.GetOrderlines())
+                    {
+                        sum += order.Amount * order.PlatformGame.Price;
+                    }
+                    
+                    @Html.Display(sum.ToString());}
+                </dd>
         </div>
+        <div class="col-lg-12">
+            <table class="table table-condensed">
+                <tr class="tablehederColor">
+                    <th>
+                        Game
+                    </th>
+                    <th>
+                        Platform
+                    </th>
+                    <th>
+                        Amount
+                    </th>
+                    <th>
+                        Unit Price
+                    </th>
+                </tr>
+                @foreach (var order in Model.GetOrderlines())
+                {
+                    <tr>
+                        <td>
+                            @Html.Label(order.PlatformGame.Game.Title)
+                        </td>
+                        <td>
+                            @Html.Label(order.PlatformGame.Platform.Name)
+                        </td>
+                        <td>
+                            @Html.Label(order.Amount.ToString())
+                        </td>
+                        <td>
+                            @Html.Label(order.PlatformGame.Price.ToString())
+                        </td>
+                    </tr>
+                        <br />
+                }
+            </table>
+            <p align="right">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.GetOrder().Id }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+            </p>
+            <br />
+        </div>
+
     </dl>
 </div>

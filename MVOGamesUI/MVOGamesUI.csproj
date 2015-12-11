@@ -139,6 +139,7 @@
     <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Admin\Controllers\PlatformsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\ViewModels\OrderGames.cs" />
     <Compile Include="Areas\Admin\ViewModels\RolesUser.cs" />
     <Compile Include="Areas\User\Controllers\CrewsController.cs" />
     <Compile Include="Areas\User\Controllers\GamesController.cs" />
