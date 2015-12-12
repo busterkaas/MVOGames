@@ -72,5 +72,10 @@ namespace MVOGamesUI.Areas.User.Controllers
 
             return View(gamePlatformgame);
         }
+
+        public ActionResult OrderWithCrew(int? pfGameId)
+        {
+            return View();
+        }
     }
 }

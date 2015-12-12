@@ -246,6 +246,7 @@
     <Content Include="Areas\User\Views\ShoppingCart\Payment.cshtml" />
     <Content Include="Areas\User\Views\Shared\_PaymentInfo.cshtml" />
     <Content Include="Areas\User\Views\ShoppingCart\Checkout.cshtml" />
+    <Content Include="Areas\User\Views\Games\OrderWithCrew.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

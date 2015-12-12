@@ -37,12 +37,20 @@ if (tabName == ViewBag.SelectedTab)
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Crews<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">My Crews</li>
-                            @*@foreach (var crew in Auth.user.Crews)
+                            @if (User.Identity.IsAuthenticated && Auth.user.Crews != null)
                             {
-                                <li>
-                                    <a href="@Url.Action("MyCrew", "Crews", new { id = crew.Id })">@crew.Name</a>
-                                </li>
-                            }*@
+                                foreach (var crew in Auth.user.Crews)
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("MyCrew", "Crews", new { id = crew.Id })">@crew.Name</a>
+                                        </li>
+                                    }
+                            }
+                            else
+                            {
+                                <li>You are currently not in any crew!</li>
+                            }
+
                             <li class="dropdown-header">Other</li>
                             <li>
                                 @Html.ActionLink("Find a crew", "Index", "Crews", new { Area = "User" }, new { })
