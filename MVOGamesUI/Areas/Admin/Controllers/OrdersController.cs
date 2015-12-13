@@ -29,7 +29,6 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         {
             List<PlatformGame> platforGames = new List<PlatformGame>();
             List<Game> games = new List<Game>();
-            decimal sum = 0;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

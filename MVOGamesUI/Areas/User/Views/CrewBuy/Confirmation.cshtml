@@ -1,0 +1,26 @@
+﻿@model ServiceGateway.Models.CrewGameSuggestion
+
+<ol class="progress-tracker">
+    <li class="step"><span class="step-name">Specification</span></li>
+    <li class="step active"><span class="step-name">Confirmation</span></li>
+    <li class="step"><span class="step-name">Payment</span></li>
+    <li class="step"><span class="step-name">Succes</span></li>
+</ol>
+
+<div class="container itemContainer">
+    <h1 class="detailsHeader">
+    @Model.CrewId
+    </h1>
+    <h1 class="detailsHeader">
+        @Model.Discount
+    </h1>
+    <h1 class="detailsHeader">
+        @Model.PlatformGameId
+    </h1>
+    <h1 class="detailsHeader">
+        @Model.ExpirationDate.Date
+    </h1>
+    <h1 class="detailsHeader">
+        @Model.ExpirationTime.TimeOfDay
+    </h1>
+</div>

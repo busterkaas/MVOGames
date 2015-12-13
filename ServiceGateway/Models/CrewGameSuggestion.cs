@@ -10,13 +10,18 @@ namespace ServiceGateway.Models
     public class CrewGameSuggestion
     {
         public int Id { get; set; }
+        [Required]
         public int CrewId { get; set; }
         public virtual Crew Crew { get; set; }
+        [Required]
         public int PlatformGameId { get; set; }
         public virtual PlatformGame PlatformGame { get; set; }
+        [Required]
         public decimal Discount { get; set; }
+        [Required]
         [DataType(DataType.Time)]
         public DateTime ExpirationTime { get; set; }
+        [Required]
         [DataType(DataType.Date)]
         public DateTime ExpirationDate { get; set; }
 

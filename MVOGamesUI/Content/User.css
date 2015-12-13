@@ -156,5 +156,17 @@ input[type=submit] {
     float:left;
 }
 
+/* Crew order  (Crewbuy)*/
+
+.coGameDiv{
+    float:right;
+    margin-bottom:40px;
+    padding:20px;
+    background: rgba(0, 0, 0, 0.5);
+}
+.coGameDiv img{
+    max-height:250px;
+}
+
 
 
