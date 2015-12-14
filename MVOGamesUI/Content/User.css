@@ -167,6 +167,10 @@ input[type=submit] {
 .coGameDiv img{
     max-height:250px;
 }
+.confirmDiv{
+    float:right;
+    max-width:300px;
+}
 
 
 

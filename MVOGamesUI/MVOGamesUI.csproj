@@ -151,6 +151,7 @@
     <Compile Include="Areas\User\Models\ShoppingCartModels\ShoppingCartItem.cs" />
     <Compile Include="Areas\User\Models\ShoppingCartModels\ShoppingCartModel.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
+    <Compile Include="Areas\User\ViewModels\CrewBuyConfirmationVM.cs" />
     <Compile Include="Areas\User\ViewModels\GameDetailsViewModel.cs" />
     <Compile Include="Areas\User\ViewModels\GamePlatformGenre.cs" />
     <Compile Include="Areas\User\ViewModels\MyCrewViewModel.cs" />
@@ -245,11 +246,14 @@
     <Content Include="Areas\Admin\Views\Orders\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Orders\Edit.cshtml" />
     <Content Include="Areas\User\Views\ShoppingCart\Confirmation.cshtml" />
-    <Content Include="Areas\User\Views\ShoppingCart\Payment.cshtml" />
     <Content Include="Areas\User\Views\Shared\_PaymentInfo.cshtml" />
     <Content Include="Areas\User\Views\ShoppingCart\Checkout.cshtml" />
     <Content Include="Areas\User\Views\CrewBuy\CrewBuySpecification.cshtml" />
     <Content Include="Areas\User\Views\CrewBuy\Confirmation.cshtml" />
+    <Content Include="Areas\User\Views\Shared\_CrewBuyGame.cshtml" />
+    <Content Include="Areas\User\Views\CrewBuy\Payment.cshtml" />
+    <Content Include="Areas\User\Views\ShoppingCart\Payment.cshtml" />
+    <Content Include="Areas\User\Views\CrewBuy\Done.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

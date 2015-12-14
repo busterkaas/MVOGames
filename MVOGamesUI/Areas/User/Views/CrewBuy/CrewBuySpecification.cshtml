@@ -60,15 +60,6 @@
         }
     </div>
     <div class="col-lg-5 col-md-5 col-sm-5 coGameDiv ">
-        <div class="col-lg-6 col-md-6 col-sm-6">
-            <img class=" img-responsive" src="@Model.PlatformGame.Game.CoverUrl" />
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-6">
-            <div class="container ">
-                <p>The price is currently: <h4>DKK @Model.PlatformGame.Price</h4></p>
-                <p>The more crew-members who join the game-suggestion, the cheeper the final price will be!!</p>
-                <p>Remember to get others to join your crew and game suggestion, and save up to 35%!</p>
-            </div>
-        </div>
+        @{ Html.RenderPartial("_CrewBuyGame", Model.PlatformGame);}
     </div>
 </div>

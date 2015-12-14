@@ -1,4 +1,6 @@
-﻿using ServiceGateway;
+﻿using MVOGamesUI.Areas.User.Models;
+using MVOGamesUI.Areas.User.ViewModels;
+using ServiceGateway;
 using ServiceGateway.Models;
 using System;
 using System.Collections.Generic;
@@ -22,7 +24,7 @@ namespace MVOGamesUI.Areas.User.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CrewBuySpecification([Bind(Include = "CrewId,Crew,PlatformGameId,PlatformGame,Discount,ExpirationTime,ExpirationDate")]CrewGameSuggestion cgs)
+        public ActionResult CrewBuySpecification([Bind(Include = "CrewId,Crew,PlatformGameId,Discount,ExpirationTime,ExpirationDate")]CrewGameSuggestion cgs)
         {
             if (!ModelState.IsValid)
             {
@@ -30,14 +32,58 @@ namespace MVOGamesUI.Areas.User.Controllers
             }
 
             //CrewGameSuggestion cgs = new CrewGameSuggestion() { Crew = crew, CrewId = crew.Id, PlatformGame = pfg, PlatformGameId = pfg.Id, Discount = discount };
-            return RedirectToAction("Confirmation", "CrewBuy", new { crew = cgs.Crew, crewId = cgs.CrewId, discount = cgs.Discount, expDate = cgs.ExpirationDate, expTime = cgs.ExpirationTime, platformGame = cgs.PlatformGame, platformGameId = cgs.PlatformGameId});
+            return RedirectToAction("Confirmation", "CrewBuy", new { crewId = cgs.CrewId,
+                discount = cgs.Discount, expDate = cgs.ExpirationDate, expTime = cgs.ExpirationTime,
+                 platformGameId = cgs.PlatformGameId});
         }
         
 
-            public ActionResult Confirmation(Crew crew, int crewId, int discount, DateTime expDate, DateTime expTime, PlatformGame platformGame, int platformGameId)
+            public ActionResult Confirmation(int crewId, int discount, DateTime expDate, DateTime expTime, int platformGameId)
         {
-            CrewGameSuggestion cgs = new CrewGameSuggestion() { Crew = crew, CrewId = crewId, Discount = discount, ExpirationDate = expDate, ExpirationTime = expTime, PlatformGame = platformGame, PlatformGameId = platformGameId };
-            return View(cgs);
+            CrewGameSuggestion cgs = new CrewGameSuggestion() { CrewId = crewId,
+                Discount = discount, ExpirationDate = expDate, ExpirationTime = expTime,
+                PlatformGameId = platformGameId };
+
+            ServiceGateway.Models.User user = Auth.user;
+            PlatformGame pfGame = facade.GetPlatformGameGateway().Get(platformGameId);
+            Crew crew = facade.GetCrewGateway().Get(crewId);
+            CrewBuyConfirmationVM viewModel = new CrewBuyConfirmationVM(user, pfGame, crew);
+
+
+            Session["CrewGameSuggestion"] = cgs;
+
+
+            return View(viewModel);
+        }
+
+        public ActionResult Payment()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Payment([Bind(Include = "CardType, CardNumber, ExpMonth, ExpYear, Cvv, CardOwner")] FakePayment fakepayment)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(fakepayment);
+            }
+            return RedirectToAction("Done", "CrewBuy", new { cardType = fakepayment.CardType, cardNumber = fakepayment.CardNumber, expMonth = fakepayment.ExpMonth, expYear = fakepayment.ExpYear, cvv = fakepayment.Cvv, cardOwner = fakepayment.CardOwner });
+        }
+        public ActionResult Done()
+        {
+           CrewGameSuggestion cgs = (CrewGameSuggestion)Session["CrewGameSuggestion"];
+            cgs.PlatformGame = facade.GetPlatformGameGateway().Get(cgs.PlatformGameId);
+            cgs.Crew = facade.GetCrewGateway().Get(cgs.CrewId);
+            facade.GetCrewGameSuggestionGateway().Create(cgs);
+
+            CrewGameSuggestion cgsWithId = facade.GetCrewGameSuggestionGateway().GetAll().Last();
+            SuggestionUsers su = new SuggestionUsers() { CrewGameSuggestionId = cgsWithId.Id,
+                                                        CrewGameSuggestion = cgsWithId, UserId = 
+                                                        Auth.user.Id, User = Auth.user, HasConfirmed = true};
+            facade.GetSuggestionUsersGateway().Create(su);
+
+            return View();
         }
 
         private decimal getDiscount()

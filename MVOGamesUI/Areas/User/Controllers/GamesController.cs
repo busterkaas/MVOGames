@@ -33,6 +33,19 @@ namespace MVOGamesUI.Areas.User.Controllers
                 GamePlatformGenre gpgGenre = new GamePlatformGenre(newGames.ToList(), genres, platforms);
                 return View(gpgGenre);
             }
+            if (platformId != null)
+            {
+                var platformGames = facade.GetPlatformGameGateway().GetAll().ToList().Where(p =>p.PlatformId ==platformId);
+
+                var newGames = new List<Game>();
+                foreach(var platformGame in platformGames)
+                {
+                    newGames.Add(platformGame.Game);
+                }
+                GamePlatformGenre gpgPlatform = new GamePlatformGenre(newGames, genres, platforms);
+                return View(gpgPlatform);
+                
+            }
             GamePlatformGenre gpg = new GamePlatformGenre(games, genres, platforms);
             
             return View(gpg);

@@ -1,4 +1,4 @@
-﻿@model ServiceGateway.Models.CrewGameSuggestion
+﻿@model MVOGamesUI.Areas.User.ViewModels.CrewBuyConfirmationVM
 
 <ol class="progress-tracker">
     <li class="step"><span class="step-name">Specification</span></li>
@@ -8,19 +8,22 @@
 </ol>
 
 <div class="container itemContainer">
-    <h1 class="detailsHeader">
-    @Model.CrewId
-    </h1>
-    <h1 class="detailsHeader">
-        @Model.Discount
-    </h1>
-    <h1 class="detailsHeader">
-        @Model.PlatformGameId
-    </h1>
-    <h1 class="detailsHeader">
-        @Model.ExpirationDate.Date
-    </h1>
-    <h1 class="detailsHeader">
-        @Model.ExpirationTime.TimeOfDay
-    </h1>
+    <h2 class="detailsHeader">Confirm order</h2>
+    <br />
+
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        @{ Html.RenderPartial("_UserInformation", Model.User);}
+       
+    </div>
+    <div class="col-lg-5 col-md-5 col-sm-5 coGameDiv ">
+        @{ Html.RenderPartial("_CrewBuyGame", Model.PlatformGame);}
+    </div>
+    <div class="confirmDiv">
+        <p>Please enter confirm to order with <h4>@Model.Crew.Name</h4></p>
+        
+        <a href="@Url.Action("Payment", "CrewBuy")">Continue to Payment</a>
+        <p>Notice: The order will not be executed and no money will be withdrawn, before the date and time selected!</p>
+    </div>
 </div>
+
+
