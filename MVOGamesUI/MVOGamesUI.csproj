@@ -257,6 +257,8 @@
     <Content Include="Areas\User\Views\ShoppingCart\Payment.cshtml" />
     <Content Include="Areas\User\Views\CrewBuy\Done.cshtml" />
     <Content Include="Areas\User\Views\CrewGameSuggestions\Details.cshtml" />
+    <Content Include="Areas\User\Views\CrewGameSuggestions\Confirmation.cshtml" />
+    <Content Include="Areas\User\Views\CrewGameSuggestions\Payment.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -290,7 +292,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\User\Views\CrewGameSuggestion\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
