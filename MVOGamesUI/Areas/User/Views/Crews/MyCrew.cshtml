@@ -2,30 +2,61 @@
 
 
 <div class="container itemContainer">
-    <div class="container">
-        <div class="col-sm-6 col-md-4 col-lg-2 myCrewLeft">
-            <img src="@Model.Crew.CrewImgUrl"/>
-            <br />
+
+    <div class="col-sm-3 col-md-2 col-lg-2 myCrewLeft">
+        <img src="@Model.Crew.CrewImgUrl" />
+        <br />
+        <br />
+        <h4>Crewmembers:</h4>
+        <h4>@Model.Crew.Users.Count/10</h4>
+        <ul class="list-group">
             @foreach (var user in Model.Crew.Users)
             {
-                <h4>@user.FirstName</h4>
+                <li class="list-group-item">@user.Username</li>
             }
-        </div>
-        <div class="col-sm-6 col-md-8 col-lg-10 myCrewRight">
-            <h1 class="detailsHeader">@Model.Crew.Name</h1>
+        </ul>
+    </div>
 
-            @if (Model.User.Id == Model.Crew.CrewLeaderId)
+    <div class="col-sm-6 col-md-8 col-lg-8 myCrewRight">
+        <h1 class="detailsHeader">@Model.Crew.Name</h1>
+
+        <br />
+        <br />
+        <h4>Games ordered by crew-members:</h4>
+        @foreach (var gameSuggestion in Model.CrewSuggestions)
+            {
+            <a href="@Url.Action("Details", "CrewGameSuggestions", new { crewGameSuggestionId = gameSuggestion.Id})" class="list-group-item">
+                
+                    @*<img src="@gameSuggestion.PlatformGame.Game.CoverUrl" class="crewGameImg" />*@
+                    <h4 class="list-group-item-heading">@gameSuggestion.PlatformGame.Game.Title</h4>
+                    <p class="list-group-item-text">Platform: @gameSuggestion.PlatformGame.Platform.Name</p>
+                    @*<span class="label label-default pull-xs-right">2</span>*@
+            </a>
+        }
+
+    </div>
+    <div class="col-sm-3 col-md-2 col-lg-2 crewLeaderDiv">
+
+        <h4>Crew leader functions</h4>
+        @if (Model.User.Id == Model.Crew.CrewLeaderId)
             {
             <div class="crewApplications">
-                <p>You are the admin! </p>
-                @foreach (var application in Model.Applications)
+                <p>Crew member applications:</p>
+                @if (Model.Applications != null && Model.Applications.Count > 0)
                 {
+                    foreach (var application in Model.Applications)
+                    {<div class="container applicationContainer">
                     <p>@application.User.Username</p>
-                    <a href="@Url.Action("HandleApplications", "Crews", new { userId = application.UserId, crewId= Model.Crew.Id, appId = application.Id, accepted =false})">remove</a>
-                    <a href="@Url.Action("HandleApplications", "Crews", new { userId = application.UserId, crewId= Model.Crew.Id, appId = application.Id, accepted =true})">Accept</a>
+                    <a href="@Url.Action("HandleApplications", "Crews", new { userId = application.UserId, crewId = Model.Crew.Id, appId = application.Id, accepted = false })">remove</a>
+                    <a href="@Url.Action("HandleApplications", "Crews", new { userId = application.UserId, crewId = Model.Crew.Id, appId = application.Id, accepted = true })">Accept</a>
+                </div>
+                    }
+                }
+                else
+                {
+                    <p>No applications</p>
                 }
             </div>
-            }
-        </div>
+        }
     </div>
 </div>

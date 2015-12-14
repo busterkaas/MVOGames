@@ -1,0 +1,35 @@
+﻿@model MVOGamesUI.Areas.User.ViewModels.GameSuggestionDetailVM
+
+<div class="container itemContainer">
+    <div class="col-sm-8 col-md-8 col-lg-8">
+        <h2>Details</h2>
+        <h4>
+            @Model.CrewGameSuggestion.ExpirationDate
+        &nbsp; @Model.CrewGameSuggestion.ExpirationTime.TimeOfDay
+    </h4>
+    <h4>price: @Model.CrewGameSuggestion.PlatformGame.Price</h4>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4 cgsUsers">
+       
+        <div class="col-sm-6 col-md-6 col-lg-6 usersConfirmed ">
+            <h4>Users confirmed</h4>
+            @foreach (var user in Model.SuggestionUsers) { if (user.HasConfirmed) { <h5>@user.User.Username</h5>} }
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6 usersRejected ">
+            <h4>Users rejected</h4>
+            @foreach (var user in Model.SuggestionUsers)
+            {
+                if (!user.HasConfirmed)
+                { <h5>@user.User.Username</h5>}
+            }
+        </div>
+    </div>
+    @if (!Model.isInList())
+    {
+    <div>
+        <a href="@Url.Action("JoinCrewGame", "CrewGameSuggestions", new { join = false, crewGameSugId = Model.CrewGameSuggestion.Id })">Reject</a>
+        <a href="@Url.Action("JoinCrewGame", "CrewGameSuggestions", new { join = true, crewGameSugId = Model.CrewGameSuggestion.Id })">Join crew buy</a>
+    </div>
+    }
+</div>
+

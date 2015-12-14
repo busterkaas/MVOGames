@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace MVOGamesUI.Areas.User.Controllers
 {
+    [Authorize(Roles = "user")]
     public class CrewBuyController : Controller
     {
         Facade facade = new Facade();
