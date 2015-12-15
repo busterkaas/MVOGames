@@ -6,7 +6,6 @@
 
 <h2>Order Details</h2>
 <div>
-
     <hr />
     <dl class="container itemContainer dl-horizontal">
         <div class="col-lg-12">
@@ -28,24 +27,18 @@
                 Total price
             </dt>
             <dd>
-                @{
-                    decimal sum = 0;
-                    foreach (var order in Model.GetOrderlines())
-                    {
-                        sum = sum + order.Amount * order.PlatformGame.Price;
-                    }
-                }
-                @sum
+                @Model.Sum
             </dd>
+            <br />
         </div>
         <div class="col-lg-12">
             <table class="table table-condensed">
                 @*<tr>
-                    <h2><strong>Ordered Games</strong></h2>
-                </tr>*@
+                        <h2><strong>Ordered Games</strong></h2>
+                    </tr>*@
                 <tr class="tablehederColor">
                     <th>
-                        Game
+                        Game(s)
                     </th>
                     <th>
                         Platform
@@ -61,16 +54,35 @@
                 {
                     <tr>
                         <td>
-                            @Html.Label(order.PlatformGame.Game.Title)
+                            @foreach (var platformGame in Model.GetPlatformGames())
+                            {
+                                if (order.PlatformGameId == platformGame.Id)
+                                {
+                                    @Html.Label(platformGame.Game.Title)
+                                }
+                            }
                         </td>
                         <td>
-                            @Html.Label(order.PlatformGame.Platform.Name)
+                            @foreach (var platformGame in Model.GetPlatformGames())
+                            {
+                                if (order.PlatformGameId == platformGame.Id)
+                                {
+                                    @Html.Label(platformGame.Platform.Name)
+                                }
+                            }
                         </td>
                         <td>
                             @Html.Label(order.Amount.ToString())
                         </td>
                         <td>
-                            @Html.Label(order.PlatformGame.Price.ToString())
+                            @foreach (var platformGame in Model.GetPlatformGames())
+                            {
+                                if (order.PlatformGameId == platformGame.Id)
+                                {
+                                    @Html.Label(platformGame.Price.ToString())
+                                }
+                            }
+
                         </td>
                     </tr>
                     <br />
@@ -82,6 +94,5 @@
             </p>
             <br />
         </div>
-
     </dl>
 </div>

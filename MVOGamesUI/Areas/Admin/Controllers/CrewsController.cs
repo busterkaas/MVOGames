@@ -119,7 +119,6 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             facade.GetCrewGateway().Update(crew);
 
             return RedirectToAction("Edit"+ "/"+crewId);
-
         }
 
         // POST: Admin/Crews/Delete/5

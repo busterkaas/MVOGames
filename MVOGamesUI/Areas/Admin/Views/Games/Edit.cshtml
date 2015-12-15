@@ -1,4 +1,4 @@
-﻿@model ServiceGateway.Models.Game
+﻿@model MVOGamesUI.Areas.Admin.ViewModels.GameEditVM
 
 @{
     ViewBag.Title = "Edit";
@@ -13,66 +13,66 @@
     <div class="container itemContainer form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.GetGames().Id)
 
         <div class="myEditorForLengthEdit form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.GetGames().Title, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.GetGames().Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GetGames().Title, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="myEditorForLengthEdit form-group">
-            @Html.LabelFor(model => model.ReleaseDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.GetGames().ReleaseDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ReleaseDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ReleaseDate, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.GetGames().ReleaseDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GetGames().ReleaseDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="myEditorForLengthEdit form-group">
-            @Html.LabelFor(model => model.CoverUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.GetGames().CoverUrl, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CoverUrl, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CoverUrl, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.GetGames().CoverUrl, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GetGames().CoverUrl, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="myEditorForLengthEdit form-group">
-            @Html.LabelFor(model => model.TrailerUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.GetGames().TrailerUrl, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TrailerUrl, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TrailerUrl, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.GetGames().TrailerUrl, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GetGames().TrailerUrl, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="myEditorForLengthEdit form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.GetGames().Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.GetGames().Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GetGames().Description, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="myEditorForLengthEdit form-group">
             @Html.Label("Current genre(s)", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @foreach (var genre in Model.Genres)
+                @foreach (var genre in Model.GetGenres())
                 {
                     @Html.Label(genre.Name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Genres, "", new { @class = "text-danger" })
+                    @*@Html.ValidationMessageFor(model => model.GetGenres()., "", new { @class = "text-danger" })*@
                     <br />
                 }
             </div>
         </div>
 
-        <div class="myEditorForLengthEdit form-group">
-            @Html.LabelFor(model => model.Genres, htmlAttributes: new { @class = "control-label col-md-2" })
+        @*<div class="myEditorForLengthEdit form-group">
+            @Html.LabelFor(model => model.GetGenres(), htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.ListBox("Genres", null, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Genres, "", new { @class = "text-danger" })
+                @Html.ListBox("genres", null, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GetGenres(), "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="myEditorForLengthEdit form-group">
             <div class="col-md-offset-2 col-md-10">

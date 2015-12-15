@@ -1,4 +1,4 @@
-﻿@model ServiceGateway.Models.Order
+﻿@model MVOGamesUI.Areas.Admin.ViewModels.OrderGames
 
 @{
     ViewBag.Title = "Edit";
@@ -6,61 +6,105 @@
 
 <h2>Edit Order</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<hr />
+<div>
+    <dl class="container itemContainer dl-horizontal">
+        <br />
+        <dt>
+            Name
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GetOrder().User.FirstName)
+            @Html.DisplayFor(model => model.GetOrder().User.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GetOrder().Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GetOrder().Date)
+        </dd>
+        <dt>
+            Total price
+        </dt>
+        <dd>
+            @Model.Sum
+        </dd>
+        <br />
 
-    <div class="container itemContainer form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-
-        <div class="myEditorForLengthEdit form-group">
-            @Html.Label("Order id", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                    @Html.DisplayFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="myEditorForLengthEdit form-group">
-            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DisplayFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="myEditorForLengthEdit form-group">
-            @Html.Label("Game(s)", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-
-                @foreach (var orderlines in Model.Orderlines)
-                {
-                        @Html.ListBox(orderlines.PlatformGame.Game.Title, null, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Orderlines, "", new { @class = "text-danger" })
+        <br />
+        <div>
+            <table class="table table-condensed">
+                @*<tr>
+                        <h2><strong>Ordered Games</strong></h2>
+                    </tr>*@
+                <tr class="tablehederColor">
+                    <th>
+                        Game(s)
+                    </th>
+                    <th>
+                        Platform
+                    </th>
+                    <th>
+                        Amount
+                    </th>
+                    <th>
+                        Unit Price
+                    </th>
+                    <th></th>
+                </tr>
+                @foreach (var order in Model.GetOrderlines())
+            {
+                    <tr>
+                        <td>
+                            @foreach (var platformGame in Model.GetPlatformGames())
+                            {
+                                if (order.PlatformGameId == platformGame.Id)
+                                {
+                                    @Html.Label(platformGame.Game.Title)
+                                }
+                            }
+                        </td>
+                        <td>
+                            @foreach (var platformGame in Model.GetPlatformGames())
+                            {
+                                if (order.PlatformGameId == platformGame.Id)
+                                {
+                                    @Html.Label(platformGame.Platform.Name)
+                                }
+                            }
+                        </td>
+                        <td>
+                            @Html.Label(order.Amount.ToString())
+                        </td>
+                        <td>
+                            @foreach (var platformGame in Model.GetPlatformGames())
+                            {
+                                if (order.PlatformGameId == platformGame.Id)
+                                {
+                                    @Html.Label(platformGame.Price.ToString())
+                                }
+                            }
+                            
+                        </td>
+                        <td>
+                            <a href='@Url.Action("DeleteGameFromOrder", "Orders", new { id = order.Id, orderId = Model.GetOrder().Id})'>Remove</a>
+                        </td>
+                    </tr>
                     <br />
                 }
-            </div>
+            </table>
+
+            <p>
+                <a href="@Url.Action("NewGameToOrder", "Orders", new { area = "Admin", orderId = Model.GetOrder().Id})">new</a>
+            </p>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <p align="right">
+                    
+                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                </p>
+            }
         </div>
-
-        <div class="myEditorForLengthEdit form-group">
-            @Html.Label("Total price", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-
-                @foreach (var orderlines in Model.Orderlines)
-                {
-                }
-            </div>
-        </div>
-
-
-
-        <div class="myEditorForLengthEdit form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-success" />
-                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
-            </div>
-        </div>
-    </div>
-}
+    </dl>
+</div>

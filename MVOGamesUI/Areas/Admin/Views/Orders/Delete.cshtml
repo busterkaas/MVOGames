@@ -1,48 +1,104 @@
-﻿@model ServiceGateway.Models.Order
+﻿@model MVOGamesUI.Areas.Admin.ViewModels.OrderGames
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete Order";
 }
 
-<h2>Delete Order</h2>
-
-<h2>Are you sure you want to delete <strong>??</strong>?</h2>
+<h2>Are you sure you want to delete Order ID<strong>&nbsp;@Model.GetOrder().Id</strong>?</h2>
 <div>
     <hr />
     <dl class="container itemContainer dl-horizontal">
-        <br />
-        <div class="myDisplayFor">
-            <dt>
-                Firstname:
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.User.FirstName)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(mode => Model.Date):
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Date)
-            </dd>
-            <dt>
-                Movie(s)
-            </dt>
-            <dd>
-                @foreach (var item in Model.Orderlines)
-                {
-                    @Html.DisplayFor(modelItem => item.PlatformGame.GameId)
-                }
-            </dd>
+        <div class="col-lg-12">
             <br />
+            <dt>
+                Name
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.GetOrder().User.FirstName)
+                @Html.DisplayFor(model => model.GetOrder().User.LastName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.GetOrder().Date)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.GetOrder().Date)
+            </dd>
+            <dt>
+                Total Price
+            </dt>
+            <dd>
+                @Model.Sum
+            </dd>
+        </div>
+        <div class="col-lg-12">
+            <table class="table table-condensed">
+                @*<tr>
+                        <h2><strong>Ordered Games</strong></h2>
+                    </tr>*@
+                <tr class="tablehederColor">
+                    <th>
+                        Game(s)
+                    </th>
+                    <th>
+                        Platform
+                    </th>
+                    <th>
+                        Amount
+                    </th>
+                    <th>
+                        Unit Price
+                    </th>
+                </tr>
+                @foreach (var order in Model.GetOrderlines())
+                {
+                    <tr>
+                        <td>
+                            @foreach (var platformGame in Model.GetPlatformGames())
+                            {
+                                if (order.PlatformGameId == platformGame.Id)
+                                {
+                                    @Html.Label(platformGame.Game.Title)
+                                }
+                            }
+                        </td>
+                        <td>
+                            @foreach (var platformGame in Model.GetPlatformGames())
+                            {
+                                if (order.PlatformGameId == platformGame.Id)
+                                {
+                                    @Html.Label(platformGame.Platform.Name)
+                                }
+                            }
+                        </td>
+                        <td>
+                            @Html.Label(order.Amount.ToString())
+                        </td>
+                        <td>
+                            @foreach (var platformGame in Model.GetPlatformGames())
+                            {
+                                if (order.PlatformGameId == platformGame.Id)
+                                {
+                                    @Html.Label(platformGame.Price.ToString())
+                                }
+                            }
+
+                        </td>
+                    </tr>
+                    <br />
+                }
+            </table>
+
+
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
-                <dd>
+                <p align="right">
                     <div class="form-actions no-color">
                         <input type="submit" value="Delete" class="btn btn-success" />
                         @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
                     </div>
-                </dd>
+
+                </p>
             }
             <br />
         </div>
