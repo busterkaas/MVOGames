@@ -30,10 +30,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PlatformGame, "GameList", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PlatformGameId, "Games", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("GameList", String.Empty)
-                @Html.ValidationMessageFor(model => model.PlatformGame.GameId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.PlatformGameId, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -42,8 +42,9 @@
                 <input type="submit" value="Create" class="btn btn-success" />
             </div>
         </div>
-        @*<p align="right">
-            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
-        </p>*@
+        <p align="right">
+            <input type="button" value="Cancel" onclick="history.go(-1);return true;" class="btn btn-danger"/>
+            @*@Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })*@
+        </p>
     </div>
 }

@@ -186,22 +186,18 @@ namespace MVOGamesUI.Areas.Admin.Controllers
 
         // POST: Admin/Order/NewGameToOrder/5
         [HttpPost]
-        public ActionResult newGameToOrder(Orderline orderline, int? orderId)
+        [ValidateAntiForgeryToken]
+        public ActionResult newGameToOrder([Bind(Include = "Id,Amount,Discount,orderId,PlatformGameId")]Orderline orderline)
         {
-            if (orderline == null || orderId == null)
+            if (orderline == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = facade.GetOrderGateway().Get(orderId);
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
-            //orderline.PlatformGame = facade.GetPlatformGameGateway().Get(orderline.PlatformGameId);
+            
             facade.GetOrderlineGateway().Create(orderline);
             ViewBag.GameList = new SelectList(facade.GetPlatformGameGateway().GetAll().OrderBy(g => g.Game.Title).Select(g => g.Game.Title), orderline.PlatformGameId);
 
-            return RedirectToAction("Edit" + "/" + orderId);
+            return RedirectToAction("Edit" + "/" + orderline.OrderId);
         }
     }
 }

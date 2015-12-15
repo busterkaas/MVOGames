@@ -27,14 +27,7 @@
                 Total Price
             </dt>
             <dd>
-                @{
-                    decimal sum = 0;
-                    foreach (var order in Model.GetOrderlines())
-                    {
-                        sum = sum + order.Amount * order.PlatformGame.Price;
-                    }
-                }
-                @sum
+                @Model.Sum
             </dd>
         </div>
         <div class="col-lg-12">
@@ -60,16 +53,35 @@
                 {
                     <tr>
                         <td>
-                            @Html.Label(order.PlatformGame.Game.Title)
+                            @foreach (var platformGame in Model.GetPlatformGames())
+                            {
+                                if (order.PlatformGameId == platformGame.Id)
+                                {
+                                    @Html.Label(platformGame.Game.Title)
+                                }
+                            }
                         </td>
                         <td>
-                            @Html.Label(order.PlatformGame.Platform.Name)
+                            @foreach (var platformGame in Model.GetPlatformGames())
+                            {
+                                if (order.PlatformGameId == platformGame.Id)
+                                {
+                                    @Html.Label(platformGame.Platform.Name)
+                                }
+                            }
                         </td>
                         <td>
                             @Html.Label(order.Amount.ToString())
                         </td>
                         <td>
-                            @Html.Label(order.PlatformGame.Price.ToString())
+                            @foreach (var platformGame in Model.GetPlatformGames())
+                            {
+                                if (order.PlatformGameId == platformGame.Id)
+                                {
+                                    @Html.Label(platformGame.Price.ToString())
+                                }
+                            }
+
                         </td>
                     </tr>
                     <br />

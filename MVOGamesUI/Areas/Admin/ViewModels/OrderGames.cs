@@ -13,6 +13,7 @@ namespace MVOGamesUI.Areas.Admin.ViewModels
         private List<Orderline> orderlines;
         private List<PlatformGame> platformgames;
         private List<Game> games;
+        public decimal Sum;
 
         public OrderGames(Order order, List<Orderline> orderlines, List<PlatformGame> platformgames, List<Game> games)
         {
@@ -20,6 +21,7 @@ namespace MVOGamesUI.Areas.Admin.ViewModels
             this.orderlines = orderlines;
             this.platformgames = platformgames;
             this.games = games;
+            getTotalSum();
         }
 
         public Order GetOrder()
@@ -40,6 +42,17 @@ namespace MVOGamesUI.Areas.Admin.ViewModels
         public List<Game> GetGames()
         {
             return games;
+        }
+
+        public void getTotalSum()
+        {
+            decimal sum = 0;
+
+            foreach (var platformgame in platformgames)
+            {
+                sum = sum + platformgame.Price;
+            }
+            Sum = sum;
         }
 
     }
