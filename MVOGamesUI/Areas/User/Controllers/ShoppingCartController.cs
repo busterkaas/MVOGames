@@ -40,7 +40,7 @@ namespace MVOGamesUI.Areas.User.Controllers
 
         public ActionResult Confirmation()
         {
-            if (cartModel == null ||cartModel.Items.Count<1)
+            if (cartModel == null || cartModel.Items.Count < 1)
             {
                 return RedirectToAction("Index");
             }
@@ -69,21 +69,30 @@ namespace MVOGamesUI.Areas.User.Controllers
             FakePayment payment = new FakePayment(cardType, cardNumber, expMonth, expYear, cvv, cardOwner);
             ServiceGateway.Models.User user = Auth.user;
             UserCartPayment ucp = new UserCartPayment(user, cartModel, payment);
-            try {
+            try
+            {
                 facade.GetOrderGateway().Create(
-                    new ServiceGateway.Models.Order() {
-                        Date = DateTime.Now, UserId = user.Id, User = user });
+                    new ServiceGateway.Models.Order()
+                    {
+                        Date = DateTime.Now,
+                        UserId = user.Id,
+                        User = user
+                    });
 
-                var order = facade.GetOrderGateway().GetAll().ToList().Where(o=> o.UserId==user.Id).Last();
+                var order = facade.GetOrderGateway().GetAll().ToList().Where(o => o.UserId == user.Id).Last();
                 foreach (var item in cartModel.Items)
                 {
                     facade.GetOrderlineGateway().Create(
-                        new ServiceGateway.Models.Orderline() {
-                            OrderId = order.Id, PlatformGameId = 
-                            item.PlatformGameId, Amount = item.Quantity,
-                            Discount = 0});
+                        new ServiceGateway.Models.Orderline()
+                        {
+                            OrderId = order.Id,
+                            PlatformGameId =
+                            item.PlatformGameId,
+                            Amount = item.Quantity,
+                            Discount = 0
+                        });
                 }
-            return View(ucp);
+                return View(ucp);
             }
             catch
             {
@@ -95,7 +104,7 @@ namespace MVOGamesUI.Areas.User.Controllers
         public ActionResult Add(int id)
         {
             cartModel.Add(id);
-            return RedirectToAction("Index", "Games", new {Area = "User"});
+            return RedirectToAction("Index", "Games", new { Area = "User" });
         }
 
         // The Initialize() method is invoked just after the constructor. It is
