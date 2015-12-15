@@ -31,5 +31,7 @@
         <a href="@Url.Action("JoinCrewGame", "CrewGameSuggestions", new { join = true, crewGameSugId = Model.CrewGameSuggestion.Id })">Join crew buy</a>
     </div>
     }
+
+    <a class="btn btn-success" href="@Url.Action("CreateOrdersForCrew", new { crewGameSuggestionId = Model.CrewGameSuggestion.Id})">Buy now</a>
 </div>
 

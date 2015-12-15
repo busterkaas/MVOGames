@@ -55,9 +55,8 @@ namespace MVOGamesUI.Areas.User.Controllers
         public ActionResult ApplyForCrew(int crewId)
         {
             var crew = facade.GetCrewGateway().Get(crewId);
-            if (cp.IsFull(crew.Users.Count))
+            if (cp.CrewIsFull(crew.Users.Count))
             {
-                
                 return RedirectToAction("Index");
             }
             CrewApplication ca = new CrewApplication() { CrewId = crewId, Crew = crew, UserId = Auth.user.Id, User = Auth.user };

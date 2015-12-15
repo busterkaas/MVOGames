@@ -29,7 +29,7 @@ namespace BusinessLogicTest.OrderLogicTest
         {
             int crewMembers = 1;
             
-            double expectedDiscount = cd.CalculateDiscount(crewMembers);
+            double expectedDiscount = cd.CalculateDiscountPct(crewMembers);
             
             Assert.AreEqual(expectedDiscount, 0);
         }
@@ -38,7 +38,7 @@ namespace BusinessLogicTest.OrderLogicTest
         public void Crew_Discount_Two_Members_Test()
         {
             int crewMembers = 2;
-            double expectedDiscount = cd.CalculateDiscount(crewMembers);
+            double expectedDiscount = cd.CalculateDiscountPct(crewMembers);
 
             Assert.AreEqual(expectedDiscount, 10);
         }
@@ -46,7 +46,7 @@ namespace BusinessLogicTest.OrderLogicTest
         public void Crew_Discount_Three_Members_Test()
         {
             int crewMembers = 3;
-            double expectedDiscount = cd.CalculateDiscount(crewMembers);
+            double expectedDiscount = cd.CalculateDiscountPct(crewMembers);
 
             Assert.AreEqual(expectedDiscount, 12.5);
         }
@@ -55,7 +55,7 @@ namespace BusinessLogicTest.OrderLogicTest
         public void Crew_Discount_Nine_Members_Test()
         {
             int crewMembers = 9;
-            double expectedDiscount = cd.CalculateDiscount(crewMembers);
+            double expectedDiscount = cd.CalculateDiscountPct(crewMembers);
 
             Assert.AreEqual(expectedDiscount, 27.5);
         }
@@ -63,7 +63,7 @@ namespace BusinessLogicTest.OrderLogicTest
         public void Crew_Discount_Ten_Members_Test()
         {
             int crewMembers = 10;
-            double expectedDiscount = cd.CalculateDiscount(crewMembers);
+            double expectedDiscount = cd.CalculateDiscountPct(crewMembers);
 
             Assert.AreEqual(expectedDiscount, 35);
         }
@@ -105,6 +105,35 @@ namespace BusinessLogicTest.OrderLogicTest
             decimal expectedPrice = cd.CalculatePrice(crewMembers, gamePrice);
 
             Assert.AreEqual(expectedPrice, 324.35);
+        }
+
+        [Test]
+        public void Get_CrewBuy_Discount_For_Game_In_DKK_One_Member_Test()
+        {
+            int crewMembers = 1;
+            decimal gamePrice = 499;
+            decimal expectedDiscountDKK = cd.CalculateDiscountDKK(crewMembers, gamePrice);
+
+            Assert.AreEqual(expectedDiscountDKK, 0);
+        }
+
+        [Test]
+        public void Get_CrewBuy_Discount_For_Game_In_DKK_Two_Member_Test()
+        {
+            int crewMembers = 2;
+            decimal gamePrice = 500;
+            decimal expectedDiscountDKK = cd.CalculateDiscountDKK(crewMembers, gamePrice);
+
+            Assert.AreEqual(expectedDiscountDKK, 50);
+        }
+        [Test]
+        public void Get_CrewBuy_Discount_For_Game_In_DKK_Ten_Member_Test()
+        {
+            int crewMembers = 10;
+            decimal gamePrice = 500;
+            decimal expectedDiscountDKK = cd.CalculateDiscountDKK(crewMembers, gamePrice);
+
+            Assert.AreEqual(expectedDiscountDKK, 175);
         }
 
 

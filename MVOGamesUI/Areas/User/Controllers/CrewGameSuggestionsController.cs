@@ -72,6 +72,33 @@ namespace MVOGamesUI.Areas.User.Controllers
             facade.GetSuggestionUsersGateway().Create(new SuggestionUsers() { CrewGameSuggestion = cgs, CrewGameSuggestionId = cgs.Id, User = Auth.user, UserId = Auth.user.Id, HasConfirmed=true });
             return RedirectToAction("Details", "CrewGameSuggestions", new { crewGameSuggestionId = cgs.Id });
         }
+        
+        public ActionResult CreateOrdersForCrew(int crewGameSuggestionId)
+        {
+            var crewGameSuggestion = facade.GetCrewGameSuggestionGateway().Get(crewGameSuggestionId);
+            var suggestionUsers = facade.GetSuggestionUsersGateway().GetAll().Where(
+                                    u => u.CrewGameSuggestionId == crewGameSuggestionId).Where(
+                                    u=>u.HasConfirmed==true);
+            foreach(var user in suggestionUsers)
+            {
+                
+                    //create order
+                    DateTime date = crewGameSuggestion.ExpirationDate;
+                    TimeSpan ts =  crewGameSuggestion.ExpirationTime.TimeOfDay;
+                    DateTime orderDate = date + ts;
+                    facade.GetOrderGateway().Create(new Order() { Date = orderDate, User = user.User, UserId = user.Id });
 
+                    //create orderline 
+                    var order = facade.GetOrderGateway().GetAll().Where(o => o.UserId == user.UserId).Last();
+                    facade.GetOrderlineGateway().Create(new Orderline() { Amount = 1, Discount = cd.CalculateDiscountDKK(
+                                                                        suggestionUsers.Count(), crewGameSuggestion.PlatformGame.Price),
+                                                                        OrderId = order.Id, PlatformGameId =
+                                                                         crewGameSuggestion.PlatformGameId });
+               
+            }
+            //Delete crew-game-suggestion
+            facade.GetCrewGameSuggestionGateway().Delete(crewGameSuggestion.Id);
+            return RedirectToAction("MyCrew", "Crews", new { id = crewGameSuggestion.CrewId });
+        }
     }
 }

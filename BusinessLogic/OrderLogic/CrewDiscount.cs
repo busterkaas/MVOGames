@@ -4,7 +4,7 @@ namespace BusinessLogic.OrderLogic
 {
     public class CrewDiscount
     {
-        public double CalculateDiscount(int crewMembers)
+        public double CalculateDiscountPct(int crewMembers)
         {
             double discountInPct = 2.5;
             double startupPct = 5;
@@ -18,17 +18,22 @@ namespace BusinessLogic.OrderLogic
             }
             
             return crewMembers*discountInPct+startupPct;
-
         }
 
         public decimal CalculatePrice(int crewMembers, decimal gamePrice)
         {
-            decimal discountPct = (decimal) CalculateDiscount(crewMembers);
+            decimal discountPct = (decimal) CalculateDiscountPct(crewMembers);
 
             decimal discountDecimal = gamePrice/100*discountPct;
 
             return gamePrice - discountDecimal;
 
+        }
+
+        public decimal CalculateDiscountDKK(int crewMembers, decimal gamePrice)
+        {
+            decimal discountPct = (decimal)CalculateDiscountPct(crewMembers);
+            return gamePrice / 100 * discountPct;
         }
     }
 }

@@ -74,7 +74,7 @@ namespace MVOGamesUI.Areas.User.Controllers
                     new ServiceGateway.Models.Order() {
                         Date = DateTime.Now, UserId = user.Id, User = user });
 
-                var order = facade.GetOrderGateway().GetAll().ToList().Last();
+                var order = facade.GetOrderGateway().GetAll().ToList().Where(o=> o.UserId==user.Id).Last();
                 foreach (var item in cartModel.Items)
                 {
                     facade.GetOrderlineGateway().Create(

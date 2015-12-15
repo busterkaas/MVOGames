@@ -1,4 +1,5 @@
-﻿using MVOGamesUI.Areas.User.Models;
+﻿using BusinessLogic.CrewLogic;
+using MVOGamesUI.Areas.User.Models;
 using MVOGamesUI.Areas.User.ViewModels;
 using ServiceGateway;
 using ServiceGateway.Models;
@@ -14,6 +15,7 @@ namespace MVOGamesUI.Areas.User.Controllers
     public class CrewBuyController : Controller
     {
         Facade facade = new Facade();
+        CrewPermission cp = new CrewPermission();
         // GET: User/CrewBuy
         public ActionResult CrewBuySpecification(int pfGameId, int crewId)
         {
@@ -27,10 +29,18 @@ namespace MVOGamesUI.Areas.User.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CrewBuySpecification([Bind(Include = "CrewId,Crew,PlatformGameId,Discount,ExpirationTime,ExpirationDate")]CrewGameSuggestion cgs)
         {
+            
             if (!ModelState.IsValid)
             {
                 return View(cgs);
             }
+       
+            //Here is to reply with warning message if not valid!!!!!!!!!!!!
+            if (!cp.IsDateValid(cgs.ExpirationDate, cgs.ExpirationTime.TimeOfDay))
+            {
+                return View(cgs);
+            }
+            
 
             //CrewGameSuggestion cgs = new CrewGameSuggestion() { Crew = crew, CrewId = crew.Id, PlatformGame = pfg, PlatformGameId = pfg.Id, Discount = discount };
             return RedirectToAction("Confirmation", "CrewBuy", new { crewId = cgs.CrewId,
