@@ -72,21 +72,69 @@ h2 {
 
 /*The next section is for MyCrew-View*/
 .myCrewLeft{
-    padding: 30px;
+    background-color: black;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: auto;
     border-right: 1px solid #ff471a;
 }
 .myCrewLeft img {
-     background-color: black;
-    background-color: rgba(0, 0, 0, 0.5);
     padding: 20px;
-      border: #ff471a solid 1px;
-    border-radius: 10px;
-   
     clear: both;
+}
+.myCrewLeft .list-group .list-group-item{
+    background:none;
+    background-color:none;
+    border:none;
+    border-bottom: 1px solid white;
+
 }
 .myCrewRight .detailsHeader {
     padding-top: 80px;
 }
+.myCrewRight .list-group-item{
+    background:none;
+    background-color:none;
+}.myCrewRight .list-group-item .list-group-item-heading{
+     color:white;
+}
+ .crewGameImg{
+     height:110px;
+ }
+ .myCrewRight a:hover{
+     background-color: rgba(255, 71, 26, 0.7);
+ }
+ .crewLeaderDiv{
+      
+      background-color: black;
+    background-color: rgba(0, 0, 0, 0.5);
+ }
+ .crewApplications{
+     overflow: scroll;
+    height: 350px;
+    overflow-x: hidden;
+ }
+ .applicationContainer{
+
+     margin:10px;
+      background-color: rgba(255, 71, 26, 0.7);
+ }
+
+ /*   the next section is for CrewGameSuggestion Detail view*/
+ .usersRejected{
+     
+
+
+ }
+ .usersConfirmed{
+     border-right: 1px solid #ff471a;
+     height:200px;
+ }
+ .cgsUsers{
+     padding:10px;
+         background-color: black;
+    background-color: rgba(0, 0, 0, 0.5);
+    
+ }
 
 /*  Payment view */
 .containerPayment{
@@ -154,6 +202,22 @@ input[type=submit] {
 	width:30%;
 	height:100%;
     float:left;
+}
+
+/* Crew order  (Crewbuy)*/
+
+.coGameDiv{
+    float:right;
+    margin-bottom:40px;
+    padding:20px;
+    background: rgba(0, 0, 0, 0.5);
+}
+.coGameDiv img{
+    max-height:250px;
+}
+.confirmDiv{
+    float:right;
+    max-width:300px;
 }
 
 

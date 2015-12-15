@@ -15,5 +15,6 @@ namespace MVOGamesUI.Areas.User.ViewModels
         }
         public ServiceGateway.Models.User User { get; set; }
         public List<Crew> Crews { get; set; }
+       
     }
 }

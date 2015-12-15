@@ -33,6 +33,19 @@ namespace MVOGamesUI.Areas.User.Controllers
                 GamePlatformGenre gpgGenre = new GamePlatformGenre(newGames.ToList(), genres, platforms);
                 return View(gpgGenre);
             }
+            if (platformId != null)
+            {
+                var platformGames = facade.GetPlatformGameGateway().GetAll().ToList().Where(p =>p.PlatformId ==platformId);
+
+                var newGames = new List<Game>();
+                foreach(var platformGame in platformGames)
+                {
+                    newGames.Add(platformGame.Game);
+                }
+                GamePlatformGenre gpgPlatform = new GamePlatformGenre(newGames, genres, platforms);
+                return View(gpgPlatform);
+                
+            }
             GamePlatformGenre gpg = new GamePlatformGenre(games, genres, platforms);
             
             return View(gpg);
@@ -67,10 +80,16 @@ namespace MVOGamesUI.Areas.User.Controllers
 
             var platformgames = facade.GetPlatformGameGateway().GetAll().ToList();
             List<PlatformGame> selectedPfGames = platformgames.Where(p => p.GameId == id).ToList();
-            
-            GamePlatformGame gamePlatformgame = new GamePlatformGame(game, selectedPfGames, platformId);
+            ServiceGateway.Models.User user = Auth.user;
+            var myCrews = from c in facade.GetCrewGateway().GetAll().ToList()
+                            where c.Users.Any(u => u.Id == user.Id)
+                            select c;
 
-            return View(gamePlatformgame);
+            GameDetailsViewModel gameDetail = new GameDetailsViewModel(user, game, selectedPfGames, platformId, myCrews.ToList());
+
+            return View(gameDetail);
         }
+
+       
     }
 }

@@ -31,6 +31,8 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // GET: Admin/Order/Details/5
         public ActionResult Details(int? id)
         {
+            List<PlatformGame> platforGames = new List<PlatformGame>();
+            List<Game> games = new List<Game>();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

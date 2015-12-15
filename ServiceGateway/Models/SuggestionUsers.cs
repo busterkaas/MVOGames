@@ -14,6 +14,5 @@ namespace ServiceGateway.Models
         public int UserId { get; set; }
         public virtual User User { get; set; }
         public bool HasConfirmed { get; set; }
-
     }
 }

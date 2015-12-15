@@ -83,7 +83,7 @@ namespace MVOGamesUI.Areas.User.Controllers
                 facade.GetCrewGateway().Update(crew);
             }
             facade.GetCrewApplicationGateway().Delete(appId);
-            return RedirectToAction("Index");
+            return RedirectToAction("MyCrew", "Crews", new { id = crewId});
         }
     }
 

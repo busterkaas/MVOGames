@@ -1,0 +1,65 @@
+﻿@model ServiceGateway.Models.CrewGameSuggestion
+<ol class="progress-tracker">
+    <li class="step active"><span class="step-name">Specification</span></li>
+    <li class="step"><span class="step-name">Confirmation</span></li>
+    <li class="step"><span class="step-name">Payment</span></li>
+    <li class="step"><span class="step-name">Succes</span></li>
+</ol>
+<div class="container itemContainer">
+
+    <h2 class="detailsHeader">Buy game with your crew</h2>
+    <br />
+   
+    <div class="col-lg-3 col-md-3 col-sm-3">
+        
+        @using (Html.BeginForm())
+        {
+            <h4>Expiration date on @Model.PlatformGame.Game.Title</h4>
+           
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <p>Please select date and time for deadline on your crew-order!</p>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ExpirationDate, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.ExpirationDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ExpirationDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ExpirationTime, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.ExpirationTime, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ExpirationTime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.PlatformGameId, htmlAttributes: new { @class = "control-label col-md-5" })
+
+                </div>
+
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.CrewId, htmlAttributes: new { @class = "control-label col-md-5" })
+
+                </div>
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-5" })
+
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-8 col-md-12">
+                        <input type="submit" value="Submit" class="btn btn-default" />
+                    </div>
+                </div>
+
+            </div>
+        }
+    </div>
+    <div class="col-lg-5 col-md-5 col-sm-5 coGameDiv ">
+        @{ Html.RenderPartial("_CrewBuyGame", Model.PlatformGame);}
+    </div>
+</div>
