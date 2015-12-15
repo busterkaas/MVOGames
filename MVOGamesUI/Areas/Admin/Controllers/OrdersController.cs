@@ -197,7 +197,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            orderline.PlatformGame = facade.GetPlatformGameGateway().Get(orderline.PlatformGameId);
+            //orderline.PlatformGame = facade.GetPlatformGameGateway().Get(orderline.PlatformGameId);
             facade.GetOrderlineGateway().Create(orderline);
             ViewBag.GameList = new SelectList(facade.GetPlatformGameGateway().GetAll().OrderBy(g => g.Game.Title).Select(g => g.Game.Title), orderline.PlatformGameId);
 
