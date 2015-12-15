@@ -11,6 +11,7 @@ using ServiceGateway;
 using ServiceGateway.Models;
 using System.Net.Http;
 using BusinessLogic.SearchLogic;
+using MVOGamesUI.Areas.Admin.ViewModels;
 
 namespace MVOGamesUI.Areas.Admin.Controllers
 {
@@ -91,17 +92,38 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // GET: Admin/Games/Edit/5
         public ActionResult Edit(int? id)
         {
-            ViewBag.Genres = new SelectList(facade.GetGenreGateway().GetAll(), "Id", "Name");
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+           
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //Game game = facade.GetGameGateway().Get(id);
+            //if (game == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(game);
+
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
             Game game = facade.GetGameGateway().Get(id);
-            if (game == null)
+            List<PlatformGame> platformGames = facade.GetPlatformGameGateway().GetAll().Where(o => o.GameId == game.Id).ToList();
+            List<Platform> platforms = new List<Platform>();
+            List<Genre> genres = new List<Genre>();
+
+            foreach (var p in platformGames)
             {
-                return HttpNotFound();
+                platforms.Add(facade.GetPlatformGateway().Get(p.PlatformId));
             }
-            return View(game);
+            foreach (var g in game.Genres)
+            {
+                genres.Add(facade.GetGenreGateway().Get(g.Id));
+            }
+            GameEditVM gEditVM = new GameEditVM(platformGames, platforms, genres, game);
+            ViewBag.Genres = new SelectList(genres, "Id", "Name");
+            return View(gEditVM);
         }
 
         // POST: Admin/Games/Edit/5
@@ -111,6 +133,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Title,ReleaseDate,CoverUrl,TrailerUrl,Description")] Game game, int[] Genres)
         {
+            
             if (ModelState.IsValid)
             {
                 List<Genre> NewGenres = new List<Genre>();
