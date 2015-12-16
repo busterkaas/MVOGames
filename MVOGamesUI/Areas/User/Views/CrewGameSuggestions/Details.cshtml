@@ -2,18 +2,27 @@
 
 <div class="container itemContainer">
     <div class="col-sm-8 col-md-8 col-lg-8">
-        <h2>Details</h2>
-        <h4>
-            @Model.CrewGameSuggestion.ExpirationDate
-        &nbsp; @Model.CrewGameSuggestion.ExpirationTime.TimeOfDay
-    </h4>
-    <h4>price: @Model.CrewGameSuggestion.PlatformGame.Price</h4>
+        <h3 class="detailsHeader text-center">@Model.CrewGameSuggestion.PlatformGame.Game.Title</h3>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <img class="img-responsive imgGameCover" src="@Model.CrewGameSuggestion.PlatformGame.Game.CoverUrl" />
+        </div>
+        <div class="col-sm-8 col-md-8 col-lg-8">
+            <h4>
+                @Model.CrewGameSuggestion.ExpirationDate
+                &nbsp; @Model.CrewGameSuggestion.ExpirationTime.TimeOfDay
+            </h4>
+            <h4>Current price: @Model.CrewGameSuggestion.PlatformGame.Price</h4>
+        </div>
     </div>
     <div class="col-sm-4 col-md-4 col-lg-4 cgsUsers">
-       
+
         <div class="col-sm-6 col-md-6 col-lg-6 usersConfirmed ">
             <h4>Users confirmed</h4>
-            @foreach (var user in Model.SuggestionUsers) { if (user.HasConfirmed) { <h5>@user.User.Username</h5>} }
+            @foreach (var user in Model.SuggestionUsers)
+            {
+                if (user.HasConfirmed)
+                { <h5>@user.User.Username</h5>}
+            }
         </div>
         <div class="col-sm-6 col-md-6 col-lg-6 usersRejected ">
             <h4>Users rejected</h4>
@@ -23,15 +32,20 @@
                 { <h5>@user.User.Username</h5>}
             }
         </div>
+        <div class="btnsAnswer">
+            @if (!Model.isInList())
+            {
+                <h4>Join crew-buy or reject:</h4>
+                <div>
+                    <a class="btn btn-danger" href="@Url.Action("JoinCrewGame", "CrewGameSuggestions", new { join = false, crewGameSugId = Model.CrewGameSuggestion.Id })">Reject</a>
+                    <a class="btn btn-danger" href="@Url.Action("JoinCrewGame", "CrewGameSuggestions", new { join = true, crewGameSugId = Model.CrewGameSuggestion.Id })">Join crew buy</a>
+                </div>
+            }
+        </div>
     </div>
-    @if (!Model.isInList())
-    {
-    <div>
-        <a href="@Url.Action("JoinCrewGame", "CrewGameSuggestions", new { join = false, crewGameSugId = Model.CrewGameSuggestion.Id })">Reject</a>
-        <a href="@Url.Action("JoinCrewGame", "CrewGameSuggestions", new { join = true, crewGameSugId = Model.CrewGameSuggestion.Id })">Join crew buy</a>
-    </div>
-    }
+  
+
+    <a class="btn btn-info" href="@Url.Action("MyCrew", "Crews", new { id = Model.CrewGameSuggestion.CrewId})">Back</a>
 
     <a class="btn btn-success" href="@Url.Action("CreateOrdersForCrew", new { crewGameSuggestionId = Model.CrewGameSuggestion.Id})">Buy now</a>
 </div>
-

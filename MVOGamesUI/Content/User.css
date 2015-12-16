@@ -75,7 +75,7 @@ h2 {
     background-color: black;
     background-color: rgba(0, 0, 0, 0.5);
     margin: auto;
-    height:700px;
+    height:900px;
     border-right: 1px solid #ff471a;
 }
 .myCrewLeft img {
@@ -105,7 +105,9 @@ h2 {
      background-color: rgba(255, 71, 26, 0.7);
  }
  .crewLeaderDiv{
-      height:700px;
+     
+    border-left: 1px solid #ff471a;
+      height:900px;
       background-color: black;
     background-color: rgba(0, 0, 0, 0.5);
  }
@@ -128,13 +130,17 @@ h2 {
  }
  .usersConfirmed{
      border-right: 1px solid #ff471a;
-     height:200px;
+     height:350px;
  }
  .cgsUsers{
+     height:500px;
      padding:10px;
          background-color: black;
     background-color: rgba(0, 0, 0, 0.5);
     
+ }
+ .btnsAnswer{
+     clear:both;
  }
 
 /*  Payment view */
