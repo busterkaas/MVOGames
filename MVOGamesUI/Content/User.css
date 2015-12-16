@@ -28,6 +28,9 @@ h2 {
 .btnGenerel{
     color:white;
     background-color:#ff471a;
+    height:35px;
+    margin:auto;
+    text-align:center;
 }
 .btnGenerel:hover{
     background-color:orangered;

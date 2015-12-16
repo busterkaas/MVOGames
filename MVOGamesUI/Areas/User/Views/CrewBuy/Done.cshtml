@@ -1,10 +1,22 @@
-﻿<ol class="progress-tracker">
+﻿@model ServiceGateway.Models.CrewGameSuggestion
+
+<ol class="progress-tracker">
     <li class="step"><span class="step-name">Specification</span></li>
     <li class="step "><span class="step-name">Confirmation</span></li>
     <li class="step"><span class="step-name">Payment</span></li>
     <li class="step active"><span class="step-name">Succes</span></li>
 </ol>
 
-
-<h2>Done</h2>
-
+<div class="container itemContainer">
+    <h1 class="detailsHeader">Order confirmed!</h1>
+    <h4>Game has been succesfully added to your crew: @Model.Crew.Name</h4>
+    <div class="col-lg-7 col-md-7 col-sm-7">
+        <h4>NOTICE:</h4>
+        <p>The order and payment will NOT be executed before the selected date and time runs out.</p>
+        <p>So if you regret your crew-buy, before the expiration time, you can just leave the crewbuy.</p>
+    </div>
+    <div class="col-lg-5 col-md-5 col-sm-5 coGameDiv ">
+        @{ Html.RenderPartial("_CrewBuyGame", Model.PlatformGame);}
+    </div>
+    <a class="btn btnGenerel" href="@Url.Action("Details", "CrewGameSuggestions", new { crewGameSuggestionId = Model.Id})">Go to Crew-Game</a>
+</div>

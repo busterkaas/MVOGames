@@ -94,7 +94,7 @@ namespace MVOGamesUI.Areas.User.Controllers
                                                         Auth.user.Id, User = Auth.user, HasConfirmed = true};
             facade.GetSuggestionUsersGateway().Create(su);
 
-            return View();
+            return View(cgsWithId);
         }
 
         private decimal getDiscount()

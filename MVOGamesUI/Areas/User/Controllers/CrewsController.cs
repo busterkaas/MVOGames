@@ -148,6 +148,8 @@ namespace MVOGamesUI.Areas.User.Controllers
 
             return cp.MaxCrewsJoined(myCrews.Count());
         }
+
+        
     }
 
 }

@@ -1,7 +1,9 @@
 ﻿h3 {
     color: white;
 }
-
+#gamesContainer{
+    min-height:750px;
+}
 
 /*The next section is styling of the game-previews.
     ---------------------------------------------
@@ -53,12 +55,10 @@ color: lightgray;
 }
 
 #btnBuy  {
-    background-color: #ff471a;
-    border: 1px #303030  solid;
-    color: white;
         float: right;
-    margin-right: 10px;
+    margin-right: auto;
 }
+
 
 
 

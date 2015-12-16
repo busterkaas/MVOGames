@@ -1,5 +1,74 @@
 ﻿@model MVOGamesUI.Areas.User.ViewModels.UserCartPayment
-
+<ol class="progress-tracker">
+    <li class="step"><span class="step-name">Shopping Cart</span></li>
+    <li class="step"><span class="step-name">Confirmation</span></li>
+    <li class="step"><span class="step-name">Payment</span></li>
+    <li class="step active"><span class="step-name">Checkout</span></li>
+</ol>
 <div class="container itemContainer">
-    <h1 class="detailsHeader">Niiiiice</h1>
+    <h2 class="detailsHeader">Confirmed</h2>
+    <h4>Your order has been succesfully confirmed.</h4>
+    <br />
+    <div class="col-sm-4 col-md-4 col-lg-4">
+        <h4>Your delivery details:</h4>
+        <br />
+        <p>To:</p>
+        <p>@Model.User.FirstName @Model.User.LastName</p>
+        <p>@Model.User.StreetName @Model.User.HouseNr</p>
+        <p>@Model.User.ZipCode @Model.User.City</p>
+
+        <h5>Contact info:</h5>
+        <p>@Model.User.Email</p>
+        <p>tlf: 23254656</p>
+    </div>
+    <div class="col-sm-8 col-md-8 col-lg-8">
+        <div>
+            <h4>Payment:</h4>
+            <p>card type: @Model.FakePayment.CardType</p>
+            <p>CardNumber: XXXXXXXXXXXXXXXX</p>
+            <p>Owner: @Model.FakePayment.CardOwner</p>
+
+        </div>
+        <br />
+        <h4>Games ordered:</h4>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Title")
+                </th>
+                <th>
+                    @Html.DisplayName("Platform")
+                </th>
+                <th>
+                    @Html.DisplayName("Quantity")
+                </th>
+                <th>
+                    @Html.DisplayName("Price")
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.CartModel.Items)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Platform)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnitPrice)
+                    </td>
+                </tr>
+            }
+        </table>
+        Total price: @Model.CartModel.TotalPrice
+
+    </div>
+    <a class="btn btnGenerel" id="btnBuy" href="@Url.Action("Index", "Profile", new { area = "User" })">Go to profile</a>
 </div>
+
