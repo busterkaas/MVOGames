@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace ServiceGateway.Models
@@ -8,7 +9,9 @@ namespace ServiceGateway.Models
         public int Id { get; set; }
         [Required]
         [MinLength(2)]
+        [DisplayName("Crew name")]
         public string Name { get; set; }
+        [DisplayName("Crew Image (Url)")]
         public string CrewImgUrl { get; set; }
         public int CrewLeaderId { get; set; }
         //public virtual User CrewLeader { get; set; }

@@ -92,6 +92,7 @@ namespace MVOGamesUI.Areas.User.Controllers
                             Discount = 0
                         });
                 }
+                Session["cart"] = null;
                 return View(ucp);
             }
             catch
@@ -117,6 +118,11 @@ namespace MVOGamesUI.Areas.User.Controllers
         public ActionResult NoOfItems()
         {
             return Content("[" + cartModel.NoOfItems + "]");
+        }
+        public ActionResult Clear()
+        {
+            Session["cart"] = null;
+            return RedirectToAction("Index", "ShoppingCart");
         }
     }
 }

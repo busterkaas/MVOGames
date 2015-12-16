@@ -51,9 +51,11 @@
                         <h4>@Model.PlatformGame.Platform.Name</h4>
                         <h4>Price: @Model.PlatformGame.Price</h4>
 
-                        <a class="btn btn-danger btnBuy" href='@Url.Action("Add", "ShoppingCart", new {id = Model.PlatformGame.Id})'>BUY</a>
+                        <a class="btn btnGenerel" href='@Url.Action("Add", "ShoppingCart", new {id = Model.PlatformGame.Id})'>BUY</a>
+                        <br />
+                        <br />
                         <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                            <button class="btn btnGenerel dropdown-toggle" type="button" data-toggle="dropdown">
                                 Buy with you Crew
                                 <span class="caret"></span>
                             </button>
@@ -64,7 +66,6 @@
                                     <li><a href="@Url.Action("CrewBuySpecification", "CrewBuy", new { crewId = crew.Id, pfGameId = Model.PlatformGame.Id })">@crew.Name</a></li>
                                     }
                                 </ul>
-                            
                         </div>
                     }
                     else

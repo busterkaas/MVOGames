@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace ServiceGateway.Models
         public decimal Discount { get; set; }
         [Required]
         [DataType(DataType.Time)]
+        [DisplayName("Expiration time")]
         public DateTime ExpirationTime { get; set; }
         [Required]
         [DataType(DataType.Date)]
+        [DisplayName("Expiration date")]
         public DateTime ExpirationDate { get; set; }
 
     }

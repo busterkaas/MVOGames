@@ -24,6 +24,25 @@ h2 {
 		0 0 90px #ff471a,
         0 0 100px #ff471a;
 }
+
+.btnGenerel{
+    color:white;
+    background-color:#ff471a;
+}
+.btnGenerel:hover{
+    background-color:orangered;
+    color:white;
+    
+    box-shadow:	0 0 10px #fff, 
+        0 0 20px #ff471a;
+}
+/* The next section is for Shoppingcart*/
+
+.btnConfirm{
+    margin:10px;
+    float:right;
+}
+
 /* Profile view*/
 
 .profileRightDiv{

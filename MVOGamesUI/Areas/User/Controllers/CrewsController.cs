@@ -108,6 +108,10 @@ namespace MVOGamesUI.Areas.User.Controllers
             {
                 return RedirectToAction("Index");
             }
+            if (MaxCrewsJoined())
+            {
+                return RedirectToAction("Index");
+            }
             CrewApplication ca = new CrewApplication() { CrewId = crewId, Crew = crew, UserId = Auth.user.Id, User = Auth.user };
             if (ca == null)
             {

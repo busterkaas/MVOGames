@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace ServiceGateway.Models
@@ -12,20 +13,28 @@ namespace ServiceGateway.Models
         private const int WorkFactor = 13;
         public int Id { get; set; }
         [Required]
+        [DisplayName("Username")]
         public string Username { get; set; }
         [Required(ErrorMessage = "A FirstName is required!")]
+        [DisplayName("Firstname")]
         public string FirstName { get; set; }
         [Required(ErrorMessage = "A LastName is required!")]
+        [DisplayName("Lastname")]
         public string LastName { get; set; }
         [Required(ErrorMessage = "A StreetName is required!")]
+        [DisplayName("Streetname")]
         public string StreetName { get; set; }
         [Required(ErrorMessage = "A HouseNumber is required!")]
+        [DisplayName("House nr.")]
         public string HouseNr { get; set; }
         [Required(ErrorMessage = "A ZipCode is required!")]
+        [DisplayName("Zip code")]
         public int ZipCode { get; set; }
         [Required(ErrorMessage = "A City is required!")]
+        [DisplayName("City")]
         public string City { get; set; }
         [Required(ErrorMessage = "An Email is required!")]
+        [DisplayName("E-mail")]
         public string Email { get; set; }
        
         public int RoleId { get; set; }
