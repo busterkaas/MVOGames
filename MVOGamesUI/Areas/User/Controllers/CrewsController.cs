@@ -21,6 +21,55 @@ namespace MVOGamesUI.Areas.User.Controllers
             var crews = facade.GetCrewGateway().GetAll().ToList();
             return View(crews);
         }
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Name, CrewImgUrl")]Crew crew)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(crew);
+            }
+            if (!MaxCrewsJoined()) {
+            
+            int userId = Auth.user.Id;
+            crew.CrewLeaderId = userId;
+            facade.GetCrewGateway().Create(crew);
+            
+            var myCrew = facade.GetCrewGateway().GetAll().Where(c => c.CrewLeaderId ==userId).Last();
+            myCrew.Users.Add(Auth.user);
+            facade.GetCrewGateway().Update(myCrew);
+
+            return RedirectToAction("MyCrew", "Crews", new { id = myCrew.Id});
+            }
+            ViewBag.ErrorMessage = "You are only allowed to be in 3 crews!";
+            return View(crew);
+        }
+
+        public ActionResult DeleteCrew(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            var crewGameSuggestions = facade.GetCrewGameSuggestionGateway().GetAll().Where(cg => cg.CrewId == id);
+            
+            foreach(var cgs in crewGameSuggestions)
+            {
+                var suggestionUsers = facade.GetSuggestionUsersGateway().GetAll().Where(su => su.CrewGameSuggestionId == cgs.Id);
+                foreach(var su in suggestionUsers)
+                {
+                    facade.GetSuggestionUsersGateway().Delete(su.Id);
+                }
+                facade.GetCrewGameSuggestionGateway().Delete(cgs.Id);
+            }
+            facade.GetCrewGateway().Delete(id);
+
+            return RedirectToAction("Index", "Profile");
+        }
 
         public ActionResult MyCrew(int? id)
         {
@@ -83,6 +132,17 @@ namespace MVOGamesUI.Areas.User.Controllers
             }
             facade.GetCrewApplicationGateway().Delete(appId);
             return RedirectToAction("MyCrew", "Crews", new { id = crewId});
+        }
+
+        public bool MaxCrewsJoined()
+        {
+            var crews = facade.GetCrewGateway().GetAll().ToList();
+
+                var myCrews = from c in crews
+                               where c.Users.Any(user => user.Id == Auth.user.Id)
+                               select c;
+
+            return cp.MaxCrewsJoined(myCrews.Count());
         }
     }
 

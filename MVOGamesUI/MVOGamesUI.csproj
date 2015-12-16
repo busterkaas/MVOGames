@@ -196,6 +196,7 @@
     <Content Include="Content\Images\MVOGamesLogos\logo8.png" />
     <Content Include="Content\Images\MVOGamesLogos\logo9.png" />
     <Content Include="Content\Images\MVOGamesLogos\logoOrange.png" />
+    <Content Include="Content\Images\nocrewphoto.png" />
     <Content Include="Content\SpecialCss\AdminSpeciel.css" />
     <Content Include="Content\SpecialCss\GameDetails.css" />
     <Content Include="Content\SpecialCss\ProgressBar.css" />
@@ -261,6 +262,7 @@
     <Content Include="Areas\User\Views\CrewGameSuggestions\Details.cshtml" />
     <Content Include="Areas\User\Views\CrewGameSuggestions\Confirmation.cshtml" />
     <Content Include="Areas\User\Views\CrewGameSuggestions\Payment.cshtml" />
+    <Content Include="Areas\User\Views\Crews\Create.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

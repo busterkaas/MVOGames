@@ -13,7 +13,8 @@
 <div class="col col-lg-4 col-md-4 col-sm-3">
     <div class="panel panel-default crewPanel">
         <div class="panel-heading">
-            <h4>My Crews</h4>
+            <h4>My Crews  (@Model.Crews.Count/4)</h4>
+            
         </div>
         <div class="panel-body">
             @if (Model.Crews.Count<1)
@@ -25,8 +26,14 @@
                 foreach (var crew in Model.Crews)
                 {
                     <div class="panel-group panelCrewSingle">
-                            <img src="@crew.CrewImgUrl" class="crewImg"/>
-                            <a href="@Url.Action("MyCrew", "Crews", new {id = crew.Id})">@crew.Name</a>
+                        @if (crew.CrewImgUrl == null || crew.CrewImgUrl.Length < 1)
+                        {
+                            <img class="crewImg" src="~/Content/Images/nocrewphoto.png" />
+                        }
+                        else
+                        {<img class="crewImg " src="@crew.CrewImgUrl" /> }
+
+                            <a  href="@Url.Action("MyCrew", "Crews", new {id = crew.Id})">@crew.Name</a>
                     </div>
                 }
             }

@@ -4,7 +4,14 @@
 <div class="container itemContainer">
 
     <div class="col-sm-3 col-md-2 col-lg-2 myCrewLeft">
-        <img src="@Model.Crew.CrewImgUrl" />
+        @if (Model.Crew.CrewImgUrl == null || Model.Crew.CrewImgUrl.Length < 1)
+        {
+            <img class="img-responsive" src="~/Content/Images/nocrewphoto.png" />
+        }
+        else
+        {<img class="img-responsive" src="@Model.Crew.CrewImgUrl" /> }
+
+     
         <br />
         <br />
         <h4>Crewmembers:</h4>
@@ -37,9 +44,10 @@
     </div>
     <div class="col-sm-3 col-md-2 col-lg-2 crewLeaderDiv">
 
-        <h4>Crew leader functions</h4>
+        
         @if (Model.User.Id == Model.Crew.CrewLeaderId)
             {
+            <h4>Crew leader functions</h4>
             <div class="crewApplications">
                 <p>Crew member applications:</p>
                 @if (Model.Applications != null && Model.Applications.Count > 0)
@@ -56,6 +64,9 @@
                 {
                     <p>No applications</p>
                 }
+            </div>
+            <div class="container">
+                <a class="btn-danger" href="@Url.Action("DeleteCrew", "Crews", new { id= Model.Crew.Id })" onclick="return confirm('Are you sure you want to delete this crew?')">Delete crew</a>
             </div>
         }
     </div>

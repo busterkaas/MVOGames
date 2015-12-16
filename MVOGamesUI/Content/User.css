@@ -75,6 +75,7 @@ h2 {
     background-color: black;
     background-color: rgba(0, 0, 0, 0.5);
     margin: auto;
+    height:700px;
     border-right: 1px solid #ff471a;
 }
 .myCrewLeft img {
@@ -104,7 +105,7 @@ h2 {
      background-color: rgba(255, 71, 26, 0.7);
  }
  .crewLeaderDiv{
-      
+      height:700px;
       background-color: black;
     background-color: rgba(0, 0, 0, 0.5);
  }

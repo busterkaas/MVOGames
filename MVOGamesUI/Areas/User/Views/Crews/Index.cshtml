@@ -12,8 +12,14 @@
         @foreach (var crew in Model)
         {
             <li>
-                <img class="img-responsive col-lg-4 col-md-4 col-sm-4" src="@crew.CrewImgUrl" />
-                <h4 class="col-lg-8 col-md-8 col-sm-8">Crew @crew.Name</h4>
+                @if (crew.CrewImgUrl == null || crew.CrewImgUrl.Length < 1)
+                {
+                    <img class="img-responsive col-lg-4 col-md-4 col-sm-4" src="~/Content/Images/nocrewphoto.png" />
+                }
+                else
+                {<img class="img-responsive col-lg-4 col-md-4 col-sm-4" src="@crew.CrewImgUrl" /> }
+                
+                <h4 class="col-lg-8 col-md-8 col-sm-8">@crew.Name</h4>
                 <a href="@Url.Action("ApplyForCrew", "Crews", new { crewId = @crew.Id })">Ask for membership</a>
                 
             </li>
