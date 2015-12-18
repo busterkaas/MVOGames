@@ -310,13 +310,13 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\rest\MVOGames_Rest\DTOModels\DTOModels.csproj">
-      <Project>{7cb8527a-50e1-411d-817c-15eecf56b884}</Project>
-      <Name>DTOModels</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
       <Project>{0DB419C7-5DE4-4585-97CC-D397E48F511D}</Project>
       <Name>BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTOModels\DTOModels.csproj">
+      <Project>{179534ff-e1e8-4a90-abd2-770881da0271}</Project>
+      <Name>DTOModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\ServiceGateway\ServiceGateway.csproj">
       <Project>{5d8d1638-b37b-4583-a756-71782afe1ed8}</Project>

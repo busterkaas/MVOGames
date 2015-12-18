@@ -88,8 +88,8 @@
     <Content Include="LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\rest\MVOGames_Rest\DTOModels\DTOModels.csproj">
-      <Project>{7cb8527a-50e1-411d-817c-15eecf56b884}</Project>
+    <ProjectReference Include="..\DTOModels\DTOModels.csproj">
+      <Project>{179534ff-e1e8-4a90-abd2-770881da0271}</Project>
       <Name>DTOModels</Name>
     </ProjectReference>
   </ItemGroup>
