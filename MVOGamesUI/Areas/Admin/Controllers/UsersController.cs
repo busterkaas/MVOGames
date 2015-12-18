@@ -100,17 +100,24 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Username,PasswordHash,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email, RoleId")] UserDTO user)
         {
-            
-            if (ModelState.IsValid)
-            {
-                user.SetPassword(user.PasswordHash);
-                RoleDTO role = facade.GetRoleGateway().Get(2);
-                user.Role = role;
 
-                facade.GetUserGateway().Update(user);
-                return RedirectToAction("Index");
+            if (!ModelState.IsValid)
+            {
+                return View(user);
             }
-            return View(user);
+            var newUser = facade.GetUserGateway().Get(user.Id);
+            newUser.Username = user.Username;
+            newUser.PasswordHash = user.PasswordHash;
+            newUser.FirstName = user.FirstName;
+            newUser.LastName = user.LastName;
+            newUser.StreetName = user.StreetName;
+            newUser.HouseNr = user.HouseNr;
+            newUser.ZipCode = user.ZipCode;
+            newUser.City = user.City;
+            newUser.Email = user.Email;
+
+            facade.GetUserGateway().Update(newUser);
+            return RedirectToAction("Index");
         }
 
         // GET: Admin/Users/Delete/5

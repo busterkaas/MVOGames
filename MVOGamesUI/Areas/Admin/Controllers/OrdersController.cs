@@ -19,7 +19,6 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         List<PlatformGameDTO> platforGames = new List<PlatformGameDTO>();
         List<OrderlineDTO> orderline = new List<OrderlineDTO>();
         List<GameDTO> games = new List<GameDTO>();
-       
 
         // GET: Admin/Order
         public ActionResult Index()
@@ -54,29 +53,6 @@ namespace MVOGamesUI.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             return View(og);
-        }
-
-        // GET: Admin/Order/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Admin/Order/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
 
         // GET: Admin/Order/Edit/5
@@ -180,7 +156,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         //public ActionResult NewGameToOrder(int? id)
         public ActionResult NewGameToOrder(int orderId, OrderlineDTO orderline)
         {
-            ViewBag.GameList = new SelectList(facade.GetPlatformGameGateway().GetAll().OrderBy(g => g.Game.Title).Select(g => g.Game.Title), orderline.PlatformGameId);
+            ViewBag.GameList = new SelectList(facade.GetPlatformGameGateway().GetAll().OrderBy(g => g.Game.Title), "Id", "GamePlatformName");
             return View();
         }
 

@@ -59,6 +59,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
 
         // POST: Admin/Genres/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name")] GenreDTO genre)
         {
             if (ModelState.IsValid)

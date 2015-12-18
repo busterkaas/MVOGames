@@ -22,21 +22,6 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             return View(crews);
         }
 
-        // GET: Admin/Crews/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CrewDTO crew = facade.GetCrewGateway().Get(id);
-            if (crew == null)
-            {
-                return HttpNotFound();
-            }
-            return View(crew);
-        }
-
         // GET: Admin/Crews/Create
         public ActionResult Create()
         {
@@ -109,7 +94,6 @@ namespace MVOGamesUI.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             CrewDTO crew = facade.GetCrewGateway().Get(crewId);
-            //ServiceGateway.Models.User user = facade.GetUserGateway().Get(id);
             if (crew == null )
             {
                 return HttpNotFound();

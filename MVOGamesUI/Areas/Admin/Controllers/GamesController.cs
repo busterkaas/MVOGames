@@ -48,16 +48,30 @@ namespace MVOGamesUI.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             GameDTO game = facade.GetGameGateway().Get(id);
+            List<PlatformGameDTO> platformGames = facade.GetPlatformGameGateway().GetAll().Where(o => o.GameId == game.Id).ToList();
+            List<PlatformDTO> platforms = new List<PlatformDTO>();
+            List<GenreDTO> genres = new List<GenreDTO>();
+
+            foreach (var p in platformGames)
+            {
+                platforms.Add(facade.GetPlatformGateway().Get(p.PlatformId));
+            }
+            foreach (var g in game.Genres)
+            {
+                genres.Add(facade.GetGenreGateway().Get(g.Id));
+            }
+            GameEditVM gEditVM = new GameEditVM(platformGames, platforms, genres, game);
             if (game == null)
             {
                 return HttpNotFound();
             }
-            return View(game);
+            return View(gEditVM);
         }
 
         // GET: Admin/Games/Create
         public ActionResult Create()
         {
+            ViewBag.Platforms = new SelectList(facade.GetPlatformGateway().GetAll(), "Id", "Name");
             ViewBag.Genres = new SelectList(facade.GetGenreGateway().GetAll(), "Id", "Name");
             return View();
         }
@@ -92,22 +106,6 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // GET: Admin/Games/Edit/5
         public ActionResult Edit(int? id)
         {
-
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //Game game = facade.GetGameGateway().Get(id);
-            //if (game == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //return View(game);
-
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
             GameDTO game = facade.GetGameGateway().Get(id);
             List<PlatformGameDTO> platformGames = facade.GetPlatformGameGateway().GetAll().Where(o => o.GameId == game.Id).ToList();
             List<PlatformDTO> platforms = new List<PlatformDTO>();
@@ -133,19 +131,33 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Title,ReleaseDate,CoverUrl,TrailerUrl,Description")] GameDTO game, int[] Genres)
         {
-            
-            if (ModelState.IsValid)
+
+            if (!ModelState.IsValid)
             {
-                List<GenreDTO> NewGenres = new List<GenreDTO>();
-                foreach (var genreID in Genres)
+                List<PlatformGameDTO> platformGames = facade.GetPlatformGameGateway().GetAll().Where(o => o.GameId == game.Id).ToList();
+                List<PlatformDTO> platforms = new List<PlatformDTO>();
+                List<GenreDTO> genres = new List<GenreDTO>();
+
+                foreach (var p in platformGames)
                 {
-                    NewGenres.Add(new GenreDTO() { Id = genreID });
+                    platforms.Add(facade.GetPlatformGateway().Get(p.PlatformId));
                 }
-                game.Genres = NewGenres;
-                facade.GetGameGateway().Update(game);
-                return RedirectToAction("Index");
+                foreach (var g in game.Genres)
+                {
+                    genres.Add(facade.GetGenreGateway().Get(g.Id));
+                }
+                GameEditVM gEditVM = new GameEditVM(platformGames, platforms, genres, game);
+                ViewBag.Genres = new SelectList(facade.GetGenreGateway().GetAll(), "Id", "Name");
+                return View(gEditVM);
             }
-            return View(game);
+            List<GenreDTO> NewGenres = new List<GenreDTO>();
+            foreach (var genreID in Genres)
+            {
+                NewGenres.Add(new GenreDTO() { Id = genreID });
+            }
+            game.Genres = NewGenres;
+            facade.GetGameGateway().Update(game);
+            return RedirectToAction("Index");
         }
 
         // GET: Admin/Games/Delete/5
@@ -156,11 +168,24 @@ namespace MVOGamesUI.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             GameDTO game = facade.GetGameGateway().Get(id);
+            List<PlatformGameDTO> platformGames = facade.GetPlatformGameGateway().GetAll().Where(o => o.GameId == game.Id).ToList();
+            List<PlatformDTO> platforms = new List<PlatformDTO>();
+            List<GenreDTO> genres = new List<GenreDTO>();
+
+            foreach (var p in platformGames)
+            {
+                platforms.Add(facade.GetPlatformGateway().Get(p.PlatformId));
+            }
+            foreach (var g in game.Genres)
+            {
+                genres.Add(facade.GetGenreGateway().Get(g.Id));
+            }
+            GameEditVM gEditVM = new GameEditVM(platformGames, platforms, genres, game);
             if (game == null)
             {
                 return HttpNotFound();
             }
-            return View(game);
+            return View(gEditVM);
         }
 
         // POST: Admin/Games/Delete/5
@@ -168,10 +193,34 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-
             facade.GetGameGateway().Delete(id);
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult CreatePlatformToGame()
+        {
+            return View();
+        }
+
+        public ActionResult EditPlatformFromGame()
+        {
+            return View();
+        }
+
+        public ActionResult DeletePlatformFromGame(int? id, int? gameId)
+        {
+            if (id == null || gameId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            GameDTO game = facade.GetGameGateway().Get(gameId);
+            if (game == null)
+            {
+                return HttpNotFound();
+            }
+            facade.GetPlatformGameGateway().Delete(id);
+            return RedirectToAction("Edit" + "/" + gameId);
         }
 
         public IEnumerable<GameDTO> GetGameSearch(string input)
