@@ -146,6 +146,7 @@
     <Compile Include="Areas\User\Controllers\CrewGameSuggestionsController.cs" />
     <Compile Include="Areas\User\Controllers\CrewsController.cs" />
     <Compile Include="Areas\User\Controllers\GamesController.cs" />
+    <Compile Include="Areas\User\Controllers\OrdersController.cs" />
     <Compile Include="Areas\User\Controllers\ProfileController.cs" />
     <Compile Include="Areas\User\Controllers\ShoppingCartController.cs" />
     <Compile Include="Areas\User\Models\FakePayment.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="Areas\User\ViewModels\GamePlatformGenre.cs" />
     <Compile Include="Areas\User\ViewModels\GameSuggestionDetailVM.cs" />
     <Compile Include="Areas\User\ViewModels\MyCrewViewModel.cs" />
+    <Compile Include="Areas\User\ViewModels\OrderIndexVM.cs" />
     <Compile Include="Areas\User\ViewModels\UserCart.cs" />
     <Compile Include="Areas\User\ViewModels\UserCartPayment.cs" />
     <Compile Include="Areas\User\ViewModels\UserCrew.cs" />
@@ -238,7 +240,6 @@
     <Content Include="Areas\Admin\Views\Genres\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Genres\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Genres\Delete.cshtml" />
-    <Content Include="Areas\User\Views\Shared\_UserInformation.cshtml" />
     <Content Include="Areas\User\Views\Crews\MyCrew.cshtml" />
     <Content Include="Areas\Admin\Views\Crews\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Crews\Details.cshtml" />
@@ -263,6 +264,8 @@
     <Content Include="Areas\User\Views\CrewGameSuggestions\Confirmation.cshtml" />
     <Content Include="Areas\User\Views\CrewGameSuggestions\Payment.cshtml" />
     <Content Include="Areas\User\Views\Crews\Create.cshtml" />
+    <Content Include="Areas\User\Views\Orders\MyOrders.cshtml" />
+    <Content Include="Areas\User\Views\Shared\_UserInformation.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -307,6 +310,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\rest\MVOGames_Rest\DTOModels\DTOModels.csproj">
+      <Project>{7cb8527a-50e1-411d-817c-15eecf56b884}</Project>
+      <Name>DTOModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
       <Project>{0DB419C7-5DE4-4585-97CC-D397E48F511D}</Project>
       <Name>BusinessLogic</Name>

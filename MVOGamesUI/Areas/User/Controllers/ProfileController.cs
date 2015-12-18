@@ -7,7 +7,7 @@ using System.Web.Security;
 using MVOGamesUI.Areas.User.ViewModels;
 using MVOGamesUI.Infrastructure;
 using ServiceGateway;
-using ServiceGateway.Models;
+using DTOModels.Models;
 
 namespace MVOGamesUI.Areas.User.Controllers
 {
@@ -32,11 +32,11 @@ namespace MVOGamesUI.Areas.User.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index([Bind(Include = "Username,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email, PasswordHash")] ServiceGateway.Models.User user)
+        public ActionResult Index([Bind(Include = "Username,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email, PasswordHash")] UserDTO user)
         {
             if (!ModelState.IsValid)
             {
-                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                //var errors = ModelState.Values.SelectMany(v => v.Errors);
                 var userLoggedIn = Auth.user;
                 var crews = facade.GetCrewGateway().GetAll().ToList();
                 var userCrews = from c in crews
@@ -47,8 +47,7 @@ namespace MVOGamesUI.Areas.User.Controllers
             }
 
             ViewBag.message = " - User has been updated!";
-            ServiceGateway.Models.User newUser = Auth.user;
-            newUser.Username = user.Username;
+            UserDTO newUser = Auth.user;
             newUser.FirstName = user.FirstName;
             newUser.LastName = user.LastName;
             newUser.StreetName = user.StreetName;
@@ -56,9 +55,11 @@ namespace MVOGamesUI.Areas.User.Controllers
             newUser.ZipCode = user.ZipCode;
             newUser.City = user.City;
             newUser.Email = user.Email;
+
+            newUser.Username = user.Username;
+
             FormsAuthentication.SetAuthCookie(newUser.Username, true);
 
-           
 
             facade.GetUserGateway().Update(newUser);
 

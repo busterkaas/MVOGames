@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using MVOGamesUI.ViewModels;
 using ServiceGateway;
-using ServiceGateway.Models;
+using DTOModels.Models;
 
 namespace MVOGamesUI.Controllers
 {
@@ -21,8 +21,8 @@ namespace MVOGamesUI.Controllers
         [HttpPost]
         public ActionResult Login(AuthLogin form, string returnUrl)
         {
-            User user;
-            List<User> users = facade.GetUserGateway().GetAll().ToList();
+            UserDTO user;
+            List<UserDTO> users = facade.GetUserGateway().GetAll().ToList();
             try
             {
                 user = users.First(u => u.Username == form.Username);
@@ -79,13 +79,13 @@ namespace MVOGamesUI.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register([Bind(Include = "Username,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email,PasswordHash")] User user)
+        public ActionResult Register([Bind(Include = "Username,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email,PasswordHash")] UserDTO user)
         {
             if (ModelState.IsValid)
             {
                 user.SetPassword(user.PasswordHash);
                 //get user role and set it for the new user
-                Role role = facade.GetRoleGateway().Get(2);
+                RoleDTO role = facade.GetRoleGateway().Get(2);
                 user.Role = role;
                 facade.GetUserGateway().Create(user);
                 FormsAuthentication.SetAuthCookie(user.Username, true);

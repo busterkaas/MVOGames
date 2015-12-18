@@ -1,4 +1,4 @@
-﻿using ServiceGateway.Models;
+﻿using DTOModels.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace ServiceGateway.Gateways
 {
-    public class CrewGameSuggestionGateway : IServiceGateway<CrewGameSuggestion>
+    public class CrewGameSuggestionGateway : IServiceGateway<CrewGameSuggestionDTO>
     {
         ServiceGateway sg = new ServiceGateway();
-        public HttpResponseMessage Create(CrewGameSuggestion t)
+        public HttpResponseMessage Create(CrewGameSuggestionDTO t)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.PostAsJsonAsync("api/crewgamesuggestions", t).Result;
@@ -25,23 +25,23 @@ namespace ServiceGateway.Gateways
             return response;
         }
 
-        public CrewGameSuggestion Get(int? id)
+        public CrewGameSuggestionDTO Get(int? id)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.GetAsync("api/crewgamesuggestions/" + id).Result;
-            var crewgamesuggestion = response.Content.ReadAsAsync<CrewGameSuggestion>().Result;
+            var crewgamesuggestion = response.Content.ReadAsAsync<CrewGameSuggestionDTO>().Result;
             return crewgamesuggestion;
         }
 
-        public IEnumerable<CrewGameSuggestion> GetAll()
+        public IEnumerable<CrewGameSuggestionDTO> GetAll()
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.GetAsync("api/crewgamesuggestions/").Result;
-            var crewgamesuggestions = response.Content.ReadAsAsync<IEnumerable<CrewGameSuggestion>>().Result;
+            var crewgamesuggestions = response.Content.ReadAsAsync<IEnumerable<CrewGameSuggestionDTO>>().Result;
             return crewgamesuggestions;
         }
 
-        public HttpResponseMessage Update(CrewGameSuggestion t)
+        public HttpResponseMessage Update(CrewGameSuggestionDTO t)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.PutAsJsonAsync("api/crewgamesuggestions/" + t.Id, t).Result;

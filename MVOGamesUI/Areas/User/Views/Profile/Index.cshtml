@@ -1,46 +1,47 @@
 ﻿@model MVOGamesUI.Areas.User.ViewModels.UserCrew
+
 @{
     ViewBag.Title = "Index";
 }
 
 <div class="itemContainer container">
-    <div class="col col-lg-8 col-md-8 col-sm-9">
+    <div class="col col-lg-9 col-md-9 col-sm-9">
         <h2 class="detailsHeader">@Model.User.Username</h2>
         <h4>@ViewBag.message</h4>
-    <br/>
+        <br />
         @{ Html.RenderPartial("_UserInformation", Model.User); }
     </div>
-<div class="col col-lg-4 col-md-4 col-sm-3 profileRightDiv">
-    <div class="panel panel-default crewPanel">
-        <div class="panel-heading">
-            <h4 class="detailsHeader">My Crews  (@Model.Crews.Count/3)</h4>
-            
-        </div>
-        <div class="panel-body">
-            @if (Model.Crews.Count<1)
-            {
-                <h5>You are currently not in any crew</h5>
-            }
-            else
-            {
-                foreach (var crew in Model.Crews)
+    <div class="col col-lg-3 col-md-3 col-sm-3 profileRightDiv">
+        <div class="panel panel-default crewPanel">
+            <div class="panel-heading">
+                <h4 class="detailsHeader">My Crews  (@Model.Crews.Count/3)</h4>
+            </div>
+            <div class="panel-body">
+                @if (Model.Crews.Count < 1)
                 {
-                    <div class="panel-group panelCrewSingle">
-                        @if (crew.CrewImgUrl == null || crew.CrewImgUrl.Length < 1)
-                        {
-                            <img class="crewImg" src="~/Content/Images/nocrewphoto.png" />
-                        }
-                        else
-                        {<img class="crewImg " src="@crew.CrewImgUrl" /> }
-
-                            <a  href="@Url.Action("MyCrew", "Crews", new {id = crew.Id})">@crew.Name</a>
-                    </div>
+                    <h5>You are currently not in any crew</h5>
                 }
-            }
+                else
+                {
+                    foreach (var crew in Model.Crews)
+                    {
+                        <div class="panel-group panelCrewSingle">
+                            @if (crew.CrewImgUrl == null || crew.CrewImgUrl.Length < 1)
+                            {
+                                <img class="crewImg" src="~/Content/Images/nocrewphoto.png" />
+                            }
+                            else
+                            {<img class="crewImg " src="@crew.CrewImgUrl" /> }
+
+                            <a href="@Url.Action("MyCrew", "Crews", new {id = crew.Id})">@crew.Name</a>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div>
+            <a class="btn btnGenerel" href="@Url.Action("Create", "Crews", new { area = "User" })"><h5>Create new crew</h5></a>
+            <a class="btn btnGenerel" href="@Url.Action("MyOrders", "Orders", new { area="User"})">See my orders</a>
         </div>
     </div>
-    <div>
-        <a class="btn btnGenerel" href="@Url.Action("Create", "Crews", new { area = "User" })"><h5>Create new crew</h5></a>
-    </div>
-</div>
 </div>

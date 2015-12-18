@@ -1,7 +1,7 @@
-﻿using MVOGamesUI.Areas.Admin.ViewModels;
+﻿using DTOModels.Models;
+using MVOGamesUI.Areas.Admin.ViewModels;
 using MVOGamesUI.Infrastructure;
 using ServiceGateway;
-using ServiceGateway.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +16,10 @@ namespace MVOGamesUI.Areas.Admin.Controllers
     public class OrdersController : Controller
     {
         private Facade facade = new Facade();
-        List<PlatformGame> platforGames = new List<PlatformGame>();
-        List<Orderline> orderline = new List<Orderline>();
-        List<Game> games = new List<Game>();
-        decimal sum = 0;
+        List<PlatformGameDTO> platforGames = new List<PlatformGameDTO>();
+        List<OrderlineDTO> orderline = new List<OrderlineDTO>();
+        List<GameDTO> games = new List<GameDTO>();
+       
 
         // GET: Admin/Order
         public ActionResult Index()
@@ -31,14 +31,14 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // GET: Admin/Order/Details/5
         public ActionResult Details(int? id)
         {
-            List<PlatformGame> platforGames = new List<PlatformGame>();
-            List<Game> games = new List<Game>();
+            List<PlatformGameDTO> platforGames = new List<PlatformGameDTO>();
+            List<GameDTO> games = new List<GameDTO>();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = facade.GetOrderGateway().Get(id);
-            List<Orderline> orderlines = facade.GetOrderlineGateway().GetAll().Where(o => o.OrderId == order.Id).ToList();
+            OrderDTO order = facade.GetOrderGateway().Get(id);
+            List<OrderlineDTO> orderlines = facade.GetOrderlineGateway().GetAll().Where(o => o.OrderId == order.Id).ToList();
 
             foreach (var o in orderlines)
             {
@@ -86,8 +86,8 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = facade.GetOrderGateway().Get(id);
-            List<Orderline> orderlines = facade.GetOrderlineGateway().GetAll().Where(o => o.OrderId == order.Id).ToList();
+            OrderDTO order = facade.GetOrderGateway().Get(id);
+            List<OrderlineDTO> orderlines = facade.GetOrderlineGateway().GetAll().Where(o => o.OrderId == order.Id).ToList();
 
             foreach (var o in orderlines)
             {
@@ -129,8 +129,8 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = facade.GetOrderGateway().Get(id);
-            List<Orderline> orderlines = facade.GetOrderlineGateway().GetAll().Where(o => o.OrderId == order.Id).ToList();
+            OrderDTO order = facade.GetOrderGateway().Get(id);
+            List<OrderlineDTO> orderlines = facade.GetOrderlineGateway().GetAll().Where(o => o.OrderId == order.Id).ToList();
 
             foreach (var o in orderlines)
             {
@@ -164,7 +164,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = facade.GetOrderGateway().Get(orderId);
+            OrderDTO order = facade.GetOrderGateway().Get(orderId);
 
             if (order == null)
             {
@@ -178,7 +178,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
 
         // GET: Admin/Order/NewGameToOrder/5
         //public ActionResult NewGameToOrder(int? id)
-        public ActionResult NewGameToOrder(int orderId, Orderline orderline)
+        public ActionResult NewGameToOrder(int orderId, OrderlineDTO orderline)
         {
             ViewBag.GameList = new SelectList(facade.GetPlatformGameGateway().GetAll().OrderBy(g => g.Game.Title).Select(g => g.Game.Title), orderline.PlatformGameId);
             return View();
@@ -187,7 +187,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // POST: Admin/Order/NewGameToOrder/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult newGameToOrder([Bind(Include = "Id,Amount,Discount,orderId,PlatformGameId")]Orderline orderline)
+        public ActionResult newGameToOrder([Bind(Include = "Id,Amount,Discount,orderId,PlatformGameId")]OrderlineDTO orderline)
         {
             if (orderline == null)
             {

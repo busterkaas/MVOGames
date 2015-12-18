@@ -1,28 +1,28 @@
-﻿using System;
+﻿using DTOModels.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ServiceGateway.Models;
 
 namespace MVOGamesUI.Areas.Admin.ViewModels
 {
     public class RolesUser
     {
-        private ServiceGateway.Models.User user;
-        private List<Role> roles;
+        private UserDTO user;
+        private List<RoleDTO> roles;
 
-        public RolesUser(ServiceGateway.Models.User user, List<Role> roles)
+        public RolesUser(UserDTO user, List<RoleDTO> roles)
         {
             this.user = user;
             this.roles = roles;
         }
 
-        public ServiceGateway.Models.User GetUser()
+        public UserDTO GetUser()
         {
             return user;
         }
 
-        public List<Role> GetRoles()
+        public List<RoleDTO> GetRoles()
         {
             return roles;
         }

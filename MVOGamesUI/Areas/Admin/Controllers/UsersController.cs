@@ -9,8 +9,8 @@ using System.Web.Mvc;
 using MVOGamesUI.Areas.Admin.ViewModels;
 using MVOGamesUI.Infrastructure;
 using ServiceGateway;
-using ServiceGateway.Models;
 using BusinessLogic.SearchLogic;
+using DTOModels.Models;
 
 namespace MVOGamesUI.Areas.Admin.Controllers
 {
@@ -24,7 +24,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // GET: Admin/Users
         public ActionResult Index(string search)
         {
-            List<ServiceGateway.Models.User> users = facade.GetUserGateway().GetAll().ToList();
+            List<UserDTO> users = facade.GetUserGateway().GetAll().ToList();
 
             if (string.IsNullOrEmpty(search))
                 return View(users);
@@ -41,7 +41,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServiceGateway.Models.User user = facade.GetUserGateway().Get(id);
+            UserDTO user = facade.GetUserGateway().Get(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -52,8 +52,8 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // GET: Admin/Users/Create
         public ActionResult Create()
         {
-            ServiceGateway.Models.User u = new ServiceGateway.Models.User();
-            List<Role> roles = facade.GetRoleGateway().GetAll().ToList();
+            UserDTO u = new UserDTO();
+            List<RoleDTO> roles = facade.GetRoleGateway().GetAll().ToList();
             RolesUser ru = new RolesUser(u, roles);
             return View(ru);
         }
@@ -63,13 +63,13 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Username,PasswordHash,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email")] ServiceGateway.Models.User user)
+        public ActionResult Create([Bind(Include = "Id,Username,PasswordHash,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email")] UserDTO user)
         {
             if (ModelState.IsValid)
             {
                 user.SetPassword(user.PasswordHash);
                 //get user role and set it for the new user
-                Role role = facade.GetRoleGateway().Get(2);
+                RoleDTO role = facade.GetRoleGateway().Get(2);
                 user.Role = role;
                 facade.GetUserGateway().Create(user);
                 return RedirectToAction("Index");
@@ -85,7 +85,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServiceGateway.Models.User user = facade.GetUserGateway().Get(id);
+            UserDTO user = facade.GetUserGateway().Get(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -98,13 +98,13 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Username,PasswordHash,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email, RoleId")] ServiceGateway.Models.User user)
+        public ActionResult Edit([Bind(Include = "Id,Username,PasswordHash,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email, RoleId")] UserDTO user)
         {
             
             if (ModelState.IsValid)
             {
                 user.SetPassword(user.PasswordHash);
-                Role role = facade.GetRoleGateway().Get(2);
+                RoleDTO role = facade.GetRoleGateway().Get(2);
                 user.Role = role;
 
                 facade.GetUserGateway().Update(user);
@@ -120,7 +120,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ServiceGateway.Models.User user = facade.GetUserGateway().Get(id);
+            UserDTO user = facade.GetUserGateway().Get(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -133,7 +133,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)
         {
-            ServiceGateway.Models.User user = facade.GetUserGateway().Get(id);
+            UserDTO user = facade.GetUserGateway().Get(id);
             facade.GetUserGateway().Delete(id);
             return RedirectToAction("Index");
         }
@@ -147,9 +147,9 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         //    base.Dispose(dispos
 
 
-        public IEnumerable<ServiceGateway.Models.User> GetUserSearch(string input)
+        public IEnumerable<UserDTO> GetUserSearch(string input)
         {
-            IEnumerable<ServiceGateway.Models.User> users = sl.UserSearch(facade.GetUserGateway().GetAll(), input);
+            IEnumerable<UserDTO> users = sl.UserSearch(facade.GetUserGateway().GetAll(), input);
             return users;
         }
     }

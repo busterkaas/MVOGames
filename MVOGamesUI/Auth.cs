@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ServiceGateway;
-using ServiceGateway.Models;
+using DTOModels.Models;
 
 namespace MVOGamesUI
 {
@@ -11,7 +11,7 @@ namespace MVOGamesUI
     {
         private const string UserKey = "MVOGamesUI.Auth.UserKey";
 
-        public static User user
+        public static UserDTO user
         {
             
             get
@@ -21,11 +21,11 @@ namespace MVOGamesUI
                     return null;
                 }
 
-                var user = HttpContext.Current.Items[UserKey] as User;
+                var user = HttpContext.Current.Items[UserKey] as UserDTO;
                 if (user == null)
                 {
                     Facade facade = new Facade();
-                    List<User> users = facade.GetUserGateway().GetAll().ToList();
+                    List<UserDTO> users = facade.GetUserGateway().GetAll().ToList();
                     string username = HttpContext.Current.User.Identity.Name;
                     //user = df.GetUserRepository().FindByUsername(HttpContext.Current.User.Identity.Name);
                     user = users.First(u => u.Username == username);

@@ -1,0 +1,24 @@
+﻿@model MVOGamesUI.Areas.User.ViewModels.OrderIndexVM
+
+<div class="container itemContainer">
+    <h1 class="detailsHeader">My Orders</h1>
+    <br />
+    <br />
+    @if (Model.Orders != null && Model.Orders.Count > 0)
+    {
+    foreach (var order in Model.Orders)
+    {
+    <a href="@Url.Action("SpecificOrder", "Orders", new { area = "User", orderId = order.Id })" class="list-group-item">
+
+        <h4 class="list-group-item-heading">@order.Date</h4>
+        <p class="list-group-item-text">@Model.User.FirstName @Model.User.LastName</p>
+    </a>
+        }
+    }
+    else
+    {
+        <h4>You have no orders yet!</h4>
+    }
+
+
+</div>

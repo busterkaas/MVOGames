@@ -15,6 +15,7 @@
     border:10px solid rgba(255, 71, 26, 0.3);
     height: 350px;
     max-height: 400px;
+    max-width:280px;
 }
 
 h4 {
@@ -50,11 +51,11 @@ h4 {
     margin: 10px;
     width: 80px; 
 }
-.buyDiv {
-    margin-top: 280px;
-    padding-bottom: 30px;
-    
-    
+
+.platformgameDiv{
+    padding-top:30px;
+    min-height:500px;
+     background-color: rgba(0, 0, 0, 0.5);
 }
 .btnBuy {
     background-color: #ff471a;

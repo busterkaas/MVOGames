@@ -1,4 +1,5 @@
-﻿using ServiceGateway.Models;
+﻿
+using DTOModels.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,13 @@ namespace MVOGamesUI.Areas.Admin.ViewModels
 {
     public class OrderGames
     {
-        private Order order;
-        private List<Orderline> orderlines;
-        private List<PlatformGame> platformgames;
-        private List<Game> games;
+        private OrderDTO order;
+        private List<OrderlineDTO> orderlines;
+        private List<PlatformGameDTO> platformgames;
+        private List<GameDTO> games;
         public decimal Sum;
 
-        public OrderGames(Order order, List<Orderline> orderlines, List<PlatformGame> platformgames, List<Game> games)
+        public OrderGames(OrderDTO order, List<OrderlineDTO> orderlines, List<PlatformGameDTO> platformgames, List<GameDTO> games)
         {
             this.order = order;
             this.orderlines = orderlines;
@@ -24,22 +25,22 @@ namespace MVOGamesUI.Areas.Admin.ViewModels
             getTotalSum();
         }
 
-        public Order GetOrder()
+        public OrderDTO GetOrder()
         {
             return order;
         }
 
-        public List<Orderline> GetOrderlines()
+        public List<OrderlineDTO> GetOrderlines()
         {
             return orderlines;
         }
 
-        public List<PlatformGame> GetPlatformGames()
+        public List<PlatformGameDTO> GetPlatformGames()
         {
             return platformgames;
         }
 
-        public List<Game> GetGames()
+        public List<GameDTO> GetGames()
         {
             return games;
         }

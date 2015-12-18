@@ -1,17 +1,17 @@
-﻿using System;
+﻿using DTOModels.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using ServiceGateway.Models;
 
 namespace ServiceGateway.Gateways
 {
-    public class PlatformGateway : IServiceGateway<Platform>
+    public class PlatformGateway : IServiceGateway<PlatformDTO>
     {
         ServiceGateway sg = new ServiceGateway();
-        public HttpResponseMessage Create(Platform t)
+        public HttpResponseMessage Create(PlatformDTO t)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.PostAsJsonAsync("api/platforms", t).Result;
@@ -25,23 +25,23 @@ namespace ServiceGateway.Gateways
             return response;
         }
 
-        public Platform Get(int? id)
+        public PlatformDTO Get(int? id)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.GetAsync("api/platforms/" + id).Result;
-            var platform = response.Content.ReadAsAsync<Platform>().Result;
+            var platform = response.Content.ReadAsAsync<PlatformDTO>().Result;
             return platform;
         }
 
-        public IEnumerable<Platform> GetAll()
+        public IEnumerable<PlatformDTO> GetAll()
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.GetAsync("api/platforms/").Result;
-            var platforms = response.Content.ReadAsAsync<IEnumerable<Platform>>().Result;
+            var platforms = response.Content.ReadAsAsync<IEnumerable<PlatformDTO>>().Result;
             return platforms;
         }
 
-        public HttpResponseMessage Update(Platform t)
+        public HttpResponseMessage Update(PlatformDTO t)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.PutAsJsonAsync("api/platforms/" + t.Id, t).Result;

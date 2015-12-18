@@ -1,4 +1,5 @@
-﻿using ServiceGateway.Models;
+﻿
+using DTOModels.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace ServiceGateway.Gateways
 {
-    public class CrewApplicationGateway : IServiceGateway<CrewApplication>
+    public class CrewApplicationGateway : IServiceGateway<CrewApplicationDTO>
     {
         ServiceGateway sg = new ServiceGateway();
-        public HttpResponseMessage Create(CrewApplication t)
+        public HttpResponseMessage Create(CrewApplicationDTO t)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.PostAsJsonAsync("api/crewapplications", t).Result;
@@ -25,23 +26,23 @@ namespace ServiceGateway.Gateways
             return response;
         }
 
-        public CrewApplication Get(int? id)
+        public CrewApplicationDTO Get(int? id)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.GetAsync("api/crewapplications/" + id).Result;
-            var crewsapplication = response.Content.ReadAsAsync<CrewApplication>().Result;
+            var crewsapplication = response.Content.ReadAsAsync<CrewApplicationDTO>().Result;
             return crewsapplication;
         }
 
-        public IEnumerable<CrewApplication> GetAll()
+        public IEnumerable<CrewApplicationDTO> GetAll()
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.GetAsync("api/crewapplications/").Result;
-            var crewsapplications = response.Content.ReadAsAsync<IEnumerable<CrewApplication>>().Result;
+            var crewsapplications = response.Content.ReadAsAsync<IEnumerable<CrewApplicationDTO>>().Result;
             return crewsapplications;
         }
 
-        public HttpResponseMessage Update(CrewApplication t)
+        public HttpResponseMessage Update(CrewApplicationDTO t)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.PutAsJsonAsync("api/crewapplications/" + t.Id, t).Result;

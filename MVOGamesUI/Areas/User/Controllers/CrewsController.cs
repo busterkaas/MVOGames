@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ServiceGateway;
-using ServiceGateway.Models;
 using MVOGamesUI.Areas.User.ViewModels;
 using BusinessLogic.CrewLogic;
+using DTOModels.Models;
 
 namespace MVOGamesUI.Areas.User.Controllers
 {
@@ -16,9 +16,10 @@ namespace MVOGamesUI.Areas.User.Controllers
         CrewPermission cp = new CrewPermission();
         Facade facade = new Facade();
         // GET: User/Crews
-        public ActionResult Index()
+        public ActionResult Index(String message)
         {
             var crews = facade.GetCrewGateway().GetAll().ToList();
+            ViewBag.Message = message;
             return View(crews);
         }
         public ActionResult Create()
@@ -27,15 +28,15 @@ namespace MVOGamesUI.Areas.User.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name, CrewImgUrl")]Crew crew)
+        public ActionResult Create([Bind(Include = "Name, CrewImgUrl")]CrewDTO crew)
         {
             if (!ModelState.IsValid)
             {
                 return View(crew);
             }
-            if (!MaxCrewsJoined()) {
-            
             int userId = Auth.user.Id;
+            if (!MaxCrewsJoined(userId)) {
+            
             crew.CrewLeaderId = userId;
             facade.GetCrewGateway().Create(crew);
             
@@ -106,13 +107,14 @@ namespace MVOGamesUI.Areas.User.Controllers
             var crew = facade.GetCrewGateway().Get(crewId);
             if (cp.CrewIsFull(crew.Users.Count))
             {
-                return RedirectToAction("Index");
+
+                return RedirectToAction("Index", new { message = "The chosen crew is full!" });
             }
-            if (MaxCrewsJoined())
+            if (MaxCrewsJoined(Auth.user.Id))
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { message = "You can maximum join 3 crews!" });
             }
-            CrewApplication ca = new CrewApplication() { CrewId = crewId, Crew = crew, UserId = Auth.user.Id, User = Auth.user };
+            CrewApplicationDTO ca = new CrewApplicationDTO() { CrewId = crewId, Crew = crew, UserId = Auth.user.Id, User = Auth.user };
             if (ca == null)
             {
                 return HttpNotFound();
@@ -129,27 +131,48 @@ namespace MVOGamesUI.Areas.User.Controllers
             }
             if (accepted)
             {
+                if (!MaxCrewsJoined(userId)) { 
                 var crew = facade.GetCrewGateway().Get(crewId);
                 var user = facade.GetUserGateway().Get(userId);
                 crew.Users.Add(user);
                 facade.GetCrewGateway().Update(crew);
+                }
             }
             facade.GetCrewApplicationGateway().Delete(appId);
             return RedirectToAction("MyCrew", "Crews", new { id = crewId});
         }
 
-        public bool MaxCrewsJoined()
+        public ActionResult LeaveCrew(int? crewId)
+        {
+            if (crewId == null)
+            {
+                return HttpNotFound();
+            }
+            int userId = Auth.user.Id;
+            var crew = facade.GetCrewGateway().Get(crewId);
+            var suggestionUsers = facade.GetSuggestionUsersGateway().GetAll().Where(su => su.CrewGameSuggestion.CrewId == crewId).ToList();
+            foreach(var su in suggestionUsers)
+            {
+                if(su.UserId == userId) { 
+                facade.GetSuggestionUsersGateway().Delete(su.Id);
+                }
+            }
+            crew.Users.RemoveAll(u => u.Id == userId);
+            facade.GetCrewGateway().Update(crew);
+
+
+            return RedirectToAction("Index", "Profile", new { area = "User" });
+        }
+
+        public bool MaxCrewsJoined(int userId)
         {
             var crews = facade.GetCrewGateway().GetAll().ToList();
 
                 var myCrews = from c in crews
-                               where c.Users.Any(user => user.Id == Auth.user.Id)
+                               where c.Users.Any(user => user.Id == userId)
                                select c;
 
             return cp.MaxCrewsJoined(myCrews.Count());
         }
-
-        
     }
-
 }

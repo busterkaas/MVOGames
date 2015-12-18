@@ -9,6 +9,7 @@ using MVOGamesUI.Infrastructure;
 using ServiceGateway;
 using MVOGamesUI.Areas.User.ViewModels;
 using MVOGamesUI.Areas.User.Models;
+using DTOModels.Models;
 
 namespace MVOGamesUI.Areas.User.Controllers
 {
@@ -44,7 +45,7 @@ namespace MVOGamesUI.Areas.User.Controllers
             {
                 return RedirectToAction("Index");
             }
-            ServiceGateway.Models.User user = Auth.user;
+            UserDTO user = Auth.user;
             UserCart uc = new UserCart(user, cartModel);
             return View(uc);
         }
@@ -67,12 +68,12 @@ namespace MVOGamesUI.Areas.User.Controllers
         public ActionResult Checkout(string cardType, int cardNumber, int expMonth, int expYear, int cvv, string cardOwner)
         {
             FakePayment payment = new FakePayment(cardType, cardNumber, expMonth, expYear, cvv, cardOwner);
-            ServiceGateway.Models.User user = Auth.user;
+            UserDTO user = Auth.user;
             UserCartPayment ucp = new UserCartPayment(user, cartModel, payment);
             try
             {
                 facade.GetOrderGateway().Create(
-                    new ServiceGateway.Models.Order()
+                    new OrderDTO()
                     {
                         Date = DateTime.Now,
                         UserId = user.Id,
@@ -83,7 +84,7 @@ namespace MVOGamesUI.Areas.User.Controllers
                 foreach (var item in cartModel.Items)
                 {
                     facade.GetOrderlineGateway().Create(
-                        new ServiceGateway.Models.Orderline()
+                        new OrderlineDTO()
                         {
                             OrderId = order.Id,
                             PlatformGameId =

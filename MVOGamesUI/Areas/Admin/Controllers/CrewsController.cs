@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using MVOGamesUI.Infrastructure;
 using ServiceGateway;
-using ServiceGateway.Models;
+using DTOModels.Models;
 
 namespace MVOGamesUI.Areas.Admin.Controllers
 {
@@ -29,7 +29,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Crew crew = facade.GetCrewGateway().Get(id);
+            CrewDTO crew = facade.GetCrewGateway().Get(id);
             if (crew == null)
             {
                 return HttpNotFound();
@@ -46,7 +46,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // POST: Admin/Crews/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,CrewImgUrl,CrewLeaderId")] Crew crew)
+        public ActionResult Create([Bind(Include = "Id,Name,CrewImgUrl,CrewLeaderId")] CrewDTO crew)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +64,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Crew crew = facade.GetCrewGateway().Get(id);
+            CrewDTO crew = facade.GetCrewGateway().Get(id);
             
             if (crew == null)
             {
@@ -76,7 +76,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // POST: Admin/Crews/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,CrewImgUrl,CrewLeaderId, Users")] Crew crew)
+        public ActionResult Edit([Bind(Include = "Id,Name,CrewImgUrl,CrewLeaderId, Users")] CrewDTO crew)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Crew crew = facade.GetCrewGateway().Get(id);
+            CrewDTO crew = facade.GetCrewGateway().Get(id);
             if (crew == null)
             {
                 return HttpNotFound();
@@ -108,7 +108,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Crew crew = facade.GetCrewGateway().Get(crewId);
+            CrewDTO crew = facade.GetCrewGateway().Get(crewId);
             //ServiceGateway.Models.User user = facade.GetUserGateway().Get(id);
             if (crew == null )
             {

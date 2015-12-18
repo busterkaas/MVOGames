@@ -8,10 +8,10 @@ using System.Web;
 using System.Web.Mvc;
 using MVOGamesUI.Infrastructure;
 using ServiceGateway;
-using ServiceGateway.Models;
 using System.Net.Http;
 using BusinessLogic.SearchLogic;
 using MVOGamesUI.Areas.Admin.ViewModels;
+using DTOModels.Models;
 
 namespace MVOGamesUI.Areas.Admin.Controllers
 {
@@ -47,7 +47,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Game game = facade.GetGameGateway().Get(id);
+            GameDTO game = facade.GetGameGateway().Get(id);
             if (game == null)
             {
                 return HttpNotFound();
@@ -67,14 +67,14 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,ReleaseDate,CoverUrl,TrailerUrl,Description")] Game game, int[] Genres)
+        public ActionResult Create([Bind(Include = "Id,Title,ReleaseDate,CoverUrl,TrailerUrl,Description")] GameDTO game, int[] Genres)
         {
             if (ModelState.IsValid)
             {
-                List<Genre> NewGenres = new List<Genre>();
+                List<GenreDTO> NewGenres = new List<GenreDTO>();
                 foreach (var genreID in Genres)
                 {
-                    NewGenres.Add(new Genre() { Id = genreID });
+                    NewGenres.Add(new GenreDTO() { Id = genreID });
                 }
                 game.Genres = NewGenres;
 
@@ -92,7 +92,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // GET: Admin/Games/Edit/5
         public ActionResult Edit(int? id)
         {
-           
+
             //if (id == null)
             //{
             //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -108,10 +108,10 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             //{
             //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             //}
-            Game game = facade.GetGameGateway().Get(id);
-            List<PlatformGame> platformGames = facade.GetPlatformGameGateway().GetAll().Where(o => o.GameId == game.Id).ToList();
-            List<Platform> platforms = new List<Platform>();
-            List<Genre> genres = new List<Genre>();
+            GameDTO game = facade.GetGameGateway().Get(id);
+            List<PlatformGameDTO> platformGames = facade.GetPlatformGameGateway().GetAll().Where(o => o.GameId == game.Id).ToList();
+            List<PlatformDTO> platforms = new List<PlatformDTO>();
+            List<GenreDTO> genres = new List<GenreDTO>();
 
             foreach (var p in platformGames)
             {
@@ -131,15 +131,15 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,ReleaseDate,CoverUrl,TrailerUrl,Description")] Game game, int[] Genres)
+        public ActionResult Edit([Bind(Include = "Id,Title,ReleaseDate,CoverUrl,TrailerUrl,Description")] GameDTO game, int[] Genres)
         {
             
             if (ModelState.IsValid)
             {
-                List<Genre> NewGenres = new List<Genre>();
+                List<GenreDTO> NewGenres = new List<GenreDTO>();
                 foreach (var genreID in Genres)
                 {
-                    NewGenres.Add(new Genre() { Id = genreID });
+                    NewGenres.Add(new GenreDTO() { Id = genreID });
                 }
                 game.Genres = NewGenres;
                 facade.GetGameGateway().Update(game);
@@ -155,7 +155,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Game game = facade.GetGameGateway().Get(id);
+            GameDTO game = facade.GetGameGateway().Get(id);
             if (game == null)
             {
                 return HttpNotFound();
@@ -174,9 +174,9 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        public IEnumerable<Game> GetGameSearch(string input)
+        public IEnumerable<GameDTO> GetGameSearch(string input)
         {
-            IEnumerable<Game> games = sl.GameSearch(facade.GetGameGateway().GetAll(), input);
+            IEnumerable<GameDTO> games = sl.GameSearch(facade.GetGameGateway().GetAll(), input);
             return games;
         }
     }

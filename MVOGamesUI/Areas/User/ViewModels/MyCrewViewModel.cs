@@ -1,4 +1,5 @@
-﻿using ServiceGateway.Models;
+﻿
+using DTOModels.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +9,16 @@ namespace MVOGamesUI.Areas.User.ViewModels
 {
     public class MyCrewViewModel
     {
-        public MyCrewViewModel(ServiceGateway.Models.User user, Crew crew, List<CrewGameSuggestion> crewSuggestions, List<CrewApplication> applications)
+        public MyCrewViewModel(UserDTO user, CrewDTO crew, List<CrewGameSuggestionDTO> crewSuggestions, List<CrewApplicationDTO> applications)
         {
             User = user;
             Crew = crew;
             CrewSuggestions = crewSuggestions;
             Applications = applications;
         }
-        public Crew Crew { get; set; }
-        public List<CrewGameSuggestion> CrewSuggestions { get; set; }
-        public List<CrewApplication> Applications { get; set; }
-        public ServiceGateway.Models.User User { get; set; }
+        public CrewDTO Crew { get; set; }
+        public List<CrewGameSuggestionDTO> CrewSuggestions { get; set; }
+        public List<CrewApplicationDTO> Applications { get; set; }
+        public UserDTO User { get; set; }
     }
 }

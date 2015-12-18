@@ -49,13 +49,13 @@
     <Compile Include="SearchLogic\SearchLogic.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServiceGateway\ServiceGateway.csproj">
-      <Project>{5d8d1638-b37b-4583-a756-71782afe1ed8}</Project>
-      <Name>ServiceGateway</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\..\rest\MVOGames_Rest\DTOModels\DTOModels.csproj">
+      <Project>{7cb8527a-50e1-411d-817c-15eecf56b884}</Project>
+      <Name>DTOModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

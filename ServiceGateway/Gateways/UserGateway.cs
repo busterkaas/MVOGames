@@ -4,14 +4,14 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using ServiceGateway.Models;
+using DTOModels.Models;
 
 namespace ServiceGateway.Gateways
 {
-    public class UserGateway : IServiceGateway<User>
+    public class UserGateway : IServiceGateway<UserDTO>
     {
         ServiceGateway sg = new ServiceGateway();
-        public HttpResponseMessage Create(User t)
+        public HttpResponseMessage Create(UserDTO t)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.PostAsJsonAsync("api/users", t).Result;
@@ -25,23 +25,23 @@ namespace ServiceGateway.Gateways
             return response;
         }
 
-        public User Get(int? id)
+        public UserDTO Get(int? id)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.GetAsync("api/users/" + id).Result;
-            var user = response.Content.ReadAsAsync<User>().Result;
+            var user = response.Content.ReadAsAsync<UserDTO>().Result;
             return user;
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<UserDTO> GetAll()
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.GetAsync("api/users/").Result;
-            var users = response.Content.ReadAsAsync<IEnumerable<User>>().Result;
+            var users = response.Content.ReadAsAsync<IEnumerable<UserDTO>>().Result;
             return users;
         }
 
-        public HttpResponseMessage Update(User t)
+        public HttpResponseMessage Update(UserDTO t)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.PutAsJsonAsync("api/users/" + t.Id, t).Result;

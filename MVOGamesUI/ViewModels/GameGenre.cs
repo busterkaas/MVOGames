@@ -1,4 +1,4 @@
-﻿using ServiceGateway.Models;
+﻿using DTOModels.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +8,16 @@ namespace MVOGamesUI.ViewModels
 {
     public class GameGenre
     {
-        public List<Game> Games { get; set; }
+        public List<GameDTO> Games { get; set; }
 
-        public void setGameList(List<Game> games)
+        public void setGameList(List<GameDTO> games)
         {
             Games = games;
         }
 
-        public List<Genre> Genres { get; set; }
+        public List<GenreDTO> Genres { get; set; }
 
-        public void setGenreList(List<Genre> genres)
+        public void setGenreList(List<GenreDTO> genres)
         {
             Genres = genres;
         }

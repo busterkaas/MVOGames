@@ -1,4 +1,5 @@
-﻿using ServiceGateway.Models;
+﻿
+using DTOModels.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace MVOGamesUI.Areas.User.ViewModels
 {
     public class GameDetailsViewModel
     {
-        public GameDetailsViewModel(ServiceGateway.Models.User user, Game game, List<PlatformGame> platformgames, int? selectedPfId, List<Crew> crews)
+        public GameDetailsViewModel(UserDTO user, GameDTO game, List<PlatformGameDTO> platformgames, int? selectedPfId, List<CrewDTO> crews)
         {
             Game = game;
             PlatformGames = platformgames;
@@ -24,10 +25,10 @@ namespace MVOGamesUI.Areas.User.ViewModels
                 PlatformGame = PlatformGames.Find(pg => pg.PlatformId == pfId);
             }
         }
-        public ServiceGateway.Models.User User { get; set; }
-        public PlatformGame PlatformGame { get; set; }
-        public Game Game { get; set; }
-        public List<PlatformGame> PlatformGames { get; set; }
-        public List<Crew> MyCrews { get; set; }
+        public UserDTO User { get; set; }
+        public PlatformGameDTO PlatformGame { get; set; }
+        public GameDTO Game { get; set; }
+        public List<PlatformGameDTO> PlatformGames { get; set; }
+        public List<CrewDTO> MyCrews { get; set; }
     }
 }

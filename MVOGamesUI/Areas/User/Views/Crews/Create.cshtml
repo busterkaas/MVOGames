@@ -1,9 +1,10 @@
-﻿@model ServiceGateway.Models.Crew
+﻿@model DTOModels.Models.CrewDTO
 
 <div class="container itemContainer">
     <div class="col-md-5 col-sm-5 col-lg-5">
         <h2 class="detailsHeader">Create Crew</h2>
-        <h3>@ViewBag.ErrorMessage</h3>
+        @if (ViewBag.ErrorMessage != null)
+        { <h4 class="errorMsg">@ViewBag.ErrorMessage</h4> }
 
         @using (Html.BeginForm())
         {

@@ -8,8 +8,8 @@
 
 
 <div class="container itemContainer">
-    <div class="dcontainer">
-        <div class="col col-lg-4 col-md-4 col-sm-6">
+    <div class="dcontainer col-lg-10 col-md-10 col-sm-10">
+        <div class="col col-lg-4 col-md-4 col-sm-4">
             <div class="leftDiv">
                 <img class="img-responsive imgGameCover" src="@Model.Game.CoverUrl" />
                 <div class="genreDiv">
@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-4 col-md-6 col-lg-6 infoDiv">
+        <div class="col-sm-7 col-md-7 col-lg-7 infoDiv">
             <h1 class="detailsHeader">@Model.Game.Title</h1>
             @{ int i = 2000 + Model.Game.ReleaseDate.Year; }
             <h4>@i</h4>
@@ -40,18 +40,15 @@
                 <h4>Description of: @Model.Game.Title</h4>
                 <p>@Model.Game.Description</p>
             </div>
-
-
         </div>
-        <div class="col-sm-2 col-md-2 col-lg-2">
-            <div class="container itemContainer buyDiv">
-                <div>
+    </div>
+        <div class="col-sm-2 col-md-2 col-lg-2 platformgameDiv">
                     @if (Model.PlatformGame != null)
                     {
                         <h4>@Model.PlatformGame.Platform.Name</h4>
                         <h4>Price: @Model.PlatformGame.Price</h4>
 
-                        <a class="btn btnGenerel" href='@Url.Action("Add", "ShoppingCart", new {id = Model.PlatformGame.Id})'>BUY</a>
+                        <a class="btn btnGenerel" href='@Url.Action("Add", "ShoppingCart", new {id = Model.PlatformGame.Id})'>Add to cart</a>
                         <br />
                         <br />
                         <div class="dropdown">
@@ -72,14 +69,5 @@
                     {
                         <h4>No platform selected</h4>
                     }
-                </div>
-            </div>
         </div>
-
-
-
-    </div>
-
-
-
 </div>

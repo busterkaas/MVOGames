@@ -1,8 +1,8 @@
 ﻿using BusinessLogic.OrderLogic;
+using DTOModels.Models;
 using MVOGamesUI.Areas.User.Models;
 using MVOGamesUI.Areas.User.ViewModels;
 using ServiceGateway;
-using ServiceGateway.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +34,7 @@ namespace MVOGamesUI.Areas.User.Controllers
             if (!join)
             {
                 var crewGameSuggestion = facade.GetCrewGameSuggestionGateway().Get(crewGameSugId);
-                facade.GetSuggestionUsersGateway().Create(new SuggestionUsers() { CrewGameSuggestionId = crewGameSugId, CrewGameSuggestion = crewGameSuggestion, HasConfirmed = false,UserId = Auth.user.Id, User = Auth.user });
+                facade.GetSuggestionUsersGateway().Create(new SuggestionUsersDTO() { CrewGameSuggestionId = crewGameSugId, CrewGameSuggestion = crewGameSuggestion, HasConfirmed = false,UserId = Auth.user.Id, User = Auth.user });
                 return RedirectToAction("Details", new { crewGameSuggestionId = crewGameSugId });
             }
             return RedirectToAction("Confirmation", new { crewGameSuggestionId = crewGameSugId });
@@ -47,8 +47,8 @@ namespace MVOGamesUI.Areas.User.Controllers
             Session["cgs"] = cgs;
 
 
-            ServiceGateway.Models.User user = Auth.user;
-            PlatformGame pfGame = cgs.PlatformGame;
+            UserDTO user = Auth.user;
+            PlatformGameDTO pfGame = cgs.PlatformGame;
             CrewBuyConfirmationVM cbcViewModel = new CrewBuyConfirmationVM(user, pfGame, cgs.Crew);
             return View(cbcViewModel);
         }
@@ -68,29 +68,29 @@ namespace MVOGamesUI.Areas.User.Controllers
         }
         public ActionResult Done()
         {
-            CrewGameSuggestion cgs = (CrewGameSuggestion)Session["cgs"];
-            facade.GetSuggestionUsersGateway().Create(new SuggestionUsers() { CrewGameSuggestion = cgs, CrewGameSuggestionId = cgs.Id, User = Auth.user, UserId = Auth.user.Id, HasConfirmed=true });
+            CrewGameSuggestionDTO cgs = (CrewGameSuggestionDTO)Session["cgs"];
+            facade.GetSuggestionUsersGateway().Create(new SuggestionUsersDTO() { CrewGameSuggestion = cgs, CrewGameSuggestionId = cgs.Id, User = Auth.user, UserId = Auth.user.Id, HasConfirmed=true });
             return RedirectToAction("Details", "CrewGameSuggestions", new { crewGameSuggestionId = cgs.Id });
         }
         
         public ActionResult CreateOrdersForCrew(int crewGameSuggestionId)
         {
             var crewGameSuggestion = facade.GetCrewGameSuggestionGateway().Get(crewGameSuggestionId);
-            var suggestionUsers = facade.GetSuggestionUsersGateway().GetAll().Where(
+            List<SuggestionUsersDTO> suggestionUsers = facade.GetSuggestionUsersGateway().GetAll().Where(
                                     u => u.CrewGameSuggestionId == crewGameSuggestionId).Where(
-                                    u=>u.HasConfirmed==true);
-            foreach(var user in suggestionUsers)
+                                    u=>u.HasConfirmed==true).ToList();
+            foreach(SuggestionUsersDTO user in suggestionUsers)
             {
                 
                     //create order
                     DateTime date = crewGameSuggestion.ExpirationDate;
                     TimeSpan ts =  crewGameSuggestion.ExpirationTime.TimeOfDay;
                     DateTime orderDate = date + ts;
-                    facade.GetOrderGateway().Create(new Order() { Date = orderDate, User = user.User, UserId = user.Id });
-
+                    facade.GetOrderGateway().Create(new OrderDTO() { Date = orderDate, User = user.User, UserId = user.Id });
+                var orders = facade.GetOrderGateway().GetAll();
                     //create orderline 
-                    var order = facade.GetOrderGateway().GetAll().Where(o => o.UserId == user.UserId).Last();
-                    facade.GetOrderlineGateway().Create(new Orderline() { Amount = 1, Discount = cd.CalculateDiscountDKK(
+                    var order = orders.Where(o => o.UserId == user.Id).Last();
+                    facade.GetOrderlineGateway().Create(new OrderlineDTO() { Amount = 1, Discount = cd.CalculateDiscountDKK(
                                                                         suggestionUsers.Count(), crewGameSuggestion.PlatformGame.Price),
                                                                         OrderId = order.Id, PlatformGameId =
                                                                          crewGameSuggestion.PlatformGameId });

@@ -1,4 +1,5 @@
-﻿using ServiceGateway.Models;
+﻿
+using DTOModels.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,14 +9,14 @@ namespace MVOGamesUI.Areas.User.ViewModels
 {
     public class CrewBuyConfirmationVM
     {
-        public CrewBuyConfirmationVM(ServiceGateway.Models.User user, PlatformGame platformGame, Crew crew)
+        public CrewBuyConfirmationVM(UserDTO user, PlatformGameDTO platformGame, CrewDTO crew)
         {
             User = user;
             PlatformGame = platformGame;
             Crew = crew;
         }
-        public ServiceGateway.Models.User User { get; set; }
-        public PlatformGame PlatformGame { get; set; }
-        public Crew Crew { get; set; }
+        public UserDTO User { get; set; }
+        public PlatformGameDTO PlatformGame { get; set; }
+        public CrewDTO Crew { get; set; }
     }
 }

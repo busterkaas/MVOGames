@@ -1,5 +1,4 @@
 ﻿using DTOModels.Models;
-using MVOGamesUI.Areas.User.Models.ShoppingCartModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +6,14 @@ using System.Web;
 
 namespace MVOGamesUI.Areas.User.ViewModels
 {
-    public class UserCart
+    public class OrderIndexVM
     {
-        public UserCart(UserDTO user, ShoppingCartModel cart)
+        public OrderIndexVM(UserDTO user, List<OrderDTO> orders)
         {
             User = user;
-            cartModel = cart;
+            Orders = orders;
         }
         public UserDTO User { get; set; }
-        public ShoppingCartModel cartModel { get; set; }
+        public List<OrderDTO> Orders { get; set; }
     }
 }

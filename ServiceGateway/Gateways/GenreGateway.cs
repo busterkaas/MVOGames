@@ -1,17 +1,17 @@
-﻿using System;
+﻿using DTOModels.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using ServiceGateway.Models;
 
 namespace ServiceGateway.Gateways
 {
-    public class GenreGateway : IServiceGateway<Genre>
+    public class GenreGateway : IServiceGateway<GenreDTO>
     {
         ServiceGateway sg = new ServiceGateway();
-        public HttpResponseMessage Create(Genre t)
+        public HttpResponseMessage Create(GenreDTO t)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.PostAsJsonAsync("api/genres", t).Result;
@@ -25,23 +25,23 @@ namespace ServiceGateway.Gateways
             return response;
         }
 
-        public Genre Get(int? id)
+        public GenreDTO Get(int? id)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.GetAsync("api/genres/" + id).Result;
-            var genre = response.Content.ReadAsAsync<Genre>().Result;
+            var genre = response.Content.ReadAsAsync<GenreDTO>().Result;
             return genre;
         }
 
-        public IEnumerable<Genre> GetAll()
+        public IEnumerable<GenreDTO> GetAll()
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.GetAsync("api/genres/").Result;
-            var genres = response.Content.ReadAsAsync<IEnumerable<Genre>>().Result;
+            var genres = response.Content.ReadAsAsync<IEnumerable<GenreDTO>>().Result;
             return genres;
         }
 
-        public HttpResponseMessage Update(Genre t)
+        public HttpResponseMessage Update(GenreDTO t)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.PutAsJsonAsync("api/genres/" + t.Id, t).Result;

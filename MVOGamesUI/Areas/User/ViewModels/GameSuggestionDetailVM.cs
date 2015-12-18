@@ -1,4 +1,5 @@
-﻿using ServiceGateway.Models;
+﻿
+using DTOModels.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +9,13 @@ namespace MVOGamesUI.Areas.User.ViewModels
 {
     public class GameSuggestionDetailVM
     {
-        public GameSuggestionDetailVM(CrewGameSuggestion cgs, List<SuggestionUsers> sUsers)
+        public GameSuggestionDetailVM(CrewGameSuggestionDTO cgs, List<SuggestionUsersDTO> sUsers)
         {
             CrewGameSuggestion = cgs;
             SuggestionUsers = sUsers;
         }
-        public CrewGameSuggestion CrewGameSuggestion { get; set; }
-        public List<SuggestionUsers> SuggestionUsers { get; set; }
+        public CrewGameSuggestionDTO CrewGameSuggestion { get; set; }
+        public List<SuggestionUsersDTO> SuggestionUsers { get; set; }
         public bool isInList()
         {
             foreach(var suggestionsUser in SuggestionUsers)

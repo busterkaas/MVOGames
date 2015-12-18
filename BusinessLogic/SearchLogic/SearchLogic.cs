@@ -1,4 +1,4 @@
-﻿using ServiceGateway.Models;
+﻿using DTOModels.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +9,10 @@ namespace BusinessLogic.SearchLogic
 {
     public class SearchLogic
     {
-        public IEnumerable<User> UserSearch(IEnumerable<User> users, string input)
+        public IEnumerable<UserDTO> UserSearch(IEnumerable<UserDTO> users, string input)
         {
-            List<User> matchedUser = new List<User>();
-            foreach (User user in users)
+            List<UserDTO> matchedUser = new List<UserDTO>();
+            foreach (UserDTO user in users)
             {
                 if (user.Email.ToLower().Contains(input.ToLower()) || user.Username.ToLower().Contains(input.ToLower())
                     || user.FirstName.ToLower().Contains(input.ToLower()) || user.LastName.ToLower().Contains(input.ToLower())
@@ -25,10 +25,10 @@ namespace BusinessLogic.SearchLogic
             return matchedUser;
         }
 
-        public IEnumerable<Game> GameSearch(IEnumerable<Game> games, string input)
+        public IEnumerable<GameDTO> GameSearch(IEnumerable<GameDTO> games, string input)
         {
-            List<Game> matchedGame = new List<Game>();
-            foreach (Game game in games)
+            List<GameDTO> matchedGame = new List<GameDTO>();
+            foreach (GameDTO game in games)
             {
                 if (game.Title.ToLower().Contains(input.ToLower()))
                 {

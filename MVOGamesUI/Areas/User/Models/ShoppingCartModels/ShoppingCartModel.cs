@@ -4,16 +4,16 @@ using System.Linq;
 using System.Web;
 using BusinessLogic.OrderLogic;
 using ServiceGateway;
-using ServiceGateway.Models;
+using DTOModels.Models;
 
 namespace MVOGamesUI.Areas.User.Models.ShoppingCartModels
 {
     public class ShoppingCartModel : IShoppingCartModel
     {
         CartLogic cl;
-        List<PlatformGame> platformGames; 
+        List<PlatformGameDTO> platformGames; 
 
-        public ShoppingCartModel(List<PlatformGame> platformGames )
+        public ShoppingCartModel(List<PlatformGameDTO> platformGames )
         {
             cl = new CartLogic();
             this.platformGames = platformGames;
@@ -27,7 +27,7 @@ namespace MVOGamesUI.Areas.User.Models.ShoppingCartModels
 
             if (cartItem == null)
             {
-                PlatformGame pGame = platformGames.Find(p => p.Id == id);
+                PlatformGameDTO pGame = platformGames.Find(p => p.Id == id);
                 //PlatformGame pGame = facade.GetPlatformGameGateway().Get(id);
                 cartItem = new ShoppingCartItem
                 {

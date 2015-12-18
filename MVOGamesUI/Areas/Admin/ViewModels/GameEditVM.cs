@@ -1,4 +1,5 @@
-﻿using ServiceGateway.Models;
+﻿
+using DTOModels.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +9,12 @@ namespace MVOGamesUI.Areas.Admin.ViewModels
 {
     public class GameEditVM
     {
-        private List<PlatformGame> platformgames;
-        private List<Platform> platforms;
-        private List<Genre> genres;
-        private Game games;
+        private List<PlatformGameDTO> platformgames;
+        private List<PlatformDTO> platforms;
+        private List<GenreDTO> genres;
+        private GameDTO games;
 
-        public GameEditVM( List<PlatformGame> platformgames, List<Platform> platforms, List<Genre> genres, Game games)
+        public GameEditVM( List<PlatformGameDTO> platformgames, List<PlatformDTO> platforms, List<GenreDTO> genres, GameDTO games)
         {
             this.platforms = platforms;
             this.platformgames = platformgames;
@@ -21,22 +22,22 @@ namespace MVOGamesUI.Areas.Admin.ViewModels
             this.games = games;
         }
         
-        public List<PlatformGame> GetPlatformGames()
+        public List<PlatformGameDTO> GetPlatformGames()
         {
             return platformgames;
         }
 
-        public List<Platform> GetPlatforms()
+        public List<PlatformDTO> GetPlatforms()
         {
             return platforms;
         }
 
-        public List<Genre> GetGenres()
+        public List<GenreDTO> GetGenres()
         {
             return genres;
         }
 
-        public Game GetGames()
+        public GameDTO GetGames()
         {
             return games;
         }

@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using MVOGamesUI.Infrastructure;
 using ServiceGateway;
-using ServiceGateway.Models;
+using DTOModels.Models;
 
 namespace MVOGamesUI.Areas.Admin.Controllers
 {
@@ -31,7 +31,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // POST: Admin/Platforms/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name")] Platform platform)
+        public ActionResult Create([Bind(Include = "Id,Name")] PlatformDTO platform)
         {
             if (ModelState.IsValid)
             {
@@ -49,7 +49,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Platform platform = facade.GetPlatformGateway().Get(id);
+            PlatformDTO platform = facade.GetPlatformGateway().Get(id);
             if (platform == null)
             {
                 return HttpNotFound();
@@ -60,7 +60,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // POST: Admin/Platforms/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id, Name")] Platform platform)
+        public ActionResult Edit([Bind(Include = "Id, Name")] PlatformDTO platform)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Platform platform = facade.GetPlatformGateway().Get(id);
+            PlatformDTO platform = facade.GetPlatformGateway().Get(id);
             if (platform == null)
             {
                 return HttpNotFound();

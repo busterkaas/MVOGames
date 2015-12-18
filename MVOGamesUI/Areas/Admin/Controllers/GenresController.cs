@@ -1,6 +1,6 @@
-﻿using MVOGamesUI.Infrastructure;
+﻿using DTOModels.Models;
+using MVOGamesUI.Infrastructure;
 using ServiceGateway;
-using ServiceGateway.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +31,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         // POST: Admin/Genres/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name")] Genre genre)
+        public ActionResult Create([Bind(Include = "Id,Name")] GenreDTO genre)
         {
             if (ModelState.IsValid)
             {
@@ -49,7 +49,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Genre genre = facade.GetGenreGateway().Get(id);
+            GenreDTO genre = facade.GetGenreGateway().Get(id);
             if (genre == null)
             {
                 return HttpNotFound();
@@ -59,7 +59,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
 
         // POST: Admin/Genres/Edit/5
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "Id,Name")] Genre genre)
+        public ActionResult Edit([Bind(Include = "Id,Name")] GenreDTO genre)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +77,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Genre genre = facade.GetGenreGateway().Get(id);
+            GenreDTO genre = facade.GetGenreGateway().Get(id);
             if (genre == null)
             {
                 return HttpNotFound();

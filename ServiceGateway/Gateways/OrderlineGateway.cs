@@ -1,17 +1,17 @@
-﻿using System;
+﻿using DTOModels.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using ServiceGateway.Models;
 
 namespace ServiceGateway.Gateways
 {
-    public class OrderlineGateway : IServiceGateway<Orderline>
+    public class OrderlineGateway : IServiceGateway<OrderlineDTO>
     {
         ServiceGateway sg = new ServiceGateway();
-        public HttpResponseMessage Create(Orderline t)
+        public HttpResponseMessage Create(OrderlineDTO t)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.PostAsJsonAsync("api/orderlines", t).Result;
@@ -25,23 +25,23 @@ namespace ServiceGateway.Gateways
             return response;
         }
 
-        public Orderline Get(int? id)
+        public OrderlineDTO Get(int? id)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.GetAsync("api/orderlines/" + id).Result;
-            var orderline = response.Content.ReadAsAsync<Orderline>().Result;
+            var orderline = response.Content.ReadAsAsync<OrderlineDTO>().Result;
             return orderline;
         }
 
-        public IEnumerable<Orderline> GetAll()
+        public IEnumerable<OrderlineDTO> GetAll()
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.GetAsync("api/orderlines/").Result;
-            var orderlines = response.Content.ReadAsAsync<IEnumerable<Orderline>>().Result;
+            var orderlines = response.Content.ReadAsAsync<IEnumerable<OrderlineDTO>>().Result;
             return orderlines;
         }
 
-        public HttpResponseMessage Update(Orderline t)
+        public HttpResponseMessage Update(OrderlineDTO t)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.PutAsJsonAsync("api/orderlines/" + t.Id, t).Result;

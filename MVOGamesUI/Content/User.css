@@ -39,6 +39,14 @@ h2 {
     box-shadow:	0 0 10px #fff, 
         0 0 20px #ff471a;
 }
+/*
+    Error Messages
+
+*/
+.errorMsg{
+    color: red;
+}
+
 /* The next section is for Shoppingcart*/
 
 .btnConfirm{

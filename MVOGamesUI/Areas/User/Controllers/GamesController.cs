@@ -8,7 +8,7 @@ using System.Web.UI.WebControls.WebParts;
 using MVOGamesUI.Areas.User.ViewModels;
 using MVOGamesUI.Infrastructure;
 using ServiceGateway;
-using ServiceGateway.Models;
+using DTOModels.Models;
 
 namespace MVOGamesUI.Areas.User.Controllers
 {
@@ -37,7 +37,7 @@ namespace MVOGamesUI.Areas.User.Controllers
             {
                 var platformGames = facade.GetPlatformGameGateway().GetAll().ToList().Where(p =>p.PlatformId ==platformId);
 
-                var newGames = new List<Game>();
+                var newGames = new List<GameDTO>();
                 foreach(var platformGame in platformGames)
                 {
                     newGames.Add(platformGame.Game);
@@ -71,7 +71,7 @@ namespace MVOGamesUI.Areas.User.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Game game = facade.GetGameGateway().Get(id);
+            GameDTO game = facade.GetGameGateway().Get(id);
             
             if (game == null)
             {
@@ -79,8 +79,8 @@ namespace MVOGamesUI.Areas.User.Controllers
             }
 
             var platformgames = facade.GetPlatformGameGateway().GetAll().ToList();
-            List<PlatformGame> selectedPfGames = platformgames.Where(p => p.GameId == id).ToList();
-            ServiceGateway.Models.User user = Auth.user;
+            List<PlatformGameDTO> selectedPfGames = platformgames.Where(p => p.GameId == id).ToList();
+            UserDTO user = Auth.user;
             var myCrews = from c in facade.GetCrewGateway().GetAll().ToList()
                             where c.Users.Any(u => u.Id == user.Id)
                             select c;

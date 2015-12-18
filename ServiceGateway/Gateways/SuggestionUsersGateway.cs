@@ -1,4 +1,4 @@
-﻿using ServiceGateway.Models;
+﻿using DTOModels.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace ServiceGateway.Gateways
 {
-    public class SuggestionUsersGateway : IServiceGateway<SuggestionUsers>
+    public class SuggestionUsersGateway : IServiceGateway<SuggestionUsersDTO>
     {
         ServiceGateway sg = new ServiceGateway();
-        public HttpResponseMessage Create(SuggestionUsers t)
+        public HttpResponseMessage Create(SuggestionUsersDTO t)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.PostAsJsonAsync("api/suggestionusers", t).Result;
@@ -25,23 +25,23 @@ namespace ServiceGateway.Gateways
             return response;
         }
 
-        public SuggestionUsers Get(int? id)
+        public SuggestionUsersDTO Get(int? id)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.GetAsync("api/suggestionusers/" + id).Result;
-            var suggestionUsers = response.Content.ReadAsAsync<SuggestionUsers>().Result;
+            var suggestionUsers = response.Content.ReadAsAsync<SuggestionUsersDTO>().Result;
             return suggestionUsers;
         }
 
-        public IEnumerable<SuggestionUsers> GetAll()
+        public IEnumerable<SuggestionUsersDTO> GetAll()
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.GetAsync("api/suggestionusers/").Result;
-            var suggestionUsers = response.Content.ReadAsAsync<IEnumerable<SuggestionUsers>>().Result;
+            var suggestionUsers = response.Content.ReadAsAsync<IEnumerable<SuggestionUsersDTO>>().Result;
             return suggestionUsers;
         }
 
-        public HttpResponseMessage Update(SuggestionUsers t)
+        public HttpResponseMessage Update(SuggestionUsersDTO t)
         {
             HttpClient client = sg.GetHttpClient();
             HttpResponseMessage response = client.PutAsJsonAsync("api/suggestionusers/" + t.Id, t).Result;

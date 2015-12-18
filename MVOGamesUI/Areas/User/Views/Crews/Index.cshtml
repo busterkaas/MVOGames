@@ -1,4 +1,4 @@
-﻿@model List<ServiceGateway.Models.Crew>
+﻿@model List<DTOModels.Models.CrewDTO>
 
 @{
     ViewBag.Title = "Index";
@@ -7,7 +7,9 @@
 
 <div class="itemContainer container">
     <h2 class="detailsHeader">Crews</h2>
-    <h4>@ViewBag.ErrorMessage</h4>
+    @if (ViewBag.Message != null)
+    { <h4 class="errorMsg">@ViewBag.Message</h4> }
+    
     <ul class="crewItems">
 
         @foreach (var crew in Model)

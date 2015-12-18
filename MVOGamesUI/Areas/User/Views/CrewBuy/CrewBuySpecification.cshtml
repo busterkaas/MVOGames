@@ -1,4 +1,5 @@
-﻿@model ServiceGateway.Models.CrewGameSuggestion
+﻿@model DTOModels.Models.CrewGameSuggestionDTO
+
 <ol class="progress-tracker">
     <li class="step active"><span class="step-name">Specification</span></li>
     <li class="step"><span class="step-name">Confirmation</span></li>
@@ -20,6 +21,7 @@
 
             <div class="form-horizontal">
                 <p>Please select date and time for deadline on your crew-order!</p>
+               
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
@@ -50,6 +52,10 @@
                     @Html.HiddenFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-5" })
 
                 </div>
+                @if (ViewBag.ErrorMessage != null)
+                {
+                    <h5 class="errorMsg">@ViewBag.ErrorMessage</h5>
+                }
                 <div class="form-group">
                     <div class="col-md-offset-8 col-md-12">
                         <input type="submit" value="Submit" class="btn btnGenerel" />
