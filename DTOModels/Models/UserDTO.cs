@@ -37,6 +37,7 @@ namespace DTOModels.Models
         [DisplayName("E-mail")]
         public string Email { get; set; }
         [Required]
+        [DisplayName("Password")]
         public string PasswordHash { get; set; }
         public int RoleId { get; set; }
         public RoleDTO Role { get; set; }

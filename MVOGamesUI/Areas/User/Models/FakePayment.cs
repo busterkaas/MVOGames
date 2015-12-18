@@ -27,7 +27,9 @@ namespace MVOGamesUI.Areas.User.Models
         public string CardType { get; set; }
         [Required]
         [DisplayName("Card number:")]
-        public int CardNumber { get; set; }
+        //[MaxLength(16)]
+        //[MinLength(16)]
+        public long CardNumber { get; set; }
         [Required]
         [Range(1, 12)]
         public int ExpMonth { get; set; }
@@ -36,6 +38,8 @@ namespace MVOGamesUI.Areas.User.Models
         public int ExpYear { get; set; }
         [Required]
         [DisplayName("CVV:")]
+        //[MaxLength(3)]
+        //[MinLength(3)]
         public int Cvv { get; set; }
         [Required]
         [DisplayName("Card owner:")]
