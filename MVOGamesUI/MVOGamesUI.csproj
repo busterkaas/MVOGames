@@ -242,7 +242,6 @@
     <Content Include="Areas\Admin\Views\Genres\Delete.cshtml" />
     <Content Include="Areas\User\Views\Crews\MyCrew.cshtml" />
     <Content Include="Areas\Admin\Views\Crews\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Crews\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Crews\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Crews\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Crews\Delete.cshtml" />

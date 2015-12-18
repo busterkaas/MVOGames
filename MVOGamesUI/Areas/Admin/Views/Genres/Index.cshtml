@@ -1,20 +1,25 @@
-﻿@model System.Collections.Generic.IEnumerable<DTOModels.Models.GenreDTO>
+﻿@model IEnumerable<DTOModels.Models.GenreDTO>
+
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Genres</h2>
-<button class="btn btn-success" onclick="window.location.href = '@Url.Action("Create", "Genres")'">Create Genres</button>
-<br />
-<br />
+<h2><strong>Genres</strong></h2>
+
+<hr />
 <div class="container itemContainer">
+    <br />
+    <button class="btn btn-success" onclick="window.location.href = '@Url.Action("Create", "Genres")'">Create Genres</button>
+    <br />
+    <br />
     <table class="table table-condensed table-hover">
         <thead class="col-lg-12 ">
-            <tr>
+            <tr class="tablehederColor">
                 <th style="border-bottom: none">
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
+                <th></th>
             </tr>
         </thead>
         <tbody class="col-lg-12">
@@ -37,5 +42,6 @@
     </table>
 
 </div>
+
 
 

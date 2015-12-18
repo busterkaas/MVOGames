@@ -84,10 +84,10 @@
                                     @Html.Label(platformGame.Price.ToString())
                                 }
                             }
-                            
+
                         </td>
-                        <td>
-                            <a href='@Url.Action("DeleteGameFromOrder", "Orders", new { id = order.Id, orderId = Model.GetOrder().Id})'>Remove</a>
+                        <td align="right">
+                            <a href='@Url.Action("DeleteGameFromOrder", "Orders", new { id = order.Id, orderId = Model.GetOrder().Id})' class="btn btn-danger">Remove</a>
                         </td>
                     </tr>
                     <br />
@@ -95,16 +95,17 @@
             </table>
 
             <p>
-                <a href="@Url.Action("NewGameToOrder", "Orders", new { area = "Admin", orderId = Model.GetOrder().Id})">new</a>
+
             </p>
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
                 <p align="right">
-                    
-                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                    <a href="@Url.Action("NewGameToOrder", "Orders", new { area = "Admin", orderId = Model.GetOrder().Id})" class="btn btn-success">New</a>
+                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-primary" })
                 </p>
             }
         </div>
     </dl>
 </div>
+

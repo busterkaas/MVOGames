@@ -1,70 +1,69 @@
-﻿@model DTOModels.Models.GameDTO
+﻿@model MVOGamesUI.Areas.Admin.ViewModels.GameEditVM
 
 @{
     ViewBag.Title = "Delete";
 }
-
-<h2>Delete Game</h2>
-
-<h2>Are you sure you want to delete <strong>@Model.Title</strong>?</h2>
+<h2>Are you sure you want to delete <strong>@Model.GetGames().Title</strong>?</h2>
 <div>
     <hr />
-    <dl class="container itemContainer dl-horizontal">
+    <div class="container itemContainer dl-horizontal">
         <br />
-        <div class="myDisplayFor">
+        <div class="col-md-8">
             <dt>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.GetGames().Title)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Title)
+                @Html.DisplayFor(model => model.GetGames().Title)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.ReleaseDate)
+                @Html.DisplayNameFor(model => model.GetGames().ReleaseDate)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.ReleaseDate)
-            </dd>
-
-
-            <dt>
-                @Html.DisplayNameFor(model => model.CoverUrl)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.CoverUrl)
+                @Html.DisplayFor(model => model.GetGames().ReleaseDate)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.TrailerUrl)
+                @Html.DisplayNameFor(model => model.GetGames().CoverUrl)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.TrailerUrl)
+                @Html.DisplayFor(model => model.GetGames().CoverUrl)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.GetGames().TrailerUrl)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Description)
+                @Html.DisplayFor(model => model.GetGames().TrailerUrl)
             </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.GetGames().Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.GetGames().Description)
+            </dd>
+
             <br />
             <dt>
-                @Html.DisplayNameFor(model => model.Genres)
+                @Html.DisplayNameFor(model => model.GetGames().Genres)
             </dt>
+
             <dd>
-                @foreach (var genre in Model.Genres)
-                {
+                @foreach (var genre in Model.GetGenres())
+            {
                     @Html.DisplayFor(model => genre.Name)
                     <br />
                 }
             </dd>
 
             <br />
+
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
@@ -75,10 +74,45 @@
                     </div>
                 </dd>
             }
+            <br />
         </div>
-        <br />
-    </dl>
+        <div class="col-md-4">
+            <table class="table table table-condensed">
+                <thead class="table">
+                    <tr class="tablehederColor">
+                        <th class="col-md-1">
+                            Platform
+                        </th>
+                        <th class="col-md-1">
+                            In Stock
+                        </th>
+                        <th class="col-md-1">
+                            Price
+                        </th>
+                    </tr>
+                </thead>
+                @foreach (var platformsGames in Model.GetPlatformGames())
+                {
+                    <tbody>
+                        <tr>
+                            <td>
+                                @platformsGames.Platform.Name
+                            </td>
+                            <td>
+                                @platformsGames.Stock
+                            </td>
+                            <td>
+                                @platformsGames.Price
+                            </td>
+                        </tr>
+                    </tbody>
+
+                }
+            </table>
+        </div>
+    </div>
 
 
 
 </div>
+

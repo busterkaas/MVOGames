@@ -63,3 +63,13 @@ button {
     width: 100px;
 }
 
+.listBox
+{
+   width: 225px;
+   border:groove;
+}
+
+.dropdownlist{
+    width: 225px;
+}
+

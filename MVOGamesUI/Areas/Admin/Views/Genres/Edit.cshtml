@@ -4,15 +4,15 @@
     ViewBag.Title = "Edit Genre";
 }
 
-<h2>Edit Genres</h2>
+<h2><strong>Edit Genres</strong></h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.Id)
-
+    <hr />
     <div class="container itemContainer form-horizontal">
-        <hr />
+        <br />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="myEditorForLengthEdit form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })

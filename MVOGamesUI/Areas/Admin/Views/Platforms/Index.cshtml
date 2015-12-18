@@ -5,15 +5,20 @@
 }
 
 <h2>Platforms</h2>
-<button class="btn btn-success" onclick="window.location.href = '@Url.Action("Create", "Platforms")'">Create Platform</button>
-<br />
-<br/>
+<hr />
 <div class="container itemContainer">
+    <br />
+    <button class="btn btn-success" onclick="window.location.href = '@Url.Action("Create", "Platforms")'">Create Platform</button>
+    <br />
+    <br />
     <table class="table table-condensed table-hover">
-        <thead class="col-lg-12 ">
-            <tr>
+        <thead class="table">
+            <tr class="tablehederColor">
                 <th>
                     @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+
                 </th>
             </tr>
         </thead>

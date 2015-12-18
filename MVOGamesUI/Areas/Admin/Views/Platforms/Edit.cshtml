@@ -4,15 +4,15 @@
     ViewBag.Title = "Edit Platform";
 }
 
-<h2>Edit Platform</h2>
+<h2><strong>Edit Platform</strong></h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.Id)
-
+    <hr />
     <div class="container itemContainer form-horizontal">
-        <hr />
+        <br />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="myEditorForLengthEdit form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })

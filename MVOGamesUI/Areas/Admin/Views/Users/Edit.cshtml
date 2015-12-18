@@ -4,19 +4,23 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2><strong>Edit User</strong></h2>
+
+@ViewBag.ErrorMessage
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>User</h4>
-        <hr />
+    <hr />
+    <div class="container itemContainer form-horizontal">
+        <br />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.PasswordHash)
+        @Html.HiddenFor(model => model.RoleId)
 
-        <div class="form-group">
+
+        <div class="myEditorForLengthEdit form-group">
             @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
@@ -24,24 +28,7 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PasswordHash, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.HiddenFor(model => model.PasswordHash, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PasswordHash, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.HiddenFor(model => model.RoleId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group">
+        <div class="myEditorForLengthEdit form-group">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
@@ -49,7 +36,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="myEditorForLengthEdit form-group">
             @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
@@ -57,7 +44,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="myEditorForLengthEdit form-group">
             @Html.LabelFor(model => model.StreetName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.StreetName, new { htmlAttributes = new { @class = "form-control" } })
@@ -65,7 +52,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="myEditorForLengthEdit form-group">
             @Html.LabelFor(model => model.HouseNr, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.HouseNr, new { htmlAttributes = new { @class = "form-control" } })
@@ -73,7 +60,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="myEditorForLengthEdit form-group">
             @Html.LabelFor(model => model.ZipCode, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
@@ -81,7 +68,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="myEditorForLengthEdit form-group">
             @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
@@ -89,7 +76,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="myEditorForLengthEdit form-group">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
@@ -98,7 +85,7 @@
         </div>
 
 
-        <div class="form-group">
+        <div class="myEditorForLengthEdit form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-success" />
                 @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-primary" })
@@ -106,7 +93,3 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

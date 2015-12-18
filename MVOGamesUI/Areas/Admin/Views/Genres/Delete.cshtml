@@ -1,40 +1,26 @@
 ﻿@model DTOModels.Models.GenreDTO
 
+
 @{
     ViewBag.Title = "Delete Genre";
 }
 
 
-<h2>Are you sure you want to delete <strong>@Model.Name</strong>?</h2>
+<h2>Are you sure you want to delete the Genre <strong>"@Model.Name"</strong>?</h2>
 <div>
     <hr />
-    <dl class="container itemContainer dl-horizontal">
+    <div class="container itemContainer">
         <br />
-        <div class="myDisplayFor">
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-
-
-            <br />
-            @using (Html.BeginForm())
+        @using (Html.BeginForm())
             {
-                @Html.AntiForgeryToken()
-                <dd>
-                    <div class="form-actions no-color">
-                        <input type="submit" value="Delete" class="btn btn-success" />
-                        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
-                    </div>
-                </dd>
-            }
-        </div>
+            @Html.AntiForgeryToken()
+            <dd>
+                <div class="form-actions no-color moveRight50" align="center">
+                    <input type="submit" value="Delete" class="btn btn-success" /> |
+                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                </div>
+            </dd>
+        }
         <br />
-    </dl>
-
-
-
+    </div>
 </div>
