@@ -62,7 +62,6 @@
                     @foreach (var genre in Model.GetGenres())
                 {
                         @Html.Label(genre.Name, new { htmlAttributes = new { @class = "form-control" } })
-                        @*@Html.ValidationMessageFor(model => model.GetGenres()., "", new { @class = "text-danger" })*@
                         <br />
                     }
 
@@ -73,7 +72,6 @@
                 @Html.Label("Genre", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.ListBox("genres", null, new { @class = "listBox" })
-                    @*@Html.ValidationMessageFor(model => model.GetGenres(), "", new { @class = "text-danger" })*@
                 </div>
             </div>
 
@@ -88,13 +86,13 @@
             <table class="table table table-condensed">
                 <thead class="table">
                     <tr class="tablehederColor">
-                        <th class="col-md-2">
+                        <th>
                             Platform
                         </th>
-                        <th class="col-md-1">
+                        <th>
                             In Stock
                         </th>
-                        <th class="col-md-1">
+                        <th>
                             Price
                         </th>
                         <th>
@@ -122,6 +120,14 @@
                     </tbody>
                 }
             </table>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <p align="right">
+                    <a href="@Url.Action("CreatePlatformToGame", "Games", new { area = "Admin", gameId = Model.GetGames().Id })" class="btn btn-success">New</a>
+                </p>
+            }
         </div>
     </div>
 }

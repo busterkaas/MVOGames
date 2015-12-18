@@ -120,7 +120,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
                 genres.Add(facade.GetGenreGateway().Get(g.Id));
             }
             GameEditVM gEditVM = new GameEditVM(platformGames, platforms, genres, game);
-            ViewBag.Genres = new SelectList(genres, "Id", "Name");
+            ViewBag.Genres = new SelectList(facade.GetGenreGateway().GetAll(), "Id", "Name");
             return View(gEditVM);
         }
 
@@ -198,9 +198,25 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult CreatePlatformToGame()
+        public ActionResult CreatePlatformToGame(int gameId, PlatformGameDTO platformGameId)
         {
+            ViewBag.Platforms = new SelectList(facade.GetPlatformGateway().GetAll().OrderBy(g => g.Name), "Id", "Name");
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreatePlatformToGame([Bind(Include = "Id,GameId,PlatformId,Price,Stock")]PlatformGameDTO platformGame)
+        {
+            if (platformGame == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            facade.GetPlatformGameGateway().Create(platformGame);
+            ViewBag.Platforms = new SelectList(facade.GetPlatformGameGateway().GetAll().OrderBy(g => g.Platform.Name).Select(g => g.Platform.Name), platformGame.PlatformId);
+
+            return RedirectToAction("Edit" + "/" + platformGame.Id);
         }
 
         public ActionResult EditPlatformFromGame()

@@ -265,6 +265,7 @@
     <Content Include="Areas\User\Views\Crews\Create.cshtml" />
     <Content Include="Areas\User\Views\Orders\MyOrders.cshtml" />
     <Content Include="Areas\User\Views\Shared\_UserInformation.cshtml" />
+    <Content Include="Areas\Admin\Views\Games\CreatePlatformToGame.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
