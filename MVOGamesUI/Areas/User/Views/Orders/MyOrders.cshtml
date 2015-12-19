@@ -1,24 +1,68 @@
 ﻿@model MVOGamesUI.Areas.User.ViewModels.OrderIndexVM
 
 <div class="container itemContainer">
-    <h1 class="detailsHeader">My Orders</h1>
-    <br />
-    <br />
-    @if (Model.Orders != null && Model.Orders.Count > 0)
-    {
-    foreach (var order in Model.Orders)
-    {
-    <a href="@Url.Action("SpecificOrder", "Orders", new { area = "User", orderId = order.Id })" class="list-group-item">
+    <div class="col-sm-6 col-md-6 col-lg-6 myOrders">
+        <h1 class="detailsHeader">My Orders</h1>
+        <br />
+        <br />
+        @if (Model.Orders != null && Model.Orders.Count > 0)
+        {
+            foreach (var order in Model.Orders)
+            {
+                <a href="@Url.Action("MyOrders", "Orders", new { area = "User", orderId = order.Id })" class="list-group-item aOrder">
 
-        <h4 class="list-group-item-heading">@order.Date</h4>
-        <p class="list-group-item-text">@Model.User.FirstName @Model.User.LastName</p>
-    </a>
+                    <h4 class="list-group-item-heading">@order.Date</h4>
+                    <p class="list-group-item-text">@Model.User.FirstName @Model.User.LastName</p>
+                </a>
+            }
         }
-    }
-    else
-    {
-        <h4>You have no orders yet!</h4>
-    }
+        else
+        {
+            <h4>You have no orders yet!</h4>
+        }
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-6">
+        @if (Model.SelectedOrder != null)
+        {
+            <h4>Games ordered</h4>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayName("Amount")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Discount")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Order Id")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Game")
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var orderline in Model.SelectedOrder.Orderlines)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => orderline.Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => orderline.Discount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => orderline.OrderId)
+                        </td>
+                        <td>
+                            @Html.Action("GetPlatformGame", "Orders", new { platformGameId = orderline.PlatformGameId })
+                        </td>
+                    </tr>
+                }
+            </table>
+            
+        }
+    </div>
 
 
 </div>

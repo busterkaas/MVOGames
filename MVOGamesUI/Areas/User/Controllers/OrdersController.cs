@@ -14,18 +14,38 @@ namespace MVOGamesUI.Areas.User.Controllers
     {
         Facade facade = new Facade();
         // GET: User/Orders
-        public ActionResult MyOrders()
+        public ActionResult MyOrders(int? orderId)
         {
             UserDTO user = Auth.user;
             var myOrders = facade.GetOrderGateway().GetAll().Where(o => o.UserId == user.Id).ToList();
+            OrderDTO selectedOrder = null;
 
-            //foreach(var order in myOrders)
-            //{
-            //    order.Orderlines = new List<Orderline>();
-            //    var orderlinesForUser = facade.GetOrderlineGateway().GetAll().Where(o => o.OrderId == order.Id);
-            //}
-            OrderIndexVM viewModel = new OrderIndexVM(user, myOrders);
+            foreach (var order in myOrders)
+            {
+                if (orderId != null)
+                {
+                        if(order.Id == orderId)
+                    {
+                        selectedOrder = order;
+                    }
+                }
+                order.Orderlines = new List<OrderlineDTO>();
+                var orderlinesForUser = facade.GetOrderlineGateway().GetAll().Where(o => o.OrderId == order.Id);
+                foreach(var orderline in orderlinesForUser)
+                {
+                    order.Orderlines.Add(orderline);
+                }
+            }
+            
+            OrderIndexVM viewModel = new OrderIndexVM(user, myOrders, selectedOrder);
             return View(viewModel);
+        }
+        [ChildActionOnly]
+        public ActionResult getPlatformGame(int platformGameId)
+        {
+            var platformGame = facade.GetPlatformGameGateway().Get(platformGameId);
+
+            return Content(platformGame.Game.Title +" - " + platformGame.Platform.Name);
         }
     }
 }

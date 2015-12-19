@@ -7,29 +7,10 @@ namespace MVOGamesUI.Infrastructure
 {
     public class RoleProvider : System.Web.Security.RoleProvider
     {
-
         public override string[] GetRolesForUser(string username)
         {
             var role = new string[] { Auth.user.Role.RoleName };
             return role;
-            //if (Auth.user.RoleId == 1)
-            //{
-            //    return new [] {"admin"};
-            //}else if (Auth.user.RoleId == 2)
-            //{
-            //    return new[] {"user"};
-            //}
-
-            //if (username == "buster")
-            //{
-            //    return new[] { "admin" };
-            //}
-            //else if (username == "shane")
-            //{
-            //    return new[] { "user" };
-            //}
-            //return new string[] { };
-
         }
 
         public override string ApplicationName
