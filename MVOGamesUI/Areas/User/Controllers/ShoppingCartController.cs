@@ -65,7 +65,7 @@ namespace MVOGamesUI.Areas.User.Controllers
             return RedirectToAction("Checkout", "ShoppingCart", new { cardType = fakepayment.CardType, cardNumber = fakepayment.CardNumber, expMonth = fakepayment.ExpMonth, expYear = fakepayment.ExpYear, cvv = fakepayment.Cvv, cardOwner = fakepayment.CardOwner });
         }
 
-        public ActionResult Checkout(string cardType, int cardNumber, int expMonth, int expYear, int cvv, string cardOwner)
+        public ActionResult Checkout(string cardType, long cardNumber, int expMonth, int expYear, int cvv, string cardOwner)
         {
             FakePayment payment = new FakePayment(cardType, cardNumber, expMonth, expYear, cvv, cardOwner);
             UserDTO user = Auth.user;
