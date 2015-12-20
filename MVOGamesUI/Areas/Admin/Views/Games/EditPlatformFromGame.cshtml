@@ -1,0 +1,61 @@
+﻿@model DTOModels.Models.PlatformGameDTO
+
+@{
+    ViewBag.Title = "Edit Platform For Game";
+}
+
+<h2>EditPlatformFromGame</h2>
+
+<hr />
+<div class="container itemContainer">
+    <br />
+
+    <div class="dl-horizontal">
+        <div class="col-md-8">
+            <dt>
+                @Html.DisplayNameFor(model => model.Platform.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Platform.Name)
+            </dd>
+        </div>
+
+    </div>
+    <br />
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <br />
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Stock, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Stock, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Stock, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                    <a class="btn btn-info" href="@Url.Action("Edit", "Games", new {id = Model.GameId })">Back</a>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>

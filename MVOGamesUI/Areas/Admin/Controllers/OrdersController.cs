@@ -154,11 +154,11 @@ namespace MVOGamesUI.Areas.Admin.Controllers
 
         // GET: Admin/Order/NewGameToOrder/5
         //public ActionResult NewGameToOrder(int? id)
-        public ActionResult NewGameToOrder(int orderId, OrderlineDTO orderline)
+        public ActionResult NewGameToOrder(int orderId)
         {
-            
             ViewBag.GameList = new SelectList(facade.GetPlatformGameGateway().GetAll().OrderBy(g => g.Game.Title), "Id", "GamePlatformName");
-            return View();
+            var orderline = new OrderlineDTO() { OrderId = orderId };
+            return View(orderline);
         }
 
 

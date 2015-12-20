@@ -197,31 +197,53 @@ namespace MVOGamesUI.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
-
-        public ActionResult CreatePlatformToGame(int gameId, PlatformGameDTO platformGameId)
+        // GET: Admin/Game/CreatePlatformToGame/5
+        public ActionResult CreatePlatformToGame(int gameId)
         {
             ViewBag.Platforms = new SelectList(facade.GetPlatformGateway().GetAll().OrderBy(g => g.Name), "Id", "Name");
-            return View();
+            var platformGame = new PlatformGameDTO() {GameId = gameId };
+            return View(platformGame);
         }
 
-        // POST: Admin/Order/CreatePlatformToGame/5
+        // POST: Admin/Game/CreatePlatformToGame/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreatePlatformToGame([Bind(Include = "Id,GameId,PlatformId,Price,Stock,GamePlatformName)")]PlatformGameDTO platformGame)
+        public ActionResult CreatePlatformToGame([Bind(Include = "Id,GameId,PlatformId,Price,Stock")] PlatformGameDTO platformGame)
         {
+            var platformGames = facade.GetPlatformGameGateway().GetAll().Where(g => g.GameId == platformGame.GameId);
+            foreach(var pg in platformGames)
+            {
+                if(pg.PlatformId == platformGame.PlatformId)
+                {
+                    ViewBag.Platforms = new SelectList(facade.GetPlatformGateway().GetAll().OrderBy(g => g.Name), "Id", "Name");
+                    ViewBag.Error = "Platformgame already exists";
+                    return View(platformGame);
+                }
+            }
             if (platformGame == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
+            platformGame.Game = facade.GetGameGateway().Get(platformGame.GameId);
+            platformGame.Platform = facade.GetPlatformGateway().Get(platformGame.PlatformId);
 
             facade.GetPlatformGameGateway().Create(platformGame);
-            ViewBag.Platforms = new SelectList(facade.GetPlatformGameGateway().GetAll().OrderBy(g => g.Platform.Name).Select(g => g.Platform.Name), platformGame.PlatformId);
 
-            return RedirectToAction("Edit" + "/" + platformGame.Id);
+            return RedirectToAction("Edit" + "/" + platformGame.GameId);
         }
 
-        public ActionResult EditPlatformFromGame()
+        // GET: Admin/Game/EditPlatformGame/5
+        public ActionResult EditPlatformFromGame(int? id)
         {
+            PlatformGameDTO platformGame = facade.GetPlatformGameGateway().Get(id);
+            return View(platformGame);
+        }
+
+        //POST: Admin/Game/EditPlatformGame/5
+        public ActionResult EditPlatformFromGame([Bind(Include = "Id,GameId,PlatformId,Price,Stock")] PlatformGameDTO platformGame)
+        {
+
             return View();
         }
 

@@ -18,10 +18,9 @@ namespace DTOModels.Models
         [Range(1.00, 2000, ErrorMessage = "Price must be between 1.00 and 2001.00")]
         public decimal Price { get; set; }
         public int Stock { get; set; }
-
         public string GamePlatformName
         {
-            get {return Game.Title + "  -  " + Platform.Name;}
+            get { return Game.Title + "  -  " + Platform.Name; }
         }
     }
 }
