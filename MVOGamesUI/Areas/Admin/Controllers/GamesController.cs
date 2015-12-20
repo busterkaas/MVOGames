@@ -204,9 +204,10 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             return View();
         }
 
+        // POST: Admin/Order/CreatePlatformToGame/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreatePlatformToGame([Bind(Include = "Id,GameId,PlatformId,Price,Stock")]PlatformGameDTO platformGame)
+        public ActionResult CreatePlatformToGame([Bind(Include = "Id,GameId,PlatformId,Price,Stock,GamePlatformName)")]PlatformGameDTO platformGame)
         {
             if (platformGame == null)
             {

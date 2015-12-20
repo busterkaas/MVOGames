@@ -114,6 +114,7 @@
                                 @platformsGames.Price
                             </td>
                             <td align="right">
+                                <a href='@Url.Action("EditPlatformFromGame", "Games", new { id = platformsGames.Id, gameId = Model.GetGames().Id})' class="btn btn-warning">Edit</a>
                                 <a href='@Url.Action("DeletePlatformFromGame", "Games", new { id = platformsGames.Id, gameId = Model.GetGames().Id})' class="btn btn-danger">Remove</a>
                             </td>
                         </tr>

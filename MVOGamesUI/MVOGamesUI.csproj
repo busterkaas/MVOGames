@@ -141,6 +141,7 @@
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\ViewModels\GameEditVM.cs" />
     <Compile Include="Areas\Admin\ViewModels\OrderGames.cs" />
+    <Compile Include="Areas\Admin\ViewModels\OrderlinePlatformGameVM.cs" />
     <Compile Include="Areas\Admin\ViewModels\RolesUser.cs" />
     <Compile Include="Areas\User\Controllers\CrewBuyController.cs" />
     <Compile Include="Areas\User\Controllers\CrewGameSuggestionsController.cs" />

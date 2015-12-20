@@ -13,8 +13,10 @@
     <hr />
     <div class="container itemContainer dl-horizontal form-horizontal">
         <br />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.GamePlatformName)
         <div class="form-group">
             @Html.LabelFor(model => model.Platform.Name, "Game", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

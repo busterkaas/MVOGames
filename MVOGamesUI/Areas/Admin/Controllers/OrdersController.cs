@@ -156,6 +156,7 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         //public ActionResult NewGameToOrder(int? id)
         public ActionResult NewGameToOrder(int orderId, OrderlineDTO orderline)
         {
+            
             ViewBag.GameList = new SelectList(facade.GetPlatformGameGateway().GetAll().OrderBy(g => g.Game.Title), "Id", "GamePlatformName");
             return View();
         }
