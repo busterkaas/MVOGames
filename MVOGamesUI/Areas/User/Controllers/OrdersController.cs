@@ -41,7 +41,7 @@ namespace MVOGamesUI.Areas.User.Controllers
             return View(viewModel);
         }
         [ChildActionOnly]
-        public ActionResult getPlatformGame(int platformGameId)
+        public ActionResult GetPlatformGame(int platformGameId)
         {
             var platformGame = facade.GetPlatformGameGateway().Get(platformGameId);
 

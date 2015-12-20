@@ -27,7 +27,6 @@ namespace MVOGamesUI
                     Facade facade = new Facade();
                     List<UserDTO> users = facade.GetUserGateway().GetAll().ToList();
                     string username = HttpContext.Current.User.Identity.Name;
-                    //user = df.GetUserRepository().FindByUsername(HttpContext.Current.User.Identity.Name);
                     user = users.First(u => u.Username == username);
 
                     if (user == null)
