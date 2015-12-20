@@ -36,11 +36,11 @@ namespace DTOModels.Models
         [Required]
         [DisplayName("E-mail")]
         public string Email { get; set; }
+        public int RoleId { get; set; }
+        public RoleDTO Role { get; set; }
         [Required]
         [DisplayName("Password")]
         public string PasswordHash { get; set; }
-        public int RoleId { get; set; }
-        public RoleDTO Role { get; set; }
         public void SetPassword(string password)
         {
             PasswordHash = BCrypt.Net.BCrypt.HashPassword(password, WorkFactor);

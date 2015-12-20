@@ -64,7 +64,6 @@ namespace MVOGamesUI.Controllers
             {
                 return RedirectToAction("Index", "Profile", new { area = "User" });
             }
-            //return RedirectToRoute("home");
         }
 
         public ActionResult Logout()

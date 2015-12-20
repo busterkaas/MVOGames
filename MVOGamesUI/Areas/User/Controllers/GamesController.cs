@@ -23,7 +23,6 @@ namespace MVOGamesUI.Areas.User.Controllers
             var games = facade.GetGameGateway().GetAll().ToList();
             var genres = facade.GetGenreGateway().GetAll().ToList();
             var platforms = facade.GetPlatformGateway().GetAll().ToList();
-
            
             if (genreId != null)
             {
@@ -47,14 +46,12 @@ namespace MVOGamesUI.Areas.User.Controllers
                 
             }
             GamePlatformGenre gpg = new GamePlatformGenre(games, genres, platforms);
-            
             return View(gpg);
         }
 
         [HttpPost]
         public ActionResult Index(string search)
         {
-
             var genres = facade.GetGenreGateway().GetAll().ToList();
             var platforms = facade.GetPlatformGateway().GetAll().ToList();
             var games = facade.GetGameGateway().GetAll().ToList();
@@ -62,7 +59,6 @@ namespace MVOGamesUI.Areas.User.Controllers
 
             GamePlatformGenre gpg = new GamePlatformGenre(newGames.ToList(), genres, platforms);
             return View(gpg);
-
         }
 
         public ActionResult Details(int? id, int? platformId)

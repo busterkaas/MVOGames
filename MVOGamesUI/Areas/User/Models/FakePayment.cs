@@ -8,7 +8,7 @@ using System.Web;
 namespace MVOGamesUI.Areas.User.Models
 {
     public class FakePayment {
-        public FakePayment(string cardType, int cardNumber, int expMonth, int expYear, int cvv, string owner)
+        public FakePayment(string cardType, long cardNumber, int expMonth, int expYear, int cvv, string owner)
         {
             CardType = cardType;
             CardNumber = cardNumber;
@@ -27,8 +27,7 @@ namespace MVOGamesUI.Areas.User.Models
         public string CardType { get; set; }
         [Required]
         [DisplayName("Card number:")]
-        //[MaxLength(16)]
-        //[MinLength(16)]
+
         public long CardNumber { get; set; }
         [Required]
         [Range(1, 12)]
@@ -38,8 +37,7 @@ namespace MVOGamesUI.Areas.User.Models
         public int ExpYear { get; set; }
         [Required]
         [DisplayName("CVV:")]
-        //[MaxLength(3)]
-        //[MinLength(3)]
+
         public int Cvv { get; set; }
         [Required]
         [DisplayName("Card owner:")]

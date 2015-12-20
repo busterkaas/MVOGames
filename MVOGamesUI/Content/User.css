@@ -263,5 +263,18 @@ input[type=submit] {
     max-width:300px;
 }
 
+/*The next section is for MyOrdersView*/
+
+.aOrder{
+    background:none;
+    background-color:none;
+}
+
+.myOrders a .list-group-item-heading{
+     color:white;
+}
+.myOrders a:hover{
+     background-color: rgba(255, 71, 26, 0.7);
+}
 
 

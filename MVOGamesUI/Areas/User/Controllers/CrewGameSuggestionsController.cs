@@ -81,19 +81,19 @@ namespace MVOGamesUI.Areas.User.Controllers
                                     u=>u.HasConfirmed==true).ToList();
             foreach(SuggestionUsersDTO user in suggestionUsers)
             {
-                
                     //create order
                     DateTime date = crewGameSuggestion.ExpirationDate;
                     TimeSpan ts =  crewGameSuggestion.ExpirationTime.TimeOfDay;
                     DateTime orderDate = date + ts;
-                    facade.GetOrderGateway().Create(new OrderDTO() { Date = orderDate, User = user.User, UserId = user.Id });
+                var order = new OrderDTO() { Date = orderDate, User = user.User, UserId = user.UserId };
+                    facade.GetOrderGateway().Create(order);
                 var orders = facade.GetOrderGateway().GetAll();
                     //create orderline 
-                    var order = orders.Where(o => o.UserId == user.Id).Last();
-                    facade.GetOrderlineGateway().Create(new OrderlineDTO() { Amount = 1, Discount = cd.CalculateDiscountDKK(
-                                                                        suggestionUsers.Count(), crewGameSuggestion.PlatformGame.Price),
-                                                                        OrderId = order.Id, PlatformGameId =
-                                                                         crewGameSuggestion.PlatformGameId });
+                var myOrder = orders.Where(o => o.UserId == user.UserId).Last();
+                var orderline = new OrderlineDTO() { Amount = 1, Discount =
+                                                    cd.CalculateDiscountDKK(suggestionUsers.Count(), crewGameSuggestion.PlatformGame.Price),
+                                                    OrderId = myOrder.Id, PlatformGameId = crewGameSuggestion.PlatformGameId };
+                    facade.GetOrderlineGateway().Create(orderline);
                
             }
             //Delete crew-game-suggestion
