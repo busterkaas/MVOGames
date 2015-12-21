@@ -40,7 +40,7 @@ namespace MVOGamesUI.Areas.User.Controllers
             //Here is to reply with warning message if not valid!!!!!!!!!!!!
             if (!cp.IsDateValid(cgs.ExpirationDate, cgs.ExpirationTime.TimeOfDay))
             {
-                ViewBag.ErrorMessage = "Date and time must be at least 5 minutes from now!";
+                ModelState.AddModelError("ExpirationDate", "Date and time together, must a least be 5 minutes from now!");
                 var platformGame = facade.GetPlatformGameGateway().Get(cgs.PlatformGameId);
                 cgs.PlatformGame = platformGame;
                 return View(cgs);

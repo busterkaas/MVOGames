@@ -13,7 +13,6 @@ namespace MVOGamesUI
 
         public static UserDTO user
         {
-            
             get
             {
                 if (!HttpContext.Current.User.Identity.IsAuthenticated)

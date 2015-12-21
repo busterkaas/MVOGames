@@ -19,7 +19,6 @@ namespace BusinessLogic.OrderLogic
             
             return crewMembers*discountInPct+startupPct;
         }
-
         public decimal CalculatePrice(int crewMembers, decimal gamePrice)
         {
             decimal discountPct = (decimal) CalculateDiscountPct(crewMembers);
@@ -27,7 +26,6 @@ namespace BusinessLogic.OrderLogic
             decimal discountDecimal = gamePrice/100*discountPct;
 
             return gamePrice - discountDecimal;
-
         }
 
         public decimal CalculateDiscountDKK(int crewMembers, decimal gamePrice)

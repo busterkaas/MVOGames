@@ -8,8 +8,8 @@
         </div>
         <div class="col-sm-8 col-md-8 col-lg-8">
             <h4>
-                @Model.CrewGameSuggestion.ExpirationDate
-                &nbsp; @Model.CrewGameSuggestion.ExpirationTime.TimeOfDay
+                @Html.Action("GetDateTimeForCGS", "CrewGameSuggestions", new { date = Model.CrewGameSuggestion.ExpirationDate, time = Model.CrewGameSuggestion.ExpirationTime })
+
             </h4>
             <h4>Current price: @Model.CrewGameSuggestion.PlatformGame.Price</h4>
         </div>

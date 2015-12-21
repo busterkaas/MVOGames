@@ -28,6 +28,14 @@ namespace MVOGamesUI.Areas.User.Controllers
             GameSuggestionDetailVM gsdViewModel = new GameSuggestionDetailVM(crewGameSuggestion, users.ToList());
             return View(gsdViewModel);
         }
+        public ActionResult GetDateTimeForCGS(DateTime date, DateTime time)
+        {
+            DateTime finalDate;
+            finalDate = date;
+            TimeSpan ts = time.TimeOfDay;
+            finalDate += ts;
+            return Content(finalDate.ToString());
+        }
 
         public ActionResult JoinCrewGame(bool join, int crewGameSugId)
         {
@@ -82,17 +90,16 @@ namespace MVOGamesUI.Areas.User.Controllers
             foreach(SuggestionUsersDTO user in suggestionUsers)
             {
                     //create order
-                    DateTime date = crewGameSuggestion.ExpirationDate;
-                    TimeSpan ts =  crewGameSuggestion.ExpirationTime.TimeOfDay;
-                    DateTime orderDate = date + ts;
-                var order = new OrderDTO() { Date = orderDate, User = user.User, UserId = user.UserId };
+                var order = new OrderDTO() { Date = DateTime.Now, User = user.User, UserId = user.UserId };
                     facade.GetOrderGateway().Create(order);
                 var orders = facade.GetOrderGateway().GetAll();
                     //create orderline 
                 var myOrder = orders.Where(o => o.UserId == user.UserId).Last();
                 var orderline = new OrderlineDTO() { Amount = 1, Discount =
-                                                    cd.CalculateDiscountDKK(suggestionUsers.Count(), crewGameSuggestion.PlatformGame.Price),
-                                                    OrderId = myOrder.Id, PlatformGameId = crewGameSuggestion.PlatformGameId };
+                                                    cd.CalculateDiscountDKK(suggestionUsers.Count(), 
+                                                    crewGameSuggestion.PlatformGame.Price),
+                                                    OrderId = myOrder.Id, PlatformGameId = 
+                                                    crewGameSuggestion.PlatformGameId };
                     facade.GetOrderlineGateway().Create(orderline);
                
             }
