@@ -27,7 +27,7 @@
             Total price
         </dt>
         <dd>
-            @Model.Sum
+            @Html.Action("GetTotalSum", "Orders", new { orderlines = Model.GetOrderlines(), platformGames = Model.GetPlatformGames()}) DKK
         </dd>
         <br />
 
@@ -46,6 +46,9 @@
                     </th>
                     <th>
                         Amount
+                    </th>
+                    <th>
+                        Discount
                     </th>
                     <th>
                         Unit Price
@@ -75,6 +78,9 @@
                         </td>
                         <td>
                             @Html.Label(order.Amount.ToString())
+                        </td>
+                        <td>
+                            @Html.Label(order.Discount.ToString())
                         </td>
                         <td>
                             @foreach (var platformGame in Model.GetPlatformGames())

@@ -15,15 +15,14 @@ namespace BusinessLogic.SearchLogic
             foreach (UserDTO user in users)
             {
                 if (user.Email.ToLower().Contains(input.ToLower()) || user.Username.ToLower().Contains(input.ToLower())
-                    || user.FirstName.ToLower().Contains(input.ToLower()) || user.LastName.ToLower().Contains(input.ToLower())
-                    || user.StreetName.ToLower().Contains(input.ToLower()) || user.HouseNr.ToLower().Contains(input.ToLower())
-                    || user.City.ToLower().Contains(input.ToLower()))
+                    || user.FirstName.ToLower().Contains(input.ToLower()) || user.LastName.ToLower().Contains(input.ToLower()))
                 {
                     matchedUser.Add(user);
                 }
             }
             return matchedUser;
         }
+
 
         public IEnumerable<GameDTO> GameSearch(IEnumerable<GameDTO> games, string input)
         {

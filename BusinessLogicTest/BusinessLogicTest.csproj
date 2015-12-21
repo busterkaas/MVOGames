@@ -64,11 +64,17 @@
     <Compile Include="OrderLogicTest\CartLogicTest.cs" />
     <Compile Include="OrderLogicTest\CrewDiscountTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchLogicTest\GameSearchTest.cs" />
+    <Compile Include="SearchLogicTest\UserSearchTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
       <Project>{0db419c7-5de4-4585-97cc-d397e48f511d}</Project>
       <Name>BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTOModels\DTOModels.csproj">
+      <Project>{179534ff-e1e8-4a90-abd2-770881da0271}</Project>
+      <Name>DTOModels</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

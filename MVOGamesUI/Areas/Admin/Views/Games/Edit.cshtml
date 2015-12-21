@@ -60,7 +60,7 @@
                 @Html.Label("Current genre(s)", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @foreach (var genre in Model.GetGenres())
-                {
+                    {
                         @Html.Label(genre.Name, new { htmlAttributes = new { @class = "form-control" } })
                         <br />
                     }
@@ -114,20 +114,16 @@
                                 @platformsGames.Price
                             </td>
                             <td align="right">
-                                <a href='@Url.Action("DeletePlatformFromGame", "Games", new { id = platformsGames.Id, gameId = Model.GetGames().Id})' class="btn btn-danger">Remove</a>
+                                <a href='@Url.Action("EditPlatformFromGame", "Games", new { id = platformsGames.Id, gameId = Model.GetGames().Id })' class="btn btn-warning">Edit</a>
+                                <a href='@Url.Action("DeletePlatformFromGame", "Games", new { id = platformsGames.Id, gameId = Model.GetGames().Id })' class="btn btn-danger">Remove</a>
                             </td>
                         </tr>
                     </tbody>
                 }
             </table>
-
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-                <p align="right">
-                    <a href="@Url.Action("CreatePlatformToGame", "Games", new { area = "Admin", gameId = Model.GetGames().Id })" class="btn btn-success">New</a>
-                </p>
-            }
+            <p align="right">
+                <a href="@Url.Action("CreatePlatformToGame", "Games", new { area = "Admin", gameId = Model.GetGames().Id })" class="btn btn-success">New</a>
+            </p>
         </div>
     </div>
 }

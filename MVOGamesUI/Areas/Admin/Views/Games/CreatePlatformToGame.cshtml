@@ -1,11 +1,14 @@
 ﻿@model DTOModels.Models.PlatformGameDTO
 
 @{
-    ViewBag.Title = "CreatePlatformToGame";
+    ViewBag.Title = "Create Platform To Game";
 }
 
 <h2>New PlatformGame</h2>
-
+@if(ViewBag.Error != null)
+{
+    <h4>@ViewBag.Error</h4>
+}
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -14,11 +17,10 @@
     <div class="container itemContainer dl-horizontal form-horizontal">
         <br />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
         <div class="form-group">
-            @Html.LabelFor(model => model.Platform.Name, "Game", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PlatformId, "Platform", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Platforms", ViewBag.GameList as SelectList)
+                @Html.DropDownList("PlatformId", ViewBag.Platforms as SelectList)
                 @Html.ValidationMessageFor(model => model.PlatformId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -44,7 +46,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-success" />
-                <input type="button" value="Cancel" onclick="history.go(-1);return true;" class="btn btn-danger" />
+                <a class="btn btn-info" href="@Url.Action("Edit", "Games", new {id = Model.GameId })">Cancel</a>
             </div>
         </div>
     </div>

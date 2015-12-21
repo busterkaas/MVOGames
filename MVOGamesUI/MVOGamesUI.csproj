@@ -141,6 +141,7 @@
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\ViewModels\GameEditVM.cs" />
     <Compile Include="Areas\Admin\ViewModels\OrderGames.cs" />
+    <Compile Include="Areas\Admin\ViewModels\OrderlinePlatformGameVM.cs" />
     <Compile Include="Areas\Admin\ViewModels\RolesUser.cs" />
     <Compile Include="Areas\User\Controllers\CrewBuyController.cs" />
     <Compile Include="Areas\User\Controllers\CrewGameSuggestionsController.cs" />
@@ -266,6 +267,7 @@
     <Content Include="Areas\User\Views\Orders\MyOrders.cshtml" />
     <Content Include="Areas\User\Views\Shared\_UserInformation.cshtml" />
     <Content Include="Areas\Admin\Views\Games\CreatePlatformToGame.cshtml" />
+    <Content Include="Areas\Admin\Views\Games\EditPlatformFromGame.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
