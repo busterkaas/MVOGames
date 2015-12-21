@@ -81,21 +81,21 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             return View(og);
         }
 
-        // POST: Admin/Order/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id)
+        [ChildActionOnly]
+        public ActionResult GetTotalSum(List<OrderlineDTO> orderlines, List<PlatformGameDTO> platformGames)
         {
-            try
+            decimal totalSum = 0;
+            foreach (PlatformGameDTO pfg in platformGames)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                foreach (OrderlineDTO orderline in orderlines)
+                {
+                    if (orderline.PlatformGameId == pfg.Id)
+                    {
+                        totalSum = totalSum + (orderline.Amount * pfg.Price);
+                    }
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return Content(totalSum + "");
         }
 
         // GET: Admin/Order/Delete/5
@@ -167,11 +167,23 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult newGameToOrder([Bind(Include = "Id,Amount,Discount,orderId,PlatformGameId")]OrderlineDTO orderline)
         {
+            decimal d;
+            if (!ModelState.IsValid)
+            {
+                return View(orderline);
+            }
+
+            if (orderline.Amount < 1)
+            {
+                ViewBag.GameList = new SelectList(facade.GetPlatformGameGateway().GetAll().OrderBy(g => g.Game.Title), "Id", "GamePlatformName");
+                ModelState.AddModelError("Amount", "Amount must be at least 1");
+                return View(orderline);
+            }
             if (orderline == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
+
             facade.GetOrderlineGateway().Create(orderline);
             ViewBag.GameList = new SelectList(facade.GetPlatformGameGateway().GetAll().OrderBy(g => g.Game.Title).Select(g => g.Game.Title), orderline.PlatformGameId);
 

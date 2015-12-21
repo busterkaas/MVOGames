@@ -12,7 +12,7 @@ namespace DTOModels.Models
     {
         public int Id { get; set; }
         [Required]
-        [MinLength(2)]
+        [MinLength(2, ErrorMessage = "Crew name must be at least 2")]
         [DisplayName("Crew name")]
         public string Name { get; set; }
         [DisplayName("Crew image url")]

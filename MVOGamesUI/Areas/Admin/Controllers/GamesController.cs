@@ -91,7 +91,6 @@ namespace MVOGamesUI.Areas.Admin.Controllers
                     NewGenres.Add(new GenreDTO() { Id = genreID });
                 }
                 game.Genres = NewGenres;
-
                 HttpResponseMessage response = facade.GetGameGateway().Create(game);
                 if(response.StatusCode == HttpStatusCode.Created)
                 return RedirectToAction("Index");
@@ -100,7 +99,9 @@ namespace MVOGamesUI.Areas.Admin.Controllers
                     return new HttpStatusCodeResult(response.StatusCode);
                 }
             }
+            
             return View(game);
+            
         }
 
         // GET: Admin/Games/Edit/5
@@ -241,10 +242,15 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         }
 
         //POST: Admin/Game/EditPlatformGame/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult EditPlatformFromGame([Bind(Include = "Id,GameId,PlatformId,Price,Stock")] PlatformGameDTO platformGame)
         {
+            platformGame.Game = facade.GetGameGateway().Get(platformGame.GameId);
+            platformGame.Platform = facade.GetPlatformGateway().Get(platformGame.PlatformId);
 
-            return View();
+            facade.GetPlatformGameGateway().Update(platformGame);
+            return RedirectToAction("Edit" + "/" + platformGame.GameId);
         }
 
         public ActionResult DeletePlatformFromGame(int? id, int? gameId)

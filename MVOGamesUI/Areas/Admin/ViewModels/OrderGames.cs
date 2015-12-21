@@ -45,7 +45,7 @@ namespace MVOGamesUI.Areas.Admin.ViewModels
             return games;
         }
 
-        public void getTotalSum()
+        public decimal getTotalSum()
         {
             decimal sum = 0;
 
@@ -53,7 +53,7 @@ namespace MVOGamesUI.Areas.Admin.ViewModels
             {
                 sum = sum + platformgame.Price;
             }
-            Sum = sum;
+            return Sum = sum;
         }
 
     }

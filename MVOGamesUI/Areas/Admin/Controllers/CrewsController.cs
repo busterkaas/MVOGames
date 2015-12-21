@@ -36,7 +36,6 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 facade.GetCrewGateway().Create(crew);
-
                 return RedirectToAction("Index");
             }
             return View(crew);
@@ -66,9 +65,9 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 facade.GetCrewGateway().Update(crew);
-
                 return RedirectToAction("Index");
             }
+            crew = facade.GetCrewGateway().Get(crew.Id);
             return View(crew);
         }
 

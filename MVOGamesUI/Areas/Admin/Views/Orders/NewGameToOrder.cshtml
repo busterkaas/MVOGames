@@ -5,7 +5,10 @@
 }
 
 <h2>New Orderline</h2>
-
+@if (ViewBag.Error != null)
+{
+    <h4>@ViewBag.Error</h4>
+}
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -32,7 +35,7 @@
 
         <div class="myEditorForLengthEdit form-group">
             @Html.LabelFor(model => model.PlatformGameId, "Game", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class=" col-md-10">
+            <div class="col-md-10">
                 @Html.DropDownList("PlatformGameId", ViewBag.GameList as SelectList)
                 @Html.ValidationMessageFor(model => model.PlatformGameId, "", new { @class = "text-danger" })
             </div>
