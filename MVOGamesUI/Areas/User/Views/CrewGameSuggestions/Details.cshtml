@@ -47,5 +47,8 @@
 
     <a class="btn btn-info" href="@Url.Action("MyCrew", "Crews", new { id = Model.CrewGameSuggestion.CrewId})">Back</a>
 
+
     <a class="btn btn-success" href="@Url.Action("CreateOrdersForCrew", new { crewGameSuggestionId = Model.CrewGameSuggestion.Id})">Buy now</a>
+    <h4 class="errorMsg">WARNING - IF YOU PRESS THE "BUY"-BUTTON, YOU WILL INTSANTLY BUY THE GAME AND OTHER CREW-MEMBERS WONT BE ABLE TO JOIN IT ANYMORE. </h4>
+    <h4 class="errorMsg">UPDATE WILL COME</h4>
 </div>
