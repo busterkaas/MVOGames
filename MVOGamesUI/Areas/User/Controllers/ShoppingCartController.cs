@@ -28,10 +28,10 @@ namespace MVOGamesUI.Areas.User.Controllers
         protected override void Initialize(RequestContext requestContext)
         {
             base.Initialize(requestContext);
-            if (Session["cart"] == null)
-                Session["cart"] = new List<ShoppingCartItem>();
+            if (Session["cart"+Auth.user.Id] == null)
+                Session["cart" + Auth.user.Id] = new List<ShoppingCartItem>();
 
-            cartModel.Items = (List<ShoppingCartItem>)Session["cart"];
+            cartModel.Items = (List<ShoppingCartItem>)Session["cart" + Auth.user.Id];
         }
         // GET: User/ShoppingCart
         public ActionResult Index()
@@ -93,7 +93,7 @@ namespace MVOGamesUI.Areas.User.Controllers
                             Discount = 0
                         });
                 }
-                Session["cart"] = null;
+                Session["cart" + Auth.user.Id] = null;
                 return View(ucp);
             }
             catch
@@ -122,7 +122,7 @@ namespace MVOGamesUI.Areas.User.Controllers
         }
         public ActionResult Clear()
         {
-            Session["cart"] = null;
+            Session["cart" + Auth.user.Id] = null;
             return RedirectToAction("Index", "ShoppingCart");
         }
     }

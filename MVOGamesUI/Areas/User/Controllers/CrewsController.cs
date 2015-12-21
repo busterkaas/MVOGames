@@ -110,7 +110,12 @@ namespace MVOGamesUI.Areas.User.Controllers
 
                 return RedirectToAction("Index", new { message = "The chosen crew is full!" });
             }
-            if (MaxCrewsJoined(Auth.user.Id))
+            int myId = Auth.user.Id;
+            if (crew.CrewLeaderId == myId)
+            {
+                return RedirectToAction("Index", new { message = "You are the leader of this crew, Stop it! :-)" });
+            }
+            if (MaxCrewsJoined(myId))
             {
                 return RedirectToAction("Index", new { message = "You can maximum join 3 crews!" });
             }
