@@ -33,9 +33,6 @@
         </div>
         <div class="col-lg-12">
             <table class="table table-condensed">
-                @*<tr>
-                        <h2><strong>Ordered Games</strong></h2>
-                    </tr>*@
                 <tr class="tablehederColor">
                     <th>
                         Game(s)
@@ -96,7 +93,7 @@
             </table>
             <p align="right">
                 @Html.ActionLink("Edit", "Edit", new { id = Model.GetOrder().Id }, new { @class = "btn btn-warning" }) |
-                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-primary" })
             </p>
             <br />
         </div>

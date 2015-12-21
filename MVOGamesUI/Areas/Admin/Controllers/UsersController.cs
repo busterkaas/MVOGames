@@ -100,9 +100,13 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Username,PasswordHash,FirstName,LastName,StreetName,HouseNr,ZipCode,City,Email, RoleId")] UserDTO user)
         {
-
             if (!ModelState.IsValid)
             {
+                return View(user);
+            }
+            if(user.ZipCode < 1)
+            {
+                ModelState.AddModelError("ZipCode", "ZipCode must be atleast 1");
                 return View(user);
             }
             var newUser = facade.GetUserGateway().Get(user.Id);
@@ -144,14 +148,6 @@ namespace MVOGamesUI.Areas.Admin.Controllers
             facade.GetUserGateway().Delete(id);
             return RedirectToAction("Index");
         }
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(dispos
 
 
         public IEnumerable<UserDTO> GetUserSearch(string input)

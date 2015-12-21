@@ -153,7 +153,6 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         }
 
         // GET: Admin/Order/NewGameToOrder/5
-        //public ActionResult NewGameToOrder(int? id)
         public ActionResult NewGameToOrder(int orderId)
         {
             ViewBag.GameList = new SelectList(facade.GetPlatformGameGateway().GetAll().OrderBy(g => g.Game.Title), "Id", "GamePlatformName");
@@ -167,7 +166,6 @@ namespace MVOGamesUI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult newGameToOrder([Bind(Include = "Id,Amount,Discount,orderId,PlatformGameId")]OrderlineDTO orderline)
         {
-            decimal d;
             if (!ModelState.IsValid)
             {
                 return View(orderline);

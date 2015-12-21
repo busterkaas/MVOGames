@@ -18,26 +18,11 @@
                         @using (Html.BeginForm())
                         {
                             <p>
-                                @Html.DropDownList("GenreList", (SelectList)ViewBag.GenreList, "All", new { onchange = "javascript:this.form.submit()" })
+                                @Html.DropDownList("GenreList", (SelectList)ViewBag.GenreList, "All", new { @class = "listBox", onchange = "javascript:this.form.submit()" })
                             </p>
                         }
                     </div>
                 </div>
-
-
-                <div class="panelsplit">
-                    <strong>Search</strong>
-                    <div>
-                        @using (Html.BeginForm())
-                        {
-                            <p>
-                                <input style="width:130px;" type="text" placeholder="Search" />
-                            </p>
-
-                        }
-                    </div>
-                </div>
-
             </div>
         </div>
 
